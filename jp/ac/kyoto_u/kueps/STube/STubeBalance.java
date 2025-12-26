@@ -18,7 +18,11 @@ public class STubeBalance {
 
   String value = "";
 
-  STubeOption option = new STubeOption();
+  STubeOption option;
+
+  public void setOption(STubeOption opt) {
+    this.option = opt;
+  }
 
   public STubeBalance() {
   }
