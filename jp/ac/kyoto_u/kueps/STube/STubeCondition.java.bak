@@ -15,58 +15,58 @@ import javax.swing.*;
 
 public class STubeCondition
     implements Serializable {
-  /**ç²’å­æ¯”é‡*/
+  /**—±q”äd*/
   protected double rhos = 2.65;
 
-  /**è¨ˆæ¸¬ã™ã‚‹æœ€å°ã®Phiå€¤*/
+  /**Œv‘ª‚·‚éÅ¬‚ÌPhi’l*/
   protected double phimin = -1.0;
 
-  /**è¨ˆæ¸¬ã™ã‚‹æœ€å¤§ã®Phiå€¤*/
+  /**Œv‘ª‚·‚éÅ‘å‚ÌPhi’l*/
   protected double phimax = 2.5;
 
-  /**è¨ˆæ¸¬ã™ã‚‹Phiå€¤ã®é–“éš”*/
+  /**Œv‘ª‚·‚éPhi’l‚ÌŠÔŠu*/
   protected double dphi = 0.1;
 
-  /**è¨ˆæ¸¬æ™‚é–“(sec)*/
+  /**Œv‘ªŠÔ(sec)*/
   protected double minterval = 500.0;
 
-  /**è¨ˆæ¸¬æ™‚é–“é–“éš”*/
+  /**Œv‘ªŠÔŠÔŠu*/
   protected double dm = 1.0;
 
-  /**æ°´æ¸©(degree)*/
+  /**…‰·(degree)*/
   protected double wtemp = 20.0;
 
-  /**æ²ˆé™è·é›¢(cm)*/
+  /**’¾~‹——£(cm)*/
   protected double wdepth = 150.0;
 
-  /**é‡åŠ›åŠ é€Ÿåº¦(cm/s^2)*/
+  /**d—Í‰Á‘¬“x(cm/s^2)*/
   static protected final double G = 980.665;
 
-  /**æ°´ã®å¯†åº¦*/
+  /**…‚Ì–§“x*/
   protected double rhof;
 
-  /**æ°´ã®ç²˜æ€§*/
+  /**…‚Ì”S«*/
   protected double mu;
 
-  /**è¨ˆæ¸¬æ™‚åˆ»*/
+  /**Œv‘ª*/
   protected double[] mtime;
 
-  /**ä¸€å®šæ™‚é–“é–“éš”ã§è¨ˆæ¸¬ã‚’è¡Œã†ã‹å¦ã‹*/
+  /**ˆê’èŠÔŠÔŠu‚ÅŒv‘ª‚ğs‚¤‚©”Û‚©*/
   protected boolean intervalmode = false;
 
-  /**æ²ˆé™é€Ÿåº¦ã®è¨ˆç®—ã«Gibbs et al. (1971)ã®å¼ã‚’ç”¨ã„ã‚‹ã‹*/
+  /**’¾~‘¬“x‚ÌŒvZ‚ÉGibbs et al. (1971)‚Ì®‚ğ—p‚¢‚é‚©*/
   protected boolean gibbs = false;
 
-  /**çµ±è¨ˆå€¤ã®ç®—å‡ºã«phiã‚¹ã‚±ãƒ¼ãƒ«ã‚’ç”¨ã„ã‚‹ã‹å¦ã‹*/
+  /**“Œv’l‚ÌZo‚ÉphiƒXƒP[ƒ‹‚ğ—p‚¢‚é‚©”Û‚©*/
   protected boolean phiscale = true;
 
-  /**ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
+  /**ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
   public STubeCondition() {
     calcCondition();
   }
 
   /**
-   * å¾“å±å¤‰æ•°ã‚’ç®—å‡ºã™ã‚‹
+   * ]‘®•Ï”‚ğZo‚·‚é
    */
   public void calcCondition() {
     rhof = 1.0001576 + 8.257e-6 * wtemp - 0.000005306 * wtemp * wtemp;
@@ -74,26 +74,26 @@ public class STubeCondition
     if (!intervalmode) {
       mtime = new double[ (int) Math.floor( (phimax - phimin) / dphi) + 1];
 
-      //æ²ˆé™é€Ÿåº¦ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¨ˆç®—
+      //’¾~‘¬“x‚ğ•ÊƒXƒŒƒbƒh‚ÅŒvZ
       Thread calc = new Thread() {
         double phi = phimin;
         public void run() {
 
-          //é€²è¡ŒçŠ¶æ³ã‚’è¡¨ç¤ºã™ã‚‹
-          ProgressMonitor pmon = new ProgressMonitor(null, "æ²ˆé™é€Ÿåº¦ã‚’è¨ˆç®—ä¸­...", "", 0,
+          //isó‹µ‚ğ•\¦‚·‚é
+          ProgressMonitor pmon = new ProgressMonitor(null, "’¾~‘¬“x‚ğŒvZ’†...", "", 0,
               mtime.length);
 
-          //è¨ˆç®—å‡¦ç†
+          //ŒvZˆ—
           for (int i = 0; i < mtime.length; i++) {
             mtime[i] = getSettlingTime(phi);
             phi += dphi;
             pmon.setProgress(i);
           }
 
-          //é€²è¡ŒçŠ¶æ³ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‰ã˜ã‚‹
+          //isó‹µƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚é
           pmon.close();
 
-          //è¨ˆç®—çµæœã‚’æ¨™æº–å‡ºåŠ›ã«è¡¨ç¤º
+          //ŒvZŒ‹‰Ê‚ğ•W€o—Í‚É•\¦
           for (int i = 0; i < mtime.length; i++) {
             System.out.println(mtime[i]);
           }
@@ -112,7 +112,7 @@ public class STubeCondition
   }
 
   /**
-   * Gibbs et al. (1971) ã®çµŒé¨“å¼ã‚’ç”¨ã„ã¦æ²ˆé™é€Ÿåº¦ã®è¨ˆç®—ã‚’è¡Œã†
+   * Gibbs et al. (1971) ‚ÌŒoŒ±®‚ğ—p‚¢‚Ä’¾~‘¬“x‚ÌŒvZ‚ğs‚¤
    * @param d double
    * @return double
    */
@@ -128,22 +128,22 @@ public class STubeCondition
   }
 
   /**
-   * ç²’å¾„ï¼ˆphiï¼‰ã‹ã‚‰æ²ˆé™æ™‚é–“ã‚’è¨ˆç®—ã™ã‚‹
+   * —±Œaiphij‚©‚ç’¾~ŠÔ‚ğŒvZ‚·‚é
    * @param phi double
    * @return double
    */
   protected double getSettlingTime(double phi) {
-    /**ç²’å¾„ï¼ˆcmï¼‰*/
+    /**—±Œaicmj*/
     double d = Math.pow(2.0, -phi) / 10;
 
-    /**Gibbsã®çµ‚ç«¯é€Ÿåº¦ã§æ±‚ã‚ã‚‹*/
+    /**Gibbs‚ÌI’[‘¬“x‚Å‹‚ß‚é*/
     if (gibbs) {
       double tvel;
       tvel = getGibbsTVelocity(d);
       return wdepth / tvel;
     }
 
-    //å°å½¢å·®åˆ†æ³•ã§æ²ˆé™æ™‚é–“ã‚’è¨ˆç®—
+    //‘äŒ`·•ª–@‚Å’¾~ŠÔ‚ğŒvZ
     double dt = 0.000001;
     double time = 0.0;
     double v = 0.000001;
@@ -152,7 +152,7 @@ public class STubeCondition
     double re = 0.0;
     double cd = 0.0;
     double dv = 0.0;
-    //åŠ é€Ÿéç¨‹ã‚’è¨ˆç®—ï¼é€Ÿåº¦ãŒ0.0001%ã—ã‹å¤‰ã‚ã£ã¦ã„ãªã‘ã‚Œã°çµ‚ç«¯é€Ÿåº¦ã«é”ã—ãŸã¨åˆ¤å®š
+    //‰Á‘¬‰ß’ö‚ğŒvZD‘¬“x‚ª0.0001%‚µ‚©•Ï‚í‚Á‚Ä‚¢‚È‚¯‚ê‚ÎI’[‘¬“x‚É’B‚µ‚½‚Æ”»’è
     while (y < wdepth && (v - v_old) / v_old > 0.000001) {
       v_old = v;
       re = (rhof * v * d) / mu;
@@ -163,7 +163,7 @@ public class STubeCondition
       v = v + dv * dt;
       time = time + dt;
     }
-    //çµ‚ç«¯é€Ÿåº¦ã«é”ã—ã¦ã‹ã‚‰ã®æ²ˆé™æ™‚é–“ã‚’è¨ˆç®—
+    //I’[‘¬“x‚É’B‚µ‚Ä‚©‚ç‚Ì’¾~ŠÔ‚ğŒvZ
     if (y < wdepth) {
       time += (wdepth - y) / v;
     }
@@ -172,18 +172,18 @@ public class STubeCondition
   }
 
   /**
-   * æŠµæŠ—ä¿‚æ•°Cdã‚’ãƒ¬ã‚¤ãƒãƒ«ã‚ºæ•°reã‹ã‚‰ç®—å‡ºã™ã‚‹
+   * ’ïRŒW”Cd‚ğƒŒƒCƒmƒ‹ƒY”re‚©‚çZo‚·‚é
    * @param re double
    * @return double
    */
   private final double getCd(double re) {
     double cd = 0;
 
-    //ã‚¹ãƒˆãƒ¼ã‚¯ã‚¹å‰‡
+    //ƒXƒg[ƒNƒX‘¥
     if (re < 0.9) {
       cd = 24. / re;
     }
-    //ã‚·ãƒ©ãƒ¼ã¨ãƒŠã‚¦ãƒãƒ³ã®å¼
+    //ƒVƒ‰[‚ÆƒiƒEƒ}ƒ“‚Ì®
     else if (re < 800.) {
       cd = 24 / re * (1. + 0.15 * Math.pow(re, 0.687));
     }
@@ -195,54 +195,54 @@ public class STubeCondition
   }
 
   /**
-   * æ¸¬å®šConditionã‚’æ–‡å­—åˆ—åŒ–ã™ã‚‹
+   * ‘ª’èCondition‚ğ•¶š—ñ‰»‚·‚é
    * @return String
    */
   public String toString() {
     StringWriter condition = new StringWriter();
     PrintWriter pr = new PrintWriter(condition);
 
-    /**ç²’å­æ¯”é‡*/
-    pr.println("ç²’å­æ¯”é‡: " + "\t" + Double.toString(rhos));
+    /**—±q”äd*/
+    pr.println("—±q”äd: " + "\t" + Double.toString(rhos));
 
-    /**è¨ˆæ¸¬ã™ã‚‹æœ€å°ã®Phiå€¤*/
-    pr.println("è¨ˆæ¸¬ã™ã‚‹æœ€å°ã®Phiå€¤: " + "\t" + Double.toString(phimin));
+    /**Œv‘ª‚·‚éÅ¬‚ÌPhi’l*/
+    pr.println("Œv‘ª‚·‚éÅ¬‚ÌPhi’l: " + "\t" + Double.toString(phimin));
 
-    /**è¨ˆæ¸¬ã™ã‚‹æœ€å¤§ã®Phiå€¤*/
-    pr.println("è¨ˆæ¸¬ã™ã‚‹æœ€å¤§ã®Phiå€¤: " + "\t" + Double.toString(phimax));
+    /**Œv‘ª‚·‚éÅ‘å‚ÌPhi’l*/
+    pr.println("Œv‘ª‚·‚éÅ‘å‚ÌPhi’l: " + "\t" + Double.toString(phimax));
 
-    /**è¨ˆæ¸¬ã™ã‚‹Phiå€¤ã®é–“éš”*/
-    pr.println("è¨ˆæ¸¬ã™ã‚‹Phiå€¤ã®é–“éš”: " + "\t" + Double.toString(dphi));
+    /**Œv‘ª‚·‚éPhi’l‚ÌŠÔŠu*/
+    pr.println("Œv‘ª‚·‚éPhi’l‚ÌŠÔŠu: " + "\t" + Double.toString(dphi));
 
-    /**è¨ˆæ¸¬æ™‚é–“(sec)*/
-    pr.println("è¨ˆæ¸¬æ™‚é–“(sec): " + "\t" + Double.toString(minterval));
+    /**Œv‘ªŠÔ(sec)*/
+    pr.println("Œv‘ªŠÔ(sec): " + "\t" + Double.toString(minterval));
 
-    /**è¨ˆæ¸¬æ™‚é–“é–“éš”*/
-    pr.println("è¨ˆæ¸¬æ™‚é–“é–“éš”: " + "\t" + Double.toString(dm));
+    /**Œv‘ªŠÔŠÔŠu*/
+    pr.println("Œv‘ªŠÔŠÔŠu: " + "\t" + Double.toString(dm));
 
-    /**æ°´æ¸©(degree)*/
-    pr.println("æ°´æ¸©: " + "\t" + Double.toString(wtemp));
+    /**…‰·(degree)*/
+    pr.println("…‰·: " + "\t" + Double.toString(wtemp));
 
-    /**æ²ˆé™è·é›¢(cm)*/
-    pr.println("æ²ˆé™è·é›¢(cm): " + "\t" + Double.toString(wdepth));
+    /**’¾~‹——£(cm)*/
+    pr.println("’¾~‹——£(cm): " + "\t" + Double.toString(wdepth));
 
-    /**é‡åŠ›åŠ é€Ÿåº¦(cm/s^2)*/
-    pr.println("é‡åŠ›åŠ é€Ÿåº¦(cm/s^2): " + "\t" + Double.toString(G));
+    /**d—Í‰Á‘¬“x(cm/s^2)*/
+    pr.println("d—Í‰Á‘¬“x(cm/s^2): " + "\t" + Double.toString(G));
 
-    /**è¨ˆæ¸¬æ™‚åˆ»*/
-    pr.print("è¨ˆæ¸¬æ™‚åˆ»: ");
+    /**Œv‘ª*/
+    pr.print("Œv‘ª: ");
     for (int i = 0; i < mtime.length; i++) {
       pr.print(Double.toString(mtime[i]) + "\t");
     }
     pr.println();
 
-    /**ä¸€å®šæ™‚é–“é–“éš”ã§è¨ˆæ¸¬ã‚’è¡Œã†ã‹å¦ã‹*/
-    pr.println("ä¸€å®šæ™‚é–“é–“éš”ã§è¨ˆæ¸¬ã‚’è¡Œã†ã‹å¦ã‹: " + "\t" + Boolean.toString(intervalmode));
+    /**ˆê’èŠÔŠÔŠu‚ÅŒv‘ª‚ğs‚¤‚©”Û‚©*/
+    pr.println("ˆê’èŠÔŠÔŠu‚ÅŒv‘ª‚ğs‚¤‚©”Û‚©: " + "\t" + Boolean.toString(intervalmode));
 
-    /**æ²ˆé™é€Ÿåº¦ã®è¨ˆç®—ã«Gibbs et al. (1971)ã®å¼ã‚’ç”¨ã„ã‚‹ã‹*/
-    pr.println("æ²ˆé™é€Ÿåº¦ã®è¨ˆç®—ã«Gibbs(1971)ã®å¼ã‚’ç”¨ã„ã‚‹ã‹: " + "\t" + Boolean.toString(gibbs));
+    /**’¾~‘¬“x‚ÌŒvZ‚ÉGibbs et al. (1971)‚Ì®‚ğ—p‚¢‚é‚©*/
+    pr.println("’¾~‘¬“x‚ÌŒvZ‚ÉGibbs(1971)‚Ì®‚ğ—p‚¢‚é‚©: " + "\t" + Boolean.toString(gibbs));
 
-    pr.println("çµ±è¨ˆå€¤ã®è¨ˆç®—ã«PhiScaleã‚’ç”¨ã„ã‚‹ã‹: " + "\t" + Boolean.toString(phiscale));
+    pr.println("“Œv’l‚ÌŒvZ‚ÉPhiScale‚ğ—p‚¢‚é‚©: " + "\t" + Boolean.toString(phiscale));
     return condition.toString();
   }
 

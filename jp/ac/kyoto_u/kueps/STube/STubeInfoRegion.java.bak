@@ -263,24 +263,24 @@ public class STubeInfoRegion
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒTƒ“ƒvƒ‹î•ñ‚ğƒZƒbƒg‚·‚é
    * @param sample STubeSample
    */
   public void setSample(STubeSample sample) {
-    /**æ•°å€¤ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ*/
+    /**”’lƒtƒH[ƒ}ƒbƒg—pƒIƒuƒWƒFƒNƒg*/
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(3);
 
-    /**æƒ…å ±åˆæœŸåŒ–*/
+    /**î•ñ‰Šú‰»*/
     clear();
 
-    /**æƒ…å ±è¨­å®š*/
+    /**î•ñİ’è*/
     samplename.setText(sample.name);
     date.setText(DateFormat.getDateTimeInstance().format(sample.mdate));
     totalweight.setText(nf.format(sample.total_weight) + "g");
     wdepth.setText(nf.format(sample.condition.wdepth) + "cm");
-    wtemp.setText(nf.format(sample.condition.wtemp) + "Â°C");
-    /**é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ*/
+    wtemp.setText(nf.format(sample.condition.wtemp) + "‹C");
+    /**’Êíƒ‚[ƒh‚Ìê‡*/
     if (!sample.condition.intervalmode) {
       interval.setText(nf.format(sample.condition.dphi) + "phi");
       range.setText(nf.format(sample.condition.phimin) + "~" +
@@ -296,7 +296,7 @@ public class STubeInfoRegion
       twentyfivep.setText(nf.format(sample.twentyfivep));
       seventyfivep.setText(nf.format(sample.seventyfivep));
     }
-    /**Intervalãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ*/
+    /**Intervalƒ‚[ƒh‚Ìê‡*/
     else {
       interval.setText(nf.format(sample.condition.dm) + "sec.");
       range.setText("");
@@ -306,7 +306,7 @@ public class STubeInfoRegion
   }
 
   /**
-   * æƒ…å ±åˆæœŸåŒ–
+   * î•ñ‰Šú‰»
    */
   public void clear() {
     samplename.setText("");

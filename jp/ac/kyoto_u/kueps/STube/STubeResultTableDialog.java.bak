@@ -16,7 +16,7 @@ import java.util.*;
 
 public class STubeResultTableDialog
     extends JDialog {
-  /**çµæœã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ‡ãƒ«*/
+  /**Œ‹‰Ê‚ğ•\¦‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹ƒ‚ƒfƒ‹*/
   STubeResultTableModel result_model = new STubeResultTableModel();
 
   JPanel mainpanel = new JPanel();
@@ -105,12 +105,12 @@ public class STubeResultTableDialog
       if (rowcount > 0) {
         String message;
         if (rowcount == 1) {
-          message = "ã“ã®æ¸¬å®šçµæœã‚’å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ";
+          message = "‚±‚Ì‘ª’èŒ‹‰Ê‚ğíœ‚µ‚Ü‚·‚©H";
         }
         else {
-          message = "ã“ã‚Œã‚‰ã®æ¸¬å®šçµæœã‚’å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ";
+          message = "‚±‚ê‚ç‚Ì‘ª’èŒ‹‰Ê‚ğíœ‚µ‚Ü‚·‚©H";
         }
-        if (JOptionPane.showConfirmDialog(this, message, "æ¸¬å®šçµæœã®å‰Šé™¤",
+        if (JOptionPane.showConfirmDialog(this, message, "‘ª’èŒ‹‰Ê‚Ìíœ",
                                           JOptionPane.YES_NO_OPTION) ==
             JOptionPane.YES_OPTION) {
           ( (STubeFrame) getParent()).papp.removeSamples(jtable_result.
@@ -121,9 +121,9 @@ public class STubeResultTableDialog
   }
 
   /**
-   * ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
-   * ã‚·ãƒ³ã‚°ãƒ«ã‚¯ãƒªãƒƒã‚¯ãªã‚‰ã°ã‚µãƒ³ãƒ—ãƒ«ã®è¡¨ç¤º
-   * ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ãªã‚‰ã°ã‚µãƒ³ãƒ—ãƒ«åã®å¤‰æ›´
+   * ƒe[ƒuƒ‹‚ªƒNƒŠƒbƒN‚³‚ê‚½ê‡‚Ìˆ—
+   * ƒVƒ“ƒOƒ‹ƒNƒŠƒbƒN‚È‚ç‚ÎƒTƒ“ƒvƒ‹‚Ì•\¦
+   * ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚È‚ç‚ÎƒTƒ“ƒvƒ‹–¼‚Ì•ÏX
    * @param e MouseEvent
    */
   void jtable_result_mouseClicked(MouseEvent e) {

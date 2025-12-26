@@ -19,72 +19,72 @@ import gnu.io.*;
 public class STubeOption
     implements Serializable, Cloneable {
 
-  /**ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³*/
+  /**ƒJƒEƒ“ƒgƒ_ƒEƒ“*/
   protected int cdoun = 20;
 
-  /**é€šä¿¡ãƒãƒ¼ãƒˆå*/
+  /**’ÊMƒ|[ƒg–¼*/
   protected String com_name = "COM1";
 
-  /**é€šä¿¡ãƒãƒ¼ãƒˆã®é€Ÿåº¦*/
+  /**’ÊMƒ|[ƒg‚Ì‘¬“x*/
   int com_rate = 38400;
 
-  /**ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒƒãƒˆ*/
+  /**ƒf[ƒ^ƒrƒbƒg*/
   int com_databits = SerialPort.DATABITS_8;
 
-  /**ã‚¹ãƒˆãƒƒãƒ—ãƒ“ãƒƒãƒˆ*/
+  /**ƒXƒgƒbƒvƒrƒbƒg*/
   int com_stopbits = SerialPort.STOPBITS_1;
 
-  /**ãƒ‘ãƒªãƒ†ã‚£*/
+  /**ƒpƒŠƒeƒB*/
   int com_parity = SerialPort.PARITY_NONE;
 
-  /**è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰(phi or time)*/
+  /**•\¦ƒ‚[ƒh(phi or time)*/
   int view_xaxis = VIEW_PHI;
   static int VIEW_PHI = 1;
   static int VIEW_TIME = 3;
   static int VIEW_MM = 2;
 
-  /**è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ (% or g) */
+  /**•\¦ƒ‚[ƒh (% or g) */
   int view_yaxis = VIEW_PERCENT;
   static int VIEW_PERCENT = 1;
   static int VIEW_GRAM = 2;
 
-  /**è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ (histogram or cumulative)*/
+  /**•\¦ƒ‚[ƒh (histogram or cumulative)*/
   boolean view_histogram = true;
 
-  /**ã‚°ãƒ©ãƒ•ã®è‰²*/
+  /**ƒOƒ‰ƒt‚ÌF*/
   protected Color line_color = Color.red;
 
-  /**ã‚°ãƒ©ãƒ•ã®ãƒ•ã‚©ãƒ³ãƒˆ*/
+  /**ƒOƒ‰ƒt‚ÌƒtƒHƒ“ƒg*/
   protected Font font = new Font("SansSerif", Font.PLAIN, 11);
 
-  /**ç·šã®å¤ªã•*/
+  /**ü‚Ì‘¾‚³*/
   protected float line_width = 2.0f;
 
-  /**è¨ˆæ¸¬é…å»¶(m.sec.)*/
+  /**Œv‘ª’x‰„(m.sec.)*/
   int delay = 0;
 
-  /**æ²ˆé™ç®¡ã®çŠ¶æ…‹ã‚’å‡ºåŠ›ã™ã‚‹ã‹å¦ã‹*/
+  /**’¾~ŠÇ‚Ìó‘Ô‚ğo—Í‚·‚é‚©”Û‚©*/
   protected boolean output_condition = false;
 
-  /**çµ±è¨ˆå€¤ã‚’å‡ºåŠ›ã™ã‚‹ã‹å¦ã‹*/
+  /**“Œv’l‚ğo—Í‚·‚é‚©”Û‚©*/
   protected boolean output_stats = true;
 
-  /**ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã™ã‚‹ã‹å¦ã‹*/
+  /**¶ƒf[ƒ^‚ğo—Í‚·‚é‚©”Û‚©*/
   protected boolean output_rawdata = false;
 
-  /**é‡é‡éšç´šé »åº¦ã‚’å‡ºåŠ›ã™ã‚‹ã‹å¦ã‹*/
+  /**d—ÊŠK‹‰•p“x‚ğo—Í‚·‚é‚©”Û‚©*/
   protected boolean output_class = true;
 
-  /**å°åˆ·ã™ã‚‹ãƒšãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ*/
+  /**ˆóü‚·‚éƒy[ƒW‚ÌƒtƒH[ƒ}ƒbƒg*/
   transient protected PageFormat pageformat;
 
-  /**ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ã‚¹*/
+  /**ƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚éƒTƒEƒ“ƒh‚ÌƒpƒX*/
   String sound_count_path = "";
 
-  /**ãƒ©ã‚¹ãƒˆ3ç§’ã‚’ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ã‚¹*/
+  /**ƒ‰ƒXƒg3•b‚ğƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚éƒTƒEƒ“ƒh‚ÌƒpƒX*/
   String sound_lastcount_path = "";
 
-  /**è¨ˆæ¸¬é–‹å§‹ã‚’å‘Šã’ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ã‚¹*/
+  /**Œv‘ªŠJn‚ğ‚°‚éƒTƒEƒ“ƒh‚ÌƒpƒX*/
   String sound_start_path = "";
 
   public STubeOption() {

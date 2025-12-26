@@ -36,7 +36,7 @@ public class STubeSample
   }
 
   /**
-   * æ¸¬å®šçŠ¶æ³ãŠã‚ˆã³çµæœã‚’è¨˜éŒ²ã™ã‚‹
+   * ‘ª’èó‹µ‚¨‚æ‚ÑŒ‹‰Ê‚ğ‹L˜^‚·‚é
    *
    * @param weight double
    * @param time double
@@ -57,7 +57,7 @@ public class STubeSample
   }
 
   /**
-   * å„ç¨®çµ±è¨ˆå€¤ã‚’ç®—å‡ºã™ã‚‹
+   * Šeí“Œv’l‚ğZo‚·‚é
    */
   protected void calcStats() {
     for (int i = 0; i < mdata.length; i++) {
@@ -143,7 +143,7 @@ public class STubeSample
   }
 
   /**
-   * Modeå€¤ã‚’å–å¾—ã™ã‚‹
+   * Mode’l‚ğæ“¾‚·‚é
    * @return double
    */
   protected double getMode() {
@@ -153,7 +153,7 @@ public class STubeSample
     double max_weight = 0.0;
     for (int i = 0; i < mdata.length; i++) {
 
-      //ã“ã‚Œã¾ã§ã®æœ€å¤§å€¤ã‚’ä»Šå›ã®éšç´šå€¤ãŒä¸Šå›ã£ãŸå ´åˆï¼Œãã®éšç´šå€¤ãŠã‚ˆã³å‰å¾Œã®éšç´šå€¤ã‚’ä¿å­˜ã™ã‚‹
+      //‚±‚ê‚Ü‚Å‚ÌÅ‘å’l‚ğ¡‰ñ‚ÌŠK‹‰’l‚ªã‰ñ‚Á‚½ê‡C‚»‚ÌŠK‹‰’l‚¨‚æ‚Ñ‘OŒã‚ÌŠK‹‰’l‚ğ•Û‘¶‚·‚é
       if (max_weight < mdata[i].dweight) {
         max_weight = mdata[i].dweight;
         next_class_weight = i + 1 < mdata.length ? mdata[i + 1].dweight : 0.0;
@@ -162,7 +162,7 @@ public class STubeSample
       }
     }
 
-    //å‰å¾Œã®éšç´šå€¤ã®å‰²åˆã‹ã‚‰Modeã‚’è¨ˆç®—ã™ã‚‹
+    //‘OŒã‚ÌŠK‹‰’l‚ÌŠ„‡‚©‚çMode‚ğŒvZ‚·‚é
     mode = mode - condition.dphi +
         (max_weight - prev_class_weight) /
         (2 * max_weight - prev_class_weight - next_class_weight) *
@@ -177,7 +177,7 @@ public class STubeSample
   }
 
   /**
-   * ãƒ‘ãƒ¼ã‚»ãƒ³ã‚¿ã‚¤ãƒ«ç‚¹ã‚’æ±‚ã‚ã‚‹
+   * ƒp[ƒZƒ“ƒ^ƒCƒ‹“_‚ğ‹‚ß‚é
    * @param p double
    * @return double
    */
@@ -223,7 +223,7 @@ public class STubeSample
   }
 
   /**
-   * å¹¾ä½•å››åˆ†ä½åå·®ã‚’æ±‚ã‚ã‚‹
+   * Šô‰½l•ªˆÊ•Î·‚ğ‹‚ß‚é
    * @param tfive double
    * @param sfive double
    * @return double
@@ -236,7 +236,7 @@ public class STubeSample
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«åã‚’è¨­å®šã™ã‚‹
+   * ƒTƒ“ƒvƒ‹–¼‚ğİ’è‚·‚é
    * @param name String
    */
   public void setSampleName(String name) {
@@ -262,7 +262,7 @@ public class STubeSample
 }
 
 /**
- * ã‚µãƒ³ãƒ—ãƒ«ã®è¨ˆæ¸¬å€¤ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’è¨˜éŒ²ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
+ * ƒTƒ“ƒvƒ‹‚ÌŒv‘ª’l‚Ì¶ƒf[ƒ^‚ğ‹L˜^‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
  */
 class SampleMeasuredData
     implements Serializable {

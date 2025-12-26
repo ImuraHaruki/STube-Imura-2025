@@ -8,7 +8,7 @@ import javax.swing.table.*;
 
 /**
  * <p>Title: STubeResultTableModel</p>
- * <p>Description: çµæœã‚’è¡¨ç¤ºã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ‡ãƒ«</p>
+ * <p>Description: Œ‹‰Ê‚ğ•\¦‚·‚éƒe[ƒuƒ‹ƒ‚ƒfƒ‹</p>
  * <p>Copyright: Copyright (C) 2003 NARUSE, Hajime All rights reserved.<br><br>  This program is free software; you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation; either version 2 of the License, or<br> (at your option) any later version.<br><br>  This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br><br>  You should have received a copy of the GNU General Public License<br> along with this program; if not, write to the Free Software<br> Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br></p>
  * <p>Company: Kyoto University</p>
  * @author NARUSE, Hajime
@@ -17,16 +17,16 @@ import javax.swing.table.*;
 
 public class STubeResultTableModel
     extends AbstractTableModel {
-  /**è¡¨ç¤ºã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®ãƒªã‚¹ãƒˆ*/
+  /**•\¦‚·‚éƒTƒ“ƒvƒ‹‚ÌƒŠƒXƒg*/
   ArrayList samples = new ArrayList();
 
-  /**è¡¨ç¤ºã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ‡ãƒ¼ã‚¿*/
+  /**•\¦‚·‚éƒe[ƒuƒ‹‚Ìƒf[ƒ^*/
   ArrayList tabledata = new ArrayList();
 
-  /**ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ˜ãƒƒãƒ€*/
+  /**ƒe[ƒuƒ‹‚Ìƒwƒbƒ_*/
   ArrayList columnname = new ArrayList();
 
-  /**è¡¨ç¤ºã«ã‹ã‹ã‚ã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**•\¦‚É‚©‚©‚í‚éƒIƒvƒVƒ‡ƒ“*/
   STubeOption option = new STubeOption();
 
   int maxclassnum = 0;
@@ -62,23 +62,23 @@ public class STubeResultTableModel
   }
 
   /**
-   * ã“ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®å†…å®¹ã‚’æ›´æ–°ã™ã‚‹
+   * ‚±‚Ìƒe[ƒuƒ‹‚Ì“à—e‚ğXV‚·‚é
    */
   public void updateModel() {
-    tabledata.clear(); //ã“ã‚Œã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆå»
+    tabledata.clear(); //‚±‚ê‚Ü‚Å‚Ìƒf[ƒ^‚ğÁ‹
 
-    updateColumnName(); //ã‚«ãƒ©ãƒ ã®åå‰ã‚’æ›´æ–°
+    updateColumnName(); //ƒJƒ‰ƒ€‚Ì–¼‘O‚ğXV
 
-    //éšç´šæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ãŠã
+    //ŠK‹‰”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¨‚­
     if(samples.size()>0){
       maxclassnum = ( (STubeSample) samples.get(0)).mdata.length;
     }
 
-    //ãã‚Œãã‚Œã®ã‚µãƒ³ãƒ—ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+    //‚»‚ê‚¼‚ê‚ÌƒTƒ“ƒvƒ‹‚Ìƒf[ƒ^‚ğŠi”[‚·‚é
     Iterator it = samples.iterator();
     while (it.hasNext()) {
       STubeSample sample = (STubeSample) it.next();
-      ArrayList row = new ArrayList(); //ãã‚Œãã‚Œã®è¡Œã‚’ã‚ã‚‰ã‚ã™ArrayList
+      ArrayList row = new ArrayList(); //‚»‚ê‚¼‚ê‚Ìs‚ğ‚ ‚ç‚í‚·ArrayList
       row.add(sample.name);
       row.add(DateFormat.getDateInstance().format(sample.mdate));
       row.add(DateFormat.getTimeInstance().format(sample.mdate));
@@ -104,7 +104,7 @@ public class STubeResultTableModel
         row.add(nf.format(sample.condition.dphi));
       }
 
-      if (option.output_stats) { //çµ±è¨ˆå€¤ã‚’æ ¼ç´ã™ã‚‹
+      if (option.output_stats) { //“Œv’l‚ğŠi”[‚·‚é
         row.add(nf.format(sample.total_weight));
         row.add(nf.format(sample.mean));
         row.add(nf.format(sample.sorting));
@@ -119,25 +119,25 @@ public class STubeResultTableModel
         row.add(nf.format(sample.geoqtiledev));
       }
 
-      if (option.output_class) { //å„éšç´šãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+      if (option.output_class) { //ŠeŠK‹‰ƒf[ƒ^‚ğŠi”[‚·‚é
         for (int i = 0; i < sample.mdata.length; i++) {
           row.add(nf.format(sample.mdata[i].dweight));
         }
       }
-      if (option.output_rawdata) { //ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+      if (option.output_rawdata) { //¶ƒf[ƒ^‚ğŠi”[‚·‚é
         for (int i = 0; i < sample.mdata.length; i++) {
           row.add(nf.format(sample.mdata[i].weight));
         }
       }
 
-    //ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã“ã®è¡Œã‚’ä»˜ã‘åŠ ãˆã‚‹
+    //ƒe[ƒuƒ‹‚É‚±‚Ìs‚ğ•t‚¯‰Á‚¦‚é
     tabledata.add(row);
   }
 
 }
 
 /**
- * toString()ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
+ * toString()‚ÌƒI[ƒo[ƒ‰ƒCƒh
  * @return String
  */
 public String toString() {
@@ -176,22 +176,22 @@ public String getColumnName(int columnIndex) {
 public void updateColumnName() {
   columnname = new ArrayList();
 
-  columnname.add("ã‚µãƒ³ãƒ—ãƒ«å");
-  columnname.add("è¨ˆæ¸¬æ—¥");
-  columnname.add("æ™‚åˆ»");
+  columnname.add("ƒTƒ“ƒvƒ‹–¼");
+  columnname.add("Œv‘ª“ú");
+  columnname.add("");
 
-  if (option.output_condition) {//æ¸¬å®šæ¡ä»¶ã‚’å‡ºåŠ›ã™ã‚‹å ´åˆ
-    columnname.add("æ²ˆé™è·é›¢(cm)");
-    columnname.add("æ°´æ¸©(â„ƒ)");
-    columnname.add("ç²’å­å¯†åº¦(g/cm3)");
-    columnname.add("æ¸¬å®šãƒ¢ãƒ¼ãƒ‰");
-    columnname.add("è¨ˆæ¸¬æ™‚é–“(sec.)");
-    columnname.add("è¨ˆæ¸¬é–“éš”(sec.)");
-    columnname.add("è¨ˆæ¸¬åŒºé–“(phi)");
-    columnname.add("è¨ˆæ¸¬é–“éš”(phi)");
+  if (option.output_condition) {//‘ª’èğŒ‚ğo—Í‚·‚éê‡
+    columnname.add("’¾~‹——£(cm)");
+    columnname.add("…‰·()");
+    columnname.add("—±q–§“x(g/cm3)");
+    columnname.add("‘ª’èƒ‚[ƒh");
+    columnname.add("Œv‘ªŠÔ(sec.)");
+    columnname.add("Œv‘ªŠÔŠu(sec.)");
+    columnname.add("Œv‘ª‹æŠÔ(phi)");
+    columnname.add("Œv‘ªŠÔŠu(phi)");
   }
   if (option.output_stats) {
-    columnname.add("ç·é‡é‡");
+    columnname.add("‘d—Ê");
     columnname.add("Mean");
     columnname.add("Sorting");
     columnname.add("Skewness");
@@ -204,7 +204,7 @@ public void updateColumnName() {
     columnname.add("95%");
     columnname.add("GeoQtDev.");
   }
-  if (option.output_class && samples.size() > 0) {//éšç´šã®åå‰ã‚’è¡¨ç¤ºã™ã‚‹
+  if (option.output_class && samples.size() > 0) {//ŠK‹‰‚Ì–¼‘O‚ğ•\¦‚·‚é
     STubeSample sample = (STubeSample) samples.get(0);
     if(sample.condition.intervalmode){
       for (int i = 0; i < maxclassnum; i++) {

@@ -39,16 +39,16 @@ public class STubeOptionGraphPanel
   }
 
   void jbInit() throws Exception {
-    label_linewidth.setText("ç·šå¹…ï¼š");
+    label_linewidth.setText("ü•F");
     this.setLayout(gridBagLayout1);
     label_pt.setText("pt.");
-    jbutton_color.setText("ç·šã®è‰²...");
+    jbutton_color.setText("ü‚ÌF...");
     jbutton_color.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         jbutton_color_actionPerformed(e);
       }
     });
-    jbutton_font.setText("ãƒ•ã‚©ãƒ³ãƒˆ...");
+    jbutton_font.setText("ƒtƒHƒ“ƒg...");
     jbutton_font.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
         jbutton_font_actionPerformed(e);
@@ -99,7 +99,7 @@ public class STubeOptionGraphPanel
 
   void jbutton_color_actionPerformed(ActionEvent e) {
     JColorChooser color_chooser = new JColorChooser();
-    Color temp_color = color_chooser.showDialog(this, "ç·šã®è‰²", selected_color);
+    Color temp_color = color_chooser.showDialog(this, "ü‚ÌF", selected_color);
     if (temp_color != null) {
       selected_color = temp_color;
     }

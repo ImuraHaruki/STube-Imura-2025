@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class STubeOptionOutputPanel
     extends JPanel {
-  /**è¨­å®šã™ã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**İ’è‚·‚éƒIƒvƒVƒ‡ƒ“*/
   STubeOption option;
 
   JCheckBox jcheckbox_condition = new JCheckBox();

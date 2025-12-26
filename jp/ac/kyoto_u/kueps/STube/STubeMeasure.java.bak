@@ -22,40 +22,40 @@ public class STubeMeasure {
   double phi;
   double dphi;
 
-  /**å¤©ç§¤ã‚’ã‚ã‚‰ã‚ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ*/
+  /**“V”‰‚ğ‚ ‚ç‚í‚·ƒIƒuƒWƒFƒNƒg*/
   STubeBalance balance;
 
-  /**æ¸¬å®šé–‹å§‹æ™‚åˆ»ã‚’è¨˜éŒ²ã™ã‚‹ãŸã‚ã®å¤‰æ•°*/
+  /**‘ª’èŠJn‚ğ‹L˜^‚·‚é‚½‚ß‚Ì•Ï”*/
   long start = 0;
 
-  /**æ¸¬å®šãŒä¸­æ­¢ã•ã‚ŒãŸã‹å¦ã‹ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°*/
+  /**‘ª’è‚ª’†~‚³‚ê‚½‚©”Û‚©‚ğ¦‚·ƒtƒ‰ƒO*/
   boolean canceled = false;
 
-  /**æ¸¬å®šãŒçµ‚äº†ã—ãŸã‹å¦ã‹ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°*/
+  /**‘ª’è‚ªI—¹‚µ‚½‚©”Û‚©‚ğ¦‚·ƒtƒ‰ƒO*/
   boolean finished = true;
 
-  /**æ¸¬å®šçµæœã‚’è¡¨ã™ã‚°ãƒ©ãƒ•*/
+  /**‘ª’èŒ‹‰Ê‚ğ•\‚·ƒOƒ‰ƒt*/
   STubeGraph graph;
 
-  /**è¦ªãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚¤ãƒ³ã‚¿*/
+  /**eƒtƒŒ[ƒ€‚Ìƒ|ƒCƒ“ƒ^*/
   STubeFrame pframe;
 
-  /**å„ç¨®è¨­å®š*/
+  /**Šeíİ’è*/
   STubeOption option;
 
-  /**é€šä¿¡ãƒãƒ¼ãƒˆã®åå‰*/
+  /**’ÊMƒ|[ƒg‚Ì–¼‘O*/
   String com;
 
-  /**æ²ˆé™ç®¡ã®æ¸¬å®šæ¡ä»¶*/
+  /**’¾~ŠÇ‚Ì‘ª’èğŒ*/
   STubeCondition condition;
 
-  /**ã‚µãƒ³ãƒ—ãƒ«*/
+  /**ƒTƒ“ƒvƒ‹*/
   STubeSample sample;
 
-  /**æ¸¬å®šçµæœã‚’æ ¼ç´ã™ã‚‹é…åˆ—*/
+  /**‘ª’èŒ‹‰Ê‚ğŠi”[‚·‚é”z—ñ*/
   Double[] weight;
 
-  /**è¨ˆæ¸¬ã‚’è¡Œã†ãŸã‚ã®ã‚¿ã‚¤ãƒãƒ¼*/
+  /**Œv‘ª‚ğs‚¤‚½‚ß‚Ìƒ^ƒCƒ}[*/
   java.util.Timer timer = new java.util.Timer();
 
   public STubeMeasure() {
@@ -65,7 +65,7 @@ public class STubeMeasure {
   public STubeMeasure(STubeFrame frm, String com,
                       STubeCondition condition, STubeSample sample) {
     try {
-      //å„ç¨®å¤‰æ•°ã‚’åˆæœŸåŒ–
+      //Šeí•Ï”‚ğ‰Šú‰»
       pframe = frm;
       graph = pframe.graph;
       option = pframe.papp.option;
@@ -82,32 +82,32 @@ public class STubeMeasure {
   }
 
   /**
-   * æ¸¬å®šé–‹å§‹
+   * ‘ª’èŠJn
    */
   public void startMeasure() {
 
     try {
-      //åˆæœŸåŒ–å‡¦ç†
+      //‰Šú‰»ˆ—
       finished = false;
       sample.condition = condition;
-      balance = new STubeBalance(com); //å¤©ç§¤ã‚’ã‚ã‚‰ã‚ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
-      balance.open(); //å¤©ç§¤ã¨ã®é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹
-      balance.tare(); //å¤©ç§¤ã®ç›®ç››ã‚Šã‚’0ã«ã™ã‚‹
+      balance = new STubeBalance(com); //“V”‰‚ğ‚ ‚ç‚í‚·ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+      balance.open(); //“V”‰‚Æ‚Ì’ÊM‚ğŠJn‚·‚é
+      balance.tare(); //“V”‰‚Ì–Ú·‚è‚ğ0‚É‚·‚é
 
-      //ã‚°ãƒ©ãƒ•ã®åˆæœŸåŒ–
+      //ƒOƒ‰ƒt‚Ì‰Šú‰»
       initGraph();
 
-      //ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+      //ƒJƒEƒ“ƒgƒ_ƒEƒ“
       STubeCountDownDialog cddialog = new STubeCountDownDialog(pframe,
           option.cdoun, option.sound_count_path, option.sound_lastcount_path,
           option.sound_start_path);
       cddialog.startCountDown();
 
-      //æ¸¬å®šé–‹å§‹æ™‚åˆ»ã‚’ä¿å­˜ã™ã‚‹
+      //‘ª’èŠJn‚ğ•Û‘¶‚·‚é
       start = System.currentTimeMillis();
       long current_time = 0;
 
-      /**æ¸¬å®šå‡¦ç†ã‚’è¡Œã†ã‚¿ã‚¤ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
+      /**‘ª’èˆ—‚ğs‚¤ƒ^ƒCƒ}[‚ğƒZƒbƒg‚·‚é*/
       for (int i = 0; i < condition.mtime.length; i++) {
         current_time = System.currentTimeMillis() - start;
         timer.schedule(new MeasureTask(this, sample, i),
@@ -115,57 +115,57 @@ public class STubeMeasure {
                        pframe.papp.option.delay - current_time);
       }
 
-      /**æ¸¬å®šçŠ¶æ³è¡¨ç¤º*/
+      /**‘ª’èó‹µ•\¦*/
       pframe.status_panel.setSampleName(sample.name);
       pframe.status_panel.setCount( (int) (condition.mtime[condition.mtime.
                                            length -
                                            1]) + 1);
 
-      /**çµ‚äº†å‡¦ç†ã‚’è¡Œã†ã‚¿ã‚¤ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ*/
+      /**I—¹ˆ—‚ğs‚¤ƒ^ƒCƒ}[‚ğƒZƒbƒg*/
       timer.schedule(new EndTask(this),
                      (long) (condition.mtime[condition.mtime.length -
                              1] * 1000.) -
                      pframe.papp.option.delay + 100);
     }
 
-    //ä¾‹å¤–å‡¦ç†
+    //—áŠOˆ—
     catch (NoSuchPortException ex) {
-      JOptionPane.showMessageDialog(pframe, "é€šä¿¡ãƒãƒ¼ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, "’ÊMƒ|[ƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       ex.printStackTrace();
       pframe.setButtonEnabled(true);
       finished = true;
     }
     catch (NumberFormatException ex) {
-      JOptionPane.showMessageDialog(pframe, "å¯¾å¿œã—ã¦ã„ãªã„ãƒ‡ãƒ¼ã‚¿å½¢å¼ã§ã™", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, "‘Î‰‚µ‚Ä‚¢‚È‚¢ƒf[ƒ^Œ`®‚Å‚·", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       ex.printStackTrace();
       pframe.setButtonEnabled(true);
       finished = true;
     }
     catch (TooManyListenersException ex) {
-      JOptionPane.showMessageDialog(pframe, ex.toString(), "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, ex.toString(), "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       ex.printStackTrace();
       pframe.setButtonEnabled(true);
       finished = true;
     }
     catch (IOException ex) {
-      JOptionPane.showMessageDialog(pframe, "é›»å­å¤©ç§¤ã«æ¥ç¶šã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, "“dq“V”‰‚ÉÚ‘±‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       pframe.setButtonEnabled(true);
       ex.printStackTrace();
       finished = true;
     }
     catch (UnsupportedCommOperationException ex) {
-      JOptionPane.showMessageDialog(pframe, ex.toString(), "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, ex.toString(), "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       pframe.setButtonEnabled(true);
       ex.printStackTrace();
       finished = true;
     }
     catch (PortInUseException ex) {
-      JOptionPane.showMessageDialog(pframe, ex.toString(), "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(pframe, ex.toString(), "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       pframe.setButtonEnabled(true);
       ex.printStackTrace();
@@ -174,7 +174,7 @@ public class STubeMeasure {
   }
 
   /**
-   * ã‚°ãƒ©ãƒ•ã®åˆæœŸåŒ–
+   * ƒOƒ‰ƒt‚Ì‰Šú‰»
    */
   protected void initGraph() {
     graph.clearData();
@@ -193,7 +193,7 @@ public class STubeMeasure {
     }
   }
 
-  /**æ¸¬å®šå‹•ä½œãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸå ´åˆ*/
+  /**‘ª’è“®ì‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½ê‡*/
   public void cancel() {
     canceled = true;
     timer.cancel();
@@ -203,7 +203,7 @@ public class STubeMeasure {
   }
 
   /**
-   * æ¸¬å®šå‡¦ç†ãŒçµ‚äº†ã—ãŸã‹å•ã„åˆã‚ã›ã‚‹
+   * ‘ª’èˆ—‚ªI—¹‚µ‚½‚©–â‚¢‡‚í‚¹‚é
    * @return boolean
    */
   public boolean isFinished() {
@@ -213,7 +213,7 @@ public class STubeMeasure {
 }
 
 /**
- * æ¸¬å®šå‹•ä½œã‚’è¡Œã†ã‚¿ã‚¤ãƒãƒ¼ã‚¿ã‚¹ã‚¯
+ * ‘ª’è“®ì‚ğs‚¤ƒ^ƒCƒ}[ƒ^ƒXƒN
  */
 class MeasureTask
     extends TimerTask {
@@ -228,12 +228,12 @@ class MeasureTask
   }
 
   /**
-   * æ¸¬å®šå‡¦ç†
+   * ‘ª’èˆ—
    */
   public void run() {
     if (!measure.canceled) {
       try {
-        //ã‚µãƒ³ãƒ—ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+        //ƒTƒ“ƒvƒ‹‚Éƒf[ƒ^‚ğ’Ç‰Á
         double time = (double) (System.currentTimeMillis() - measure.start) /
             1000.;
         double weight = measure.balance.getValue();
@@ -243,7 +243,7 @@ class MeasureTask
         measure.max_dweight = measure.max_dweight < dweight ? dweight :
             measure.max_dweight;
 
-        //çµæœè¡¨ç¤º
+        //Œ‹‰Ê•\¦
         System.out.println(Double.toString(time) + "\t" +
                            Double.toString(weight));
         measure.pframe.status_panel.setWeight(weight);
@@ -252,7 +252,7 @@ class MeasureTask
 
       catch (IOException ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(measure.pframe, "é›»å­å¤©ç§¤ã¨é€šä¿¡ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+        JOptionPane.showMessageDialog(measure.pframe, "“dq“V”‰‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                       JOptionPane.ERROR_MESSAGE);
       }
     }
@@ -260,16 +260,16 @@ class MeasureTask
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã‚’ã‚°ãƒ©ãƒ•ã«è¡¨ç¤ºã™ã‚‹
+   * ƒTƒ“ƒvƒ‹‚ğƒOƒ‰ƒt‚É•\¦‚·‚é
    * @param sample STubeSample
    * @param option STubeOption
    */
   private final void showSample(STubeSample sample, STubeOption option) {
 
-    //ã‚°ãƒ©ãƒ•åˆæœŸåŒ–
+    //ƒOƒ‰ƒt‰Šú‰»
     STubeGraph graph = measure.graph;
 
-    //ã‚°ãƒ©ãƒ•ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+    //ƒOƒ‰ƒt‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
     double[] x = new double[sample.mdata.length];
     double[] y = new double[sample.mdata.length];
     double maxx = 0;
@@ -297,7 +297,7 @@ class MeasureTask
     }
     graph.setData(x, y);
 
-    //ãƒ¬ãƒ³ã‚¸ã®è¨­å®š
+    //ƒŒƒ“ƒW‚Ìİ’è
     if (measure.option.view_xaxis == STubeOption.VIEW_PHI) {
       graph.setXRange(sample.condition.phimin, sample.condition.phimax, 0.5);
     }
@@ -322,7 +322,7 @@ class MeasureTask
 }
 
 /**
- * æ¸¬å®šçµ‚äº†å‡¦ç†ã‚’è¡Œã†ã‚¿ã‚¤ãƒãƒ¼ã‚¿ã‚¹ã‚¯
+ * ‘ª’èI—¹ˆ—‚ğs‚¤ƒ^ƒCƒ}[ƒ^ƒXƒN
  */
 class EndTask
     extends TimerTask {
@@ -339,17 +339,17 @@ class EndTask
     if (!measure.canceled) {
       try {
         measure.balance.tare();
-        measure.balance.close(); //å¤©ç§¤ã¨ã®é€šä¿¡ã‚’çµ‚äº†ã™ã‚‹
+        measure.balance.close(); //“V”‰‚Æ‚Ì’ÊM‚ğI—¹‚·‚é
         int question = JOptionPane.showConfirmDialog(measure.pframe,
-            "ã“ã®çµæœã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "çµæœã®ç¢ºèª", JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE); //çµæœã‚’ä¿å­˜ã™ã‚‹ã‹å¦ã‹ã®ç¢ºèª
-        measure.pframe.setButtonEnabled(true); //ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒœã‚¿ãƒ³ã‚’ä½¿ç”¨å¯èƒ½ã«ã™ã‚‹
+            "‚±‚ÌŒ‹‰Ê‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Œ‹‰Ê‚ÌŠm”F", JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE); //Œ‹‰Ê‚ğ•Û‘¶‚·‚é‚©”Û‚©‚ÌŠm”F
+        measure.pframe.setButtonEnabled(true); //ƒtƒŒ[ƒ€‚Ìƒ{ƒ^ƒ“‚ğg—p‰Â”\‚É‚·‚é
         if (question == JOptionPane.YES_OPTION) {
-          measure.sample.calcStats(); //çµ±è¨ˆå€¤ã®è¨ˆç®—
-          measure.pframe.papp.addSample(measure.sample); //ã‚µãƒ³ãƒ—ãƒ«ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
+          measure.sample.calcStats(); //“Œv’l‚ÌŒvZ
+          measure.pframe.papp.addSample(measure.sample); //ƒTƒ“ƒvƒ‹‚ğƒŠƒXƒg‚É’Ç‰Á
         }
         else {
-          measure.pframe.showSample(); //å‰ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤º
+          measure.pframe.showSample(); //‘O‚ÌƒTƒ“ƒvƒ‹‚ğ•\¦
         }
       }
       catch (Exception ex) {

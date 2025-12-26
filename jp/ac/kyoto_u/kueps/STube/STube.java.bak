@@ -18,28 +18,28 @@ import javax.swing.*;
 
 public class STube {
 
-  /**æ²ˆé™ç®¡ã®çŠ¶æ…‹ã‚’è¡¨ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ*/
+  /**’¾~ŠÇ‚Ìó‘Ô‚ğ•\‚·ƒIƒuƒWƒFƒNƒg*/
   STubeCondition condition;
 
-  /**ã‚µãƒ³ãƒ—ãƒ«ã®ãƒªã‚¹ãƒˆ*/
+  /**ƒTƒ“ƒvƒ‹‚ÌƒŠƒXƒg*/
   ArrayList samples = new ArrayList();
 
-  /**ã“ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**‚±‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒIƒvƒVƒ‡ƒ“*/
   STubeOption option;
 
-  /**è¨ˆæ¸¬çµæœã‚’å‡ºåŠ›ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ‡ãƒ«*/
+  /**Œv‘ªŒ‹‰Ê‚ğo—Í‚·‚éƒe[ƒuƒ‹ƒ‚ƒfƒ‹*/
   STubeResultTableModel result_tmodel = new STubeResultTableModel();
 
-  /**å¹³å‡ã¨èª¤å·®ã‚’å‡ºåŠ›ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ‡ãƒ«*/
+  /**•½‹Ï‚ÆŒë·‚ğo—Í‚·‚éƒe[ƒuƒ‹ƒ‚ƒfƒ‹*/
   STubeErrorTableModel error_tmodel = new STubeErrorTableModel();
 
-  /**ã“ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ */
+  /**‚±‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ƒtƒŒ[ƒ€*/
   STubeFrame frame = new STubeFrame();
 
-  /**æ¸¬å®šå‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰*/
+  /**‘ª’èˆ—‚ğs‚¤ƒXƒŒƒbƒh*/
   STubeMeasure measure = new STubeMeasure();
 
-  /**ãƒ‡ãƒ¼ã‚¿ãŒä¿®æ­£ã•ã‚Œã¦ã„ã‚‹ã‹*/
+  /**ƒf[ƒ^‚ªC³‚³‚ê‚Ä‚¢‚é‚©*/
   boolean modified = false;
 
   boolean packFrame = false;
@@ -48,7 +48,7 @@ public class STube {
   public STube() {
 
     try {
-      frame.setParentApp(this);//ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä¸ãˆã‚‹
+      frame.setParentApp(this);//‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğƒtƒŒ[ƒ€‚É—^‚¦‚é
       result_tmodel.setSamples(samples);
       error_tmodel.setSamples(samples);
       loadOptionOnInit();
@@ -97,14 +97,14 @@ public class STube {
   }
 
   /**
-   * æ²ˆé™ç®¡ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
+   * ’¾~ŠÇ‚Ìó‘Ô‚ğæ“¾‚·‚é
    * @return STubeCondition
    */
   public STubeCondition getCondition() {
     return condition;
   }
 
-  /**æ²ˆé™ç®¡ã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹
+  /**’¾~ŠÇ‚Ìó‘Ô‚ğİ’è‚·‚é
    *
    * @param cond STubeCondition
    */
@@ -112,7 +112,7 @@ public class STube {
     condition = cond;
   }
 
-  /**ã‚µãƒ³ãƒ—ãƒ«ã®é…åˆ—ã‚’å–å¾—ã™ã‚‹
+  /**ƒTƒ“ƒvƒ‹‚Ì”z—ñ‚ğæ“¾‚·‚é
    *
    * @return STubeSample[]
    */
@@ -122,7 +122,7 @@ public class STube {
     return s;
   }
 
-  /**ã‚µãƒ³ãƒ—ãƒ«ã‚’è¿½åŠ ã™ã‚‹
+  /**ƒTƒ“ƒvƒ‹‚ğ’Ç‰Á‚·‚é
    *
    * @param sample STubeSample
    */
@@ -134,7 +134,7 @@ public class STube {
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒTƒ“ƒvƒ‹‚ğƒZƒbƒg‚·‚é
    * @param slist ArrayList
    */
   public void setSamples(ArrayList slist) {
@@ -152,13 +152,13 @@ public class STube {
       setModified(false);
     }
     catch (IllegalArgumentException ex) {
-      JOptionPane.showMessageDialog(frame, "ä¸æ­£ãªãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã§ã™", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(frame, "•s³‚Èƒtƒ@ƒCƒ‹Œ`®‚Å‚·", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒIƒvƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
    * @param opt STubeOption
    */
   public void setOption(STubeOption opt) {
@@ -169,7 +169,7 @@ public class STube {
   }
 
   /**
-   * çµ‚äº†æ™‚ã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
+   * I—¹‚ÉƒIƒvƒVƒ‡ƒ“‚ğ•Û‘¶
    */
   void saveOptionOnExit() {
     try {
@@ -199,7 +199,7 @@ public class STube {
   }
 
   /**
-   * é–‹å§‹æ™‚ã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚€
+   * ŠJn‚ÉƒIƒvƒVƒ‡ƒ“‚ğ“Ç‚İ‚Ş
    */
   public void loadOptionOnInit() {
     try {
@@ -244,7 +244,7 @@ public class STube {
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã‹å¦ã‹ã‚’è¨­å®šã™ã‚‹
+   * ƒTƒ“ƒvƒ‹ƒf[ƒ^‚ª•ÏX‚³‚ê‚Ä‚¢‚é‚©”Û‚©‚ğİ’è‚·‚é
    *
    * @param modified boolean
    */
@@ -254,7 +254,7 @@ public class STube {
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+   * ƒTƒ“ƒvƒ‹‚ğíœ‚·‚é
    * @param indexes int[]
    */
   public void removeSamples(int[] indexes) {

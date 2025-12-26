@@ -48,9 +48,9 @@ public class STubeOptionComPanel
       Iterator it;
       TreeSet ss;
 
-      /**åˆ©ç”¨ã§ãã‚‹ãƒãƒ¼ãƒˆã®ä¸€è¦§ã‚’å•ã„åˆã‚ã›ã‚‹*/
+      /**—˜—p‚Å‚«‚éƒ|[ƒg‚Ìˆê——‚ğ–â‚¢‡‚í‚¹‚é*/
       Enumeration plist = CommPortIdentifier.getPortIdentifiers();
-      /**ãƒãƒ¼ãƒˆã®ä¸€è¦§ã‚’å‡¦ç†ã—ã¦ï¼Œãƒãƒƒãƒ—ã«è¿½åŠ ã™ã‚‹*/
+      /**ƒ|[ƒg‚Ìˆê——‚ğˆ—‚µ‚ÄCƒ}ƒbƒv‚É’Ç‰Á‚·‚é*/
       while (plist.hasMoreElements()) {
         CommPortIdentifier cpi = (CommPortIdentifier) plist.nextElement();
         if (cpi.getPortType() == CommPortIdentifier.PORT_SERIAL) {
@@ -103,12 +103,12 @@ public class STubeOptionComPanel
   }
 
   void jbInit() throws Exception {
-    label_comport.setText("é€šä¿¡ãƒãƒ¼ãƒˆï¼š");
+    label_comport.setText("’ÊMƒ|[ƒgF");
     this.setLayout(gridBagLayout1);
-    label_rate.setText("é€šä¿¡é€Ÿåº¦ï¼š");
-    label_databits.setText("ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒƒãƒˆï¼š");
-    jlabel_stopbits.setText("ã‚¹ãƒˆãƒƒãƒ—ãƒ“ãƒƒãƒˆï¼š");
-    label_parity.setText("ãƒ‘ãƒªãƒ†ã‚£ï¼š");
+    label_rate.setText("’ÊM‘¬“xF");
+    label_databits.setText("ƒf[ƒ^ƒrƒbƒgF");
+    jlabel_stopbits.setText("ƒXƒgƒbƒvƒrƒbƒgF");
+    label_parity.setText("ƒpƒŠƒeƒBF");
     this.add(label_comport, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
         , GridBagConstraints.EAST, GridBagConstraints.NONE,
         new Insets(10, 10, 5, 0), 0, 0));

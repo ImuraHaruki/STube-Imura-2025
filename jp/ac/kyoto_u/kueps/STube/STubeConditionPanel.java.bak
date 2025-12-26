@@ -49,7 +49,7 @@ public class STubeConditionPanel
   JCheckBox jcheckbox_phiscale = new JCheckBox();
 
   /**
-   * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+   * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
    */
 
   public STubeConditionPanel() {
@@ -64,16 +64,16 @@ public class STubeConditionPanel
 
   private void jbInit() throws Exception {
     setLayout(gridBagLayout1);
-    label_rhos.setText("ç²’å­ã®å¯†åº¦(g/cm3)ï¼š");
-    label_wtemp.setText("æ°´æ¸©(â„ƒ)ï¼š");
-    label_wdepth.setText("æ²ˆé™è·é›¢ (cm) ï¼š");
-    label_phi.setText("è¨ˆæ¸¬åŒºé–“ (phi) ï¼š");
-    label_dphi.setText("è¨ˆæ¸¬é–“éš” (phi) ï¼š");
-    label_minterval.setText("è¨ˆæ¸¬æ™‚é–“ (sec.) ï¼š");
+    label_rhos.setText("—±q‚Ì–§“x(g/cm3)F");
+    label_wtemp.setText("…‰·()F");
+    label_wdepth.setText("’¾~‹——£ (cm) F");
+    label_phi.setText("Œv‘ª‹æŠÔ (phi) F");
+    label_dphi.setText("Œv‘ªŠÔŠu (phi) F");
+    label_minterval.setText("Œv‘ªŠÔ (sec.) F");
     label_wline.setFont(new java.awt.Font("Dialog", 0, 16));
     label_wline.setText("~");
-    label_dm.setText("è¨ˆæ¸¬é–“éš” (sec.) ï¼š");
-    jcheckbox_intervalmode.setToolTipText("ä¸€å®šæ™‚é–“é–“éš”ã§è¨ˆæ¸¬ã‚’è¡Œã†");
+    label_dm.setText("Œv‘ªŠÔŠu (sec.) F");
+    jcheckbox_intervalmode.setToolTipText("ˆê’èŠÔŠÔŠu‚ÅŒv‘ª‚ğs‚¤");
     jcheckbox_intervalmode.setText("Interval-Mode");
     jcheckbox_intervalmode.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(ItemEvent e) {
@@ -91,7 +91,7 @@ public class STubeConditionPanel
         jspinner_phimax_stateChanged(e);
       }
     });
-    jcheckbox_phiscale.setToolTipText("çµ±è¨ˆå€¤ã®ç®—å‡ºãªã©ã«phiã‚¹ã‚±ãƒ¼ãƒ«ã‚’ç”¨ã„ã‚‹");
+    jcheckbox_phiscale.setToolTipText("“Œv’l‚ÌZo‚È‚Ç‚ÉphiƒXƒP[ƒ‹‚ğ—p‚¢‚é");
     jcheckbox_phiscale.setText("Use phi-scale");
     add(label_rhos, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
                                            , GridBagConstraints.EAST,
@@ -171,7 +171,7 @@ public class STubeConditionPanel
   }
 
   /**
-   * åˆæœŸæ¡ä»¶è¨­å®š
+   * ‰ŠúğŒİ’è
    *
    * @param cond STubeCondition
    */
@@ -203,7 +203,7 @@ public class STubeConditionPanel
   }
 
   /**
-   * æ²ˆé™ç®¡çŠ¶æ…‹è¨­å®šã®å–å¾—
+   * ’¾~ŠÇó‘Ôİ’è‚Ìæ“¾
    * @return STubeCondition
    */
   public STubeCondition getCondition() {
@@ -226,7 +226,7 @@ public class STubeConditionPanel
   }
 
   /**
-   * phi-modeã®é¸æŠçŠ¶æ…‹ã«åˆã‚ã›ã¦ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’å¤‰åŒ–ã•ã›ã‚‹
+   * phi-mode‚Ì‘I‘ğó‘Ô‚É‡‚í‚¹‚Äƒ_ƒCƒAƒƒO‚ğ•Ï‰»‚³‚¹‚é
    * @param e ItemEvent
    */
   void jcheckbox_intervalmode_itemStateChanged(ItemEvent e) {

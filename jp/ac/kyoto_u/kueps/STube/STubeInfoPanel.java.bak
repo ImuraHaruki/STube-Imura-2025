@@ -14,10 +14,10 @@ import javax.swing.*;
 
 public class STubeInfoPanel
     extends JPanel {
-  /**ã‚µãƒ³ãƒ—ãƒ«æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹é ˜åŸŸ*/
+  /**ƒTƒ“ƒvƒ‹î•ñ‚ğ•\¦‚·‚é—Ìˆæ*/
   STubeInfoRegion info = new STubeInfoRegion();
 
-  /**ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**ƒIƒvƒVƒ‡ƒ“*/
   STubeOption option = new STubeOption();
 
   BorderLayout borderLayout1 = new BorderLayout();
@@ -38,7 +38,7 @@ public class STubeInfoPanel
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹
+   * ƒTƒ“ƒvƒ‹î•ñ‚ğ•\¦‚·‚é
    * @param sample STubeSample
    */
   public void setSample(STubeSample sample) {
@@ -47,7 +47,7 @@ public class STubeInfoPanel
   }
 
   /**
-   * æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ãƒ¼ã™ã‚‹
+   * î•ñ‚ğƒNƒŠƒA[‚·‚é
    */
   public void clear() {
     info.clear();
@@ -55,18 +55,18 @@ public class STubeInfoPanel
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹
+   * ƒIƒvƒVƒ‡ƒ“‚ğİ’è‚·‚é
    * @param opt STubeOption
    */
   public void setOption(STubeOption opt) {
     option = opt;
-    //ãƒ‘ãƒãƒ«ã®ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
+    //ƒpƒlƒ‹‚ÌƒtƒHƒ“ƒg‚Ìİ’è
     Component[] components = info.getComponents();
     for (int i = 0; i < components.length; i++) {
       components[i].setFont(option.font);
     }
 
-    //å†æç”»
+    //Ä•`‰æ
     repaint();
 
   }

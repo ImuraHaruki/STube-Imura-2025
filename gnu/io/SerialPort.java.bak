@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 public class SerialPort extends CommPort {
 
-    // gnu.io äº’æ›ã®å®šæ•°ï¼ˆSTubeOption ç­‰ãŒå‚ç…§ã—ã¦ã„ã‚‹ï¼‰
+    // gnu.io ŒİŠ·‚Ì’è”iSTubeOption “™‚ªQÆ‚µ‚Ä‚¢‚éj
     public static final int DATABITS_5 = 5;
     public static final int DATABITS_6 = 6;
     public static final int DATABITS_7 = 7;
@@ -67,7 +67,7 @@ public class SerialPort extends CommPort {
         }
     }
 
-    // å¿…è¦ãªã‚‰ STube å´ãŒå‘¼ã¶ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ç”¨æ„ï¼ˆæœªä½¿ç”¨ãªã‚‰æ”¾ç½®ã§OKï¼‰
+    // •K—v‚È‚ç STube ‘¤‚ªŒÄ‚Ô‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å—pˆÓi–¢g—p‚È‚ç•ú’u‚ÅOKj
     public boolean isOpen() {
         return sp.isOpen();
     }

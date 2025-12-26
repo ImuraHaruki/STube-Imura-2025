@@ -26,29 +26,29 @@ import javax.sound.sampled.*;
 
 public class STubeCountDownDialog
     extends JDialog {
-  /**ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹æ•°*/
+  /**ƒJƒEƒ“ƒg‚·‚é”*/
   int count = 10;
 
-  /**ã‚«ã‚¦ãƒ³ãƒˆéŸ³*/
+  /**ƒJƒEƒ“ƒg‰¹*/
   Clip count_clip = null;
 
-  /**æœ€çµ‚ã‚«ã‚¦ãƒ³ãƒˆéŸ³*/
+  /**ÅIƒJƒEƒ“ƒg‰¹*/
   Clip lastcount_clip = null;
 
-  /**æ¸¬å®šé–‹å§‹éŸ³*/
+  /**‘ª’èŠJn‰¹*/
   Clip start_clip = null;
 
-  /**ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ã‚¦ãƒ³ãƒˆéŸ³*/
+  /**ƒfƒtƒHƒ‹ƒg‚ÌƒJƒEƒ“ƒg‰¹*/
   URL count_sound = jp.ac.kyoto_u.kueps.STube.
       STubeCountDownDialog.class.
       getResource("count.wav");
 
-  /**ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æœ€çµ‚ã‚«ã‚¦ãƒ³ãƒˆéŸ³*/
+  /**ƒfƒtƒHƒ‹ƒg‚ÌÅIƒJƒEƒ“ƒg‰¹*/
   URL lastcount_sound = jp.ac.kyoto_u.kueps.STube.
       STubeCountDownDialog.class.
       getResource("count_final.wav");
 
-  /**ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ¸¬å®šé–‹å§‹éŸ³*/
+  /**ƒfƒtƒHƒ‹ƒg‚Ì‘ª’èŠJn‰¹*/
   URL start_sound = jp.ac.kyoto_u.kueps.STube.
       STubeCountDownDialog.class.
       getResource("start.wav");
@@ -83,7 +83,7 @@ public class STubeCountDownDialog
   }
 
   public STubeCountDownDialog(Frame frame, int count) {
-    this(frame, "è¨ˆæ¸¬ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³", true);
+    this(frame, "Œv‘ªƒJƒEƒ“ƒgƒ_ƒEƒ“", true);
     this.count = count;
     count_text.setText(Integer.toString(this.count));
   }
@@ -107,7 +107,7 @@ public class STubeCountDownDialog
     panel1.setLayout(borderLayout1);
     label_explanation.setFont(new java.awt.Font("Dialog", 0, 18));
     label_explanation.setHorizontalAlignment(SwingConstants.CENTER);
-    label_explanation.setText("è¨ˆæ¸¬é–‹å§‹ã¾ã§ã‚ã¨");
+    label_explanation.setText("Œv‘ªŠJn‚Ü‚Å‚ ‚Æ");
     count_text.setFont(new java.awt.Font("Dialog", 1, 200));
     count_text.setForeground(Color.blue);
     count_text.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,9 +120,9 @@ public class STubeCountDownDialog
     panel1.add(count_text, BorderLayout.CENTER);
   }
 
-  /**ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’é–‹å§‹ã™ã‚‹*/
+  /**ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğŠJn‚·‚é*/
   public void startCountDown() {
-    /**ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä¸­å¤®ã«é…ç½®
+    /**ƒEƒBƒ“ƒhƒE‚ğ’†‰›‚É”z’u
      *
      */
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -136,11 +136,11 @@ public class STubeCountDownDialog
     this.setLocation( (screenSize.width - dialogsize.width) / 2,
                      (screenSize.height - dialogsize.height) / 2);
 
-    /**ã‚¿ã‚¤ãƒãƒ¼ã‚’æº–å‚™ã™ã‚‹*/
+    /**ƒ^ƒCƒ}[‚ğ€”õ‚·‚é*/
     java.util.Timer timer = new java.util.Timer();
     int final_count = count;
 
-    /**Clipã‚’ç”¨æ„ã™ã‚‹*/
+    /**Clip‚ğ—pˆÓ‚·‚é*/
     if (start_clip != null) {
       start_clip.close();
     }
@@ -154,7 +154,7 @@ public class STubeCountDownDialog
     lastcount_clip = openClip(lastcount_sound);
     count_clip = openClip(count_sound);
 
-    //ã‚«ã‚¦ãƒ³ãƒˆéŸ³ã‚’é³´ã‚‰ã™
+    //ƒJƒEƒ“ƒg‰¹‚ğ–Â‚ç‚·
     for (int i = 1; i < final_count - 3; i++) {
       TimerTask count_task = new TimerTask() {
         public void run() {
@@ -168,7 +168,7 @@ public class STubeCountDownDialog
       timer.schedule(count_task, 1000 * i);
     }
 
-    //æœ€çµ‚ã‚«ã‚¦ãƒ³ãƒˆéŸ³ã‚’é³´ã‚‰ã™
+    //ÅIƒJƒEƒ“ƒg‰¹‚ğ–Â‚ç‚·
     for (int i = final_count - 3; i < final_count; i++) {
       TimerTask lastcount_task = new TimerTask() {
         public void run() {
@@ -183,7 +183,7 @@ public class STubeCountDownDialog
       timer.schedule(lastcount_task, 1000 * i);
     }
 
-    //è¨ˆæ¸¬ã‚¹ã‚¿ãƒ¼ãƒˆéŸ³ã‚’é³´ã‚‰ã™
+    //Œv‘ªƒXƒ^[ƒg‰¹‚ğ–Â‚ç‚·
     TimerTask start_task = new TimerTask() {
       public void run() {
         start_clip.setFramePosition(0);
@@ -197,7 +197,7 @@ public class STubeCountDownDialog
   }
 
   /**
-   * Clipã‚’æº–å‚™ã™ã‚‹
+   * Clip‚ğ€”õ‚·‚é
    * @param file File
    * @return Clip
    */

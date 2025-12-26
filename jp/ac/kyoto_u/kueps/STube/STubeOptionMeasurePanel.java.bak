@@ -8,7 +8,7 @@ import java.io.*;
 
 /**
  * <p>Title: STubeMeasurePanel</p>
- * <p>Description: æ¸¬å®šã«é–¢é€£ã—ãŸã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹ãƒ‘ãƒãƒ«</p>
+ * <p>Description: ‘ª’è‚ÉŠÖ˜A‚µ‚½ƒIƒvƒVƒ‡ƒ“‚ğİ’è‚·‚éƒpƒlƒ‹</p>
  * <p>Copyright: Copyright (C) 2003 NARUSE, Hajime All rights reserved.<br><br>  This program is free software; you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation; either version 2 of the License, or<br> (at your option) any later version.<br><br>  This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br><br>  You should have received a copy of the GNU General Public License<br> along with this program; if not, write to the Free Software<br> Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br></p>
  * <p>Company: Kyoto University</p>
  * @author NARUSE, Hajime
@@ -17,7 +17,7 @@ import java.io.*;
 
 public class STubeOptionMeasurePanel
     extends JPanel {
-  /**ç¾åœ¨è¨­å®šä¸­ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**Œ»İİ’è’†‚ÌƒIƒvƒVƒ‡ƒ“*/
   STubeOption option;
 
   GridBagLayout gridBagLayout1 = new GridBagLayout();
@@ -47,9 +47,9 @@ public class STubeOptionMeasurePanel
 
   void jbInit() throws Exception {
     this.setLayout(gridBagLayout1);
-    label_countdown.setText("ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³æ•°ï¼š");
-    label_delay.setText("è¨ˆæ¸¬é…å»¶(m.sec.)ï¼š");
-    label_sound_count.setText("ã‚«ã‚¦ãƒ³ãƒˆéŸ³ï¼š");
+    label_countdown.setText("ƒJƒEƒ“ƒgƒ_ƒEƒ“”F");
+    label_delay.setText("Œv‘ª’x‰„(m.sec.)F");
+    label_sound_count.setText("ƒJƒEƒ“ƒg‰¹F");
     jtextfield_sound_count.setPreferredSize(new Dimension(80, 20));
     jtextfield_sound_count.setText("");
     jbutton_sound_count.setMaximumSize(new Dimension(25, 15));
@@ -60,7 +60,7 @@ public class STubeOptionMeasurePanel
         jbutton_sound_count_actionPerformed(e);
       }
     });
-    label_sound_lastcount.setText("æœ€çµ‚ã‚«ã‚¦ãƒ³ãƒˆéŸ³ï¼š");
+    label_sound_lastcount.setText("ÅIƒJƒEƒ“ƒg‰¹F");
     jbutton_sound_lastcount.setText("...");
     jbutton_sound_lastcount.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -69,7 +69,7 @@ public class STubeOptionMeasurePanel
     });
     jtextfield_sound_lastcount.setText("");
     jtextfield_sound_lastcount.setPreferredSize(new Dimension(80, 20));
-    label_sound_start.setText("è¨ˆæ¸¬é–‹å§‹éŸ³ï¼š");
+    label_sound_start.setText("Œv‘ªŠJn‰¹F");
     jtextfield_sound_start.setPreferredSize(new Dimension(80, 20));
     jtextfield_sound_start.setText("");
     jbutton_sound_start.setText("...");
@@ -108,7 +108,7 @@ public class STubeOptionMeasurePanel
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®åˆæœŸçŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹
+   * ƒIƒvƒVƒ‡ƒ“‚Ì‰Šúó‘Ô‚ğİ’è‚·‚é
    * @param opt STubeOption
    */
   public void setOption(STubeOption opt) {
@@ -121,7 +121,7 @@ public class STubeOptionMeasurePanel
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
+   * ƒIƒvƒVƒ‡ƒ“‚ğæ“¾‚·‚é
    *
    * @return STubeOption
    */

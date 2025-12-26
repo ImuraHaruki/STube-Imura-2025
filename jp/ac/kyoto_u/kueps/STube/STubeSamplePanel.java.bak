@@ -5,7 +5,7 @@ import javax.swing.*;
 
 /**
  * <p>Title: STubeSamplePanel</p>
- * <p>Description: ã‚µãƒ³ãƒ—ãƒ«ã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ãŸã‚ã®ãƒ‘ãƒãƒ«</p>
+ * <p>Description: ƒTƒ“ƒvƒ‹‚Ìó‘Ô‚ğİ’è‚·‚é‚½‚ß‚Ìƒpƒlƒ‹</p>
  * <p>Copyright: Copyright (C) 2003 NARUSE, Hajime All rights reserved.<br><br>  This program is free software; you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation; either version 2 of the License, or<br> (at your option) any later version.<br><br>  This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br><br>  You should have received a copy of the GNU General Public License<br> along with this program; if not, write to the Free Software<br> Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br></p>
  * <p>Company: Kyoto University</p>
  * @author NARUSE, Hajime
@@ -22,7 +22,7 @@ public class STubeSamplePanel
   JTextField jtextfield_samplename = new JTextField();
 
   /**
-   * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+   * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
    */
   public STubeSamplePanel() {
     super();
@@ -36,7 +36,7 @@ public class STubeSamplePanel
 
   private void jbInit() throws Exception {
     setLayout(gridBagLayout1);
-    label_sample.setText("ã‚µãƒ³ãƒ—ãƒ«åï¼š");
+    label_sample.setText("ƒTƒ“ƒvƒ‹–¼F");
     jtextfield_samplename.setMinimumSize(new Dimension(80, 20));
     jtextfield_samplename.setPreferredSize(new Dimension(80, 20));
     jtextfield_samplename.setText("sample");
@@ -52,7 +52,7 @@ public class STubeSamplePanel
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã®åˆæœŸæ¡ä»¶ã®å…¥åŠ›
+   * ƒTƒ“ƒvƒ‹‚Ì‰ŠúğŒ‚Ì“ü—Í
    * @param sample STubeSample
    */
   public void setSample(STubeSample sample) {
@@ -63,7 +63,7 @@ public class STubeSamplePanel
   }
 
   /**
-   * è¨­å®šã•ã‚ŒãŸã‚µãƒ³ãƒ—ãƒ«ã®å–å¾—
+   * İ’è‚³‚ê‚½ƒTƒ“ƒvƒ‹‚Ìæ“¾
    * @return STubeSample
    */
   public STubeSample getSample() {

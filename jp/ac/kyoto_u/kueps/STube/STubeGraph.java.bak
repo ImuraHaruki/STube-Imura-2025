@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  * <p>Title: STubeMainPanel</p>
- * <p>Description: ãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã™ã‚‹ã‚°ãƒ©ãƒ•ã‚’æç”»ã™ã‚‹ãƒ‘ãƒãƒ«</p>
+ * <p>Description: ƒf[ƒ^‚ğ•\¦‚·‚éƒOƒ‰ƒt‚ğ•`‰æ‚·‚éƒpƒlƒ‹</p>
  * <p>Copyright: Copyright (C) 2003 NARUSE, Hajime All rights reserved.<br><br>  This program is free software; you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation; either version 2 of the License, or<br> (at your option) any later version.<br><br>  This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br><br>  You should have received a copy of the GNU General Public License<br> along with this program; if not, write to the Free Software<br> Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br></p>
  * <p>Company: Kyoto University</p>
  * @author NARUSE, Hajime
@@ -22,42 +22,42 @@ public class STubeGraph
     extends JComponent
     implements Printable {
 
-  /**Xåº§æ¨™ã®æœ€å¤§å€¤*/
+  /**XÀ•W‚ÌÅ‘å’l*/
   protected double xmax = 100.0;
 
-  /**Xåº§æ¨™ã®æœ€å°å€¤*/
+  /**XÀ•W‚ÌÅ¬’l*/
   protected double xmin = 0.0;
 
-  /**Yåº§æ¨™æœ€å¤§å€¤*/
+  /**YÀ•WÅ‘å’l*/
   protected double ymax = 100.0;
 
-  /**Yåº§æ¨™æœ€å°å€¤*/
+  /**YÀ•WÅ¬’l*/
   protected double ymin = 0.0;
 
-  /**xè»¸ã®ç›®ç››ã‚Šé–“éš”*/
+  /**x²‚Ì–Ú·‚èŠÔŠu*/
   double xt_interval = 10;
 
-  /**yè»¸ã®ç›®ç››ã‚Šé–“éš”*/
+  /**y²‚Ì–Ú·‚èŠÔŠu*/
   double yt_interval = 10;
 
-  /**xè»¸ã«ãƒ­ã‚°ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ç”¨ã„ã‚‹å ´åˆã®åº•*/
+  /**x²‚ÉƒƒOƒXƒP[ƒ‹‚ğ—p‚¢‚éê‡‚Ì’ê*/
   int x_logbase = 0;
 
-  /**yè»¸ã«ãƒ­ã‚°ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ç”¨ã„ã‚‹å ´åˆã®åº•*/
+  /**y²‚ÉƒƒOƒXƒP[ƒ‹‚ğ—p‚¢‚éê‡‚Ì’ê*/
   int y_logbase = 0;
 
-  /**è¡¨ç¤ºã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ï¼Point2D.Doubleã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹*/
+  /**•\¦‚·‚éƒf[ƒ^‚Ì”z—ñDPoint2D.DoubleƒIƒuƒWƒFƒNƒg‚ªŠi”[‚³‚ê‚é*/
   protected ArrayList datapoints = new ArrayList();
 
-  /**ã‚°ãƒ©ãƒ•æç”»ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**ƒOƒ‰ƒt•`‰æƒIƒvƒVƒ‡ƒ“*/
   STubeOption option = new STubeOption();
 
-  /**ã‚µãƒ³ãƒ—ãƒ«å*/
+  /**ƒTƒ“ƒvƒ‹–¼*/
   String samplename = " ";
 
   BorderLayout borderLayout1 = new BorderLayout();
 
-  /**ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
+  /**ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^*/
   public STubeGraph() {
     try {
       jbInit();
@@ -76,7 +76,7 @@ public class STubeGraph
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒIƒvƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
    * @param opt STubeOption
    */
   public void setOption(STubeOption opt) {
@@ -85,15 +85,15 @@ public class STubeGraph
   }
 
   /**
-   * ç”»é¢æç”»ãƒ¡ã‚½ãƒƒãƒ‰
-   * @param g ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚¯ã‚¹ãƒˆ
+   * ‰æ–Ê•`‰æƒƒ\ƒbƒh
+   * @param g ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒXƒRƒ“ƒeƒNƒXƒg
    */
   public void paint(Graphics g) {
     paintGraph(g, (double) getWidth(), (double) getHeight(), getX(), getY());
   }
 
   /**
-   * paint, print å…±é€šæç”»ãƒ¡ã‚½ãƒƒãƒ‰
+   * paint, print ‹¤’Ê•`‰æƒƒ\ƒbƒh
    * @param g1 Graphics
    * @param width double
    * @param height double
@@ -103,7 +103,7 @@ public class STubeGraph
   public void paintGraph(Graphics g1, double width, double height,
                          double init_x, double init_y) {
 
-    /**ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã®åˆæœŸåŒ–ãƒ»åˆæœŸçŠ¶æ…‹ã®ä¿å­˜ãƒ»è¨­å®š*/
+    /**ƒOƒ‰ƒtƒBƒbƒNƒX‚Ì‰Šú‰»E‰Šúó‘Ô‚Ì•Û‘¶Eİ’è*/
     Graphics2D g = (Graphics2D) g1;
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                        RenderingHints.VALUE_ANTIALIAS_ON);
@@ -111,14 +111,14 @@ public class STubeGraph
     g.translate(init_x, init_y);
 
     /**
-     * ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹å ´åˆï¼Œã‚ªãƒªã‚¸ãƒŠãƒ«ã‚«ãƒ¼ãƒ–ãƒ»ä¿®æ­£ã‚«ãƒ¼ãƒ–ãƒ»å¤–æ ãƒ»ç›®ç››ã‚Šã‚’ä½œæˆã—ï¼Œ
-     * æç”»ã™ã‚‹
+     * ƒf[ƒ^‚ª‘¶İ‚·‚éê‡CƒIƒŠƒWƒiƒ‹ƒJ[ƒuEC³ƒJ[ƒuEŠO˜gE–Ú·‚è‚ğì¬‚µC
+     * •`‰æ‚·‚é
      */
     GeneralPath curve;
     if (datapoints.size() > 1) {
       /**
-       * ã‚«ãƒ¼ãƒ–ã‚’ä½œæˆã™ã‚‹ï¼
-       * outer_boundaryï¼šã‚°ãƒ©ãƒ•ã®å¤–æ 
+       * ƒJ[ƒu‚ğì¬‚·‚éD
+       * outer_boundaryFƒOƒ‰ƒt‚ÌŠO˜g
        */
       curve = getCurve();
 
@@ -128,14 +128,14 @@ public class STubeGraph
     }
 
     /**
-     * x,yè»¸ã®æœ€å¤§ãƒ»æœ€å°å€¤ã«ã‚ã‚ã›ã¦å¤–æ ã‚’ä½œæˆã™ã‚‹
+     * x,y²‚ÌÅ‘åEÅ¬’l‚É‚ ‚í‚¹‚ÄŠO˜g‚ğì¬‚·‚é
      */
     GeneralPath outer_boundary = new GeneralPath();
     outer_boundary.append(new Rectangle2D.Double(xmin, ymin, xmax - xmin,
                                                  ymax - ymin), false);
 
     /**
-     * x,yè»¸ã®æœ€å¤§ãƒ»æœ€å°å€¤ãŠã‚ˆã³ç›®ç››ã‚Šé–“éš”ã«å¿œã˜ã¦ï¼Œå¿…è¦ãªå€‹æ•°ã ã‘ç›®ç››ã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
+     * x,y²‚ÌÅ‘åEÅ¬’l‚¨‚æ‚Ñ–Ú·‚èŠÔŠu‚É‰‚¶‚ÄC•K—v‚ÈŒÂ”‚¾‚¯–Ú·‚èƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
      */
     ArrayList ticks = new ArrayList();
     if (xt_interval != 0) {
@@ -152,11 +152,11 @@ public class STubeGraph
     }
 
     /**
-     * ã‚°ãƒ©ãƒ•ã®æ•°å€¤åº§æ¨™ã‚’ãƒ‡ãƒã‚¤ã‚¹åº§æ¨™ã¸ã¨å¤‰æ›ã™ã‚‹ãŸã‚ã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
-     * ã¾ãšï¼Œã‚°ãƒ©ãƒ•ã®åŸç‚¹ã‚’ãƒ‡ãƒã‚¤ã‚¹åº§æ¨™ã®åŸç‚¹ã¸ç§»å‹•ã•ã›ï¼Œä¸Šä¸‹åè»¢ã•ã›ãªãŒã‚‰ãƒ‡ãƒã‚¤ã‚¹
-     * ã®å¤§ãã•ã«åˆã‚ã›ã¦æ‹¡å¤§ç¸®å°ã•ã›ã‚‹
-     * scale_x: å·¦å³æ–¹å‘ã®æ‹¡å¤§ä¿‚æ•°
-     * scale_yï¼šä¸Šä¸‹æ–¹å‘ã®æ‹¡å¤§ä¿‚æ•°
+     * ƒOƒ‰ƒt‚Ì”’lÀ•W‚ğƒfƒoƒCƒXÀ•W‚Ö‚Æ•ÏŠ·‚·‚é‚½‚ß‚ÌƒAƒtƒBƒ“•ÏŠ·s—ñ‚ğì¬‚·‚é
+     * ‚Ü‚¸CƒOƒ‰ƒt‚ÌŒ´“_‚ğƒfƒoƒCƒXÀ•W‚ÌŒ´“_‚ÖˆÚ“®‚³‚¹Cã‰º”½“]‚³‚¹‚È‚ª‚çƒfƒoƒCƒX
+     * ‚Ì‘å‚«‚³‚É‡‚í‚¹‚ÄŠg‘åk¬‚³‚¹‚é
+     * scale_x: ¶‰E•ûŒü‚ÌŠg‘åŒW”
+     * scale_yFã‰º•ûŒü‚ÌŠg‘åŒW”
      */
     double scale_x = 0.8 * width / (xmax - xmin);
     double scale_y = 0.9 * height / (ymax - ymin);
@@ -165,7 +165,7 @@ public class STubeGraph
     aT.scale(scale_x, -scale_y);
 
     /**
-     * å¤–æ ãƒ»ç›®ç››ã‚Šã‚’ãã‚Œãã‚Œãƒ‡ãƒã‚¤ã‚¹åº§æ¨™ã¸ã¨å¤‰æ›ã™ã‚‹
+     * ŠO˜gE–Ú·‚è‚ğ‚»‚ê‚¼‚êƒfƒoƒCƒXÀ•W‚Ö‚Æ•ÏŠ·‚·‚é
      */
     outer_boundary.transform(aT);
     for (int i = 0; i < ticks.size(); i++) {
@@ -173,26 +173,26 @@ public class STubeGraph
     }
 
     /**
-     * ãƒ¦ãƒ¼ã‚¶ãƒ¼åº§æ¨™ã®åŸç‚¹ã‚’ç§»å‹•ã•ã›ï¼Œã‚°ãƒ©ãƒ•ãŒç”»é¢ã®ä¸­å¤®ã«å†™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+     * ƒ†[ƒU[À•W‚ÌŒ´“_‚ğˆÚ“®‚³‚¹CƒOƒ‰ƒt‚ª‰æ–Ê‚Ì’†‰›‚ÉÊ‚é‚æ‚¤‚É‚·‚é
      */
     g.translate(0.1 * width, 0.95 * height);
 
-    /**å¤–æ ãƒ»ç›®ç››ã‚Šã‚’æç”»ã™ã‚‹*/
+    /**ŠO˜gE–Ú·‚è‚ğ•`‰æ‚·‚é*/
     g.setPaint(Color.black);
     g.draw(outer_boundary);
     for (int i = 0; i < ticks.size(); i++) {
       ( (Tick) (ticks.get(i))).draw(g);
     }
 
-    /**å‡¡ä¾‹ã‚’è¡¨ç¤ºã™ã‚‹*/
-    //å¤–æ ã®å„åº§æ¨™ã¨ï¼Œæ–‡å­—ã®å¤§ãã•ã‚’å–å¾—
+    /**–}—á‚ğ•\¦‚·‚é*/
+    //ŠO˜g‚ÌŠeÀ•W‚ÆC•¶š‚Ì‘å‚«‚³‚ğæ“¾
     double boundary_minx = outer_boundary.getBounds2D().getMinX();
     double boundary_maxx = outer_boundary.getBounds2D().getMaxX();
     double boundary_miny = outer_boundary.getBounds2D().getMinY();
     double boundary_maxy = outer_boundary.getBounds2D().getMaxY();
     Rectangle2D letter = (new TextLayout("O", option.font,
                                          g.getFontRenderContext())).getBounds();
-    //è»¸ã®ãƒ©ãƒ™ãƒ«
+    //²‚Ìƒ‰ƒxƒ‹
     String xlabel_text;
     if (option.view_xaxis == STubeOption.VIEW_PHI) {
       xlabel_text = "(PHI)";
@@ -218,7 +218,7 @@ public class STubeGraph
                                             boundary_miny);
     xlabel.draw(g, (float) xlabel_pos.getX(), (float) xlabel_pos.getY());
     ylabel.draw(g, (float) ylabel_pos.getX(), (float) ylabel_pos.getY());
-    //ã‚°ãƒ©ãƒ•ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤º
+    //ƒOƒ‰ƒtƒ^ƒCƒgƒ‹‚Ì•\¦
     TextLayout title = new TextLayout(samplename, option.font,
                                       g.getFontRenderContext());
     float x = (float) (boundary_minx + (boundary_maxx - boundary_minx) / 2. -
@@ -227,7 +227,7 @@ public class STubeGraph
     title.draw(g, x, y);
 
     if (curve != null) {
-      /**å¤–æ ã§ã‚¯ãƒªãƒƒãƒ—ã—ã¦ï¼Œã‚«ãƒ¼ãƒ–ã‚’æç”»ã™ã‚‹*/
+      /**ŠO˜g‚ÅƒNƒŠƒbƒv‚µ‚ÄCƒJ[ƒu‚ğ•`‰æ‚·‚é*/
       curve.transform(aT);
       Shape orig_clip = g.getClip();
       Stroke orig_stroke = g.getStroke();
@@ -241,13 +241,13 @@ public class STubeGraph
       g.setPaint(orig_paint);
     }
 
-    //ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»ä½ç½®ã‚’å…ƒã«æˆ»ã™
+    //ƒOƒ‰ƒtƒBƒbƒN•`‰æˆÊ’u‚ğŒ³‚É–ß‚·
     g.setTransform(initial_trans);
   }
 
   /**
-   * xåº§æ¨™ãƒ»yåº§æ¨™ã®é…åˆ—ã‹ã‚‰æŠ˜ã‚Œç·šã‚’ä½œæˆã™ã‚‹
-   * @return å…¥åŠ›ã•ã‚ŒãŸx,yåº§æ¨™ã«å¯¾å¿œã™ã‚‹GenericPathã®æŠ˜ã‚Œç·šã‚’è¿”ã™
+   * xÀ•WEyÀ•W‚Ì”z—ñ‚©‚çÜ‚êü‚ğì¬‚·‚é
+   * @return “ü—Í‚³‚ê‚½x,yÀ•W‚É‘Î‰‚·‚éGenericPath‚ÌÜ‚êü‚ğ•Ô‚·
    */
   private GeneralPath getCurve() {
     GeneralPath curve = new GeneralPath();
@@ -264,18 +264,18 @@ public class STubeGraph
   }
 
   /**
-   * ãƒ—ãƒªãƒ³ãƒˆã‚¢ã‚¦ãƒˆç”¨æç”»ãƒ¡ã‚½ãƒƒãƒ‰
-   * @param graphics ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
-   * @param pageFormat ãƒšãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-   * @param pagenum ãƒšãƒ¼ã‚¸ç•ªå·
-   * @return ãƒšãƒ¼ã‚¸ç•ªå·ãŒ0ã®ã¨ãã¯PAGE_EXISTSï¼Œãã‚Œä»¥å¤–ã®ã¨ãã¯NO_SUCH_PAGEã‚’è¿”ã™
+   * ƒvƒŠƒ“ƒgƒAƒEƒg—p•`‰æƒƒ\ƒbƒh
+   * @param graphics ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
+   * @param pageFormat ƒy[ƒWƒtƒH[ƒ}ƒbƒg
+   * @param pagenum ƒy[ƒW”Ô†
+   * @return ƒy[ƒW”Ô†‚ª0‚Ì‚Æ‚«‚ÍPAGE_EXISTSC‚»‚êˆÈŠO‚Ì‚Æ‚«‚ÍNO_SUCH_PAGE‚ğ•Ô‚·
    */
   public int print(Graphics graphics, PageFormat pageFormat, int pagenum) {
     if (pagenum != 0) {
       return Printable.NO_SUCH_PAGE;
     }
 
-    //ã‚°ãƒ©ãƒ•ã®æç”»
+    //ƒOƒ‰ƒt‚Ì•`‰æ
     paintGraph(graphics, pageFormat.getImageableWidth(),
                pageFormat.getImageableHeight(), pageFormat.getImageableX(),
                pageFormat.getImageableY());
@@ -284,7 +284,7 @@ public class STubeGraph
   }
 
   /**
-   * ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒˆã‚’è¿½åŠ ã™ã‚‹
+   * ƒf[ƒ^ƒ|ƒCƒ“ƒg‚ğ’Ç‰Á‚·‚é
    * @param x double
    * @param y double
    */
@@ -294,7 +294,7 @@ public class STubeGraph
   }
 
   /**
-   * ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒf[ƒ^‚ğƒZƒbƒg‚·‚é
    * @param x double[]
    * @param y double[]
    */
@@ -309,7 +309,7 @@ public class STubeGraph
   }
 
   /**
-   * ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆå»ã™ã‚‹
+   * ƒf[ƒ^‚ğÁ‹‚·‚é
    */
   public void clearData() {
     samplename = " ";
@@ -318,7 +318,7 @@ public class STubeGraph
   }
 
   /**
-   * Xè»¸ã®ç¯„å›²ã‚’è¨­å®šã™ã‚‹
+   * X²‚Ì”ÍˆÍ‚ğİ’è‚·‚é
    * @param xmin double
    * @param xmax double
    * @param tick_interval double
@@ -333,7 +333,7 @@ public class STubeGraph
   }
 
   /**
-   * Yè»¸ã®ç¯„å›²ã‚’è¨­å®šã™ã‚‹
+   * Y²‚Ì”ÍˆÍ‚ğİ’è‚·‚é
    * @param ymin double
    * @param ymax double
    * @param tick_interval double
@@ -348,10 +348,10 @@ public class STubeGraph
   }
 
   public void showSample(STubeSample sample, STubeOption option) {
-    //ã‚°ãƒ©ãƒ•åˆæœŸåŒ–
+    //ƒOƒ‰ƒt‰Šú‰»
     clearData();
 
-    //ã‚°ãƒ©ãƒ•ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+    //ƒOƒ‰ƒt‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
     samplename = sample.name;
     double x;
     double y;
@@ -387,7 +387,7 @@ public class STubeGraph
       datapoints.add(new Point2D.Double(x, y));
     }
 
-    //ãƒ¬ãƒ³ã‚¸ã®è¨­å®š
+    //ƒŒƒ“ƒW‚Ìİ’è
     if (option.view_xaxis == option.VIEW_PHI) {
       setXRange(sample.condition.phimin, sample.condition.phimax, 0.5);
     }
@@ -424,61 +424,61 @@ public class STubeGraph
 
 /**
  *
- * <p>ã‚¿ã‚¤ãƒˆãƒ«: Tick</p>
- * <p>èª¬æ˜: ScheilGraphã®ç›®ç››ã‚Šã‚’è¡¨ç¾ã™ã‚‹ã‚¯ãƒ©ã‚¹ï¼åº§æ¨™å¤‰æ›ã—ã¦ã‚‚ç›®ç››ã‚Šæ–‡å­—ãŒ
- * ã‚†ãŒã¾ãªã„ã‚ˆã†ã«ã—ã¦ã‚ã‚‹ï¼</p>
- * <p>è‘—ä½œæ¨©:  Copyright (C) 2003 NARUSE, Hajime  This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA </p>
- * <p>ä¼šç¤¾å: Kyoto University</p>
+ * <p>ƒ^ƒCƒgƒ‹: Tick</p>
+ * <p>à–¾: ScheilGraph‚Ì–Ú·‚è‚ğ•\Œ»‚·‚éƒNƒ‰ƒXDÀ•W•ÏŠ·‚µ‚Ä‚à–Ú·‚è•¶š‚ª
+ * ‚ä‚ª‚Ü‚È‚¢‚æ‚¤‚É‚µ‚Ä‚ ‚éD</p>
+ * <p>’˜ìŒ :  Copyright (C) 2003 NARUSE, Hajime  This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA </p>
+ * <p>‰ïĞ–¼: Kyoto University</p>
  * @author NARUSE, Hajime
  * @version 1.0
  */
 class Tick {
   /**
-   * ç›®ç››ã‚Šã®ä½ç½®
+   * –Ú·‚è‚ÌˆÊ’u
    */
   private Point2D.Double tick_location = new Point2D.Double(0.0, 0.0);
 
   /**
-   * ç›®ç››ã‚Šã®é•·ã•
+   * –Ú·‚è‚Ì’·‚³
    */
   private double tick_length = 8.0;
 
   /**
-   * Xè»¸ç”¨ã®ç›®ç››ã‚Šã§ã‚ã‚‹ã“ã¨ã‚’ç¤ºã™
+   * X²—p‚Ì–Ú·‚è‚Å‚ ‚é‚±‚Æ‚ğ¦‚·
    */
   static public int X_AXIS = 1;
 
   /**
-   * Yè»¸ç”¨ã®ç›®ç››ã‚Šã§ã‚ã‚‹ã“ã¨ã‚’ç¤ºã™
+   * Y²—p‚Ì–Ú·‚è‚Å‚ ‚é‚±‚Æ‚ğ¦‚·
    */
   static public int Y_AXIS = 2;
 
   /**
-   * ã©ã¡ã‚‰ã®è»¸ã®ç›®ç››ã‚Šã§ã‚ã‚‹ã‹ã‚’ç¤ºã™ï¼X_AXISã‚‚ã—ãã¯Y_AXIS
+   * ‚Ç‚¿‚ç‚Ì²‚Ì–Ú·‚è‚Å‚ ‚é‚©‚ğ¦‚·DX_AXIS‚à‚µ‚­‚ÍY_AXIS
    */
   private int tick_axis = Tick.X_AXIS;
 
   /**
-   * ã“ã®ç›®ç››ã‚ŠãŒç¤ºã™æ•°å€¤
+   * ‚±‚Ì–Ú·‚è‚ª¦‚·”’l
    */
   double tick_number = 0.0;
 
   /**
-   * ç›®ç››ã‚Šã®æ–‡å­—
+   * –Ú·‚è‚Ì•¶š
    */
   Font tick_font = new Font("SansSerif", Font.PLAIN, 11);
 
-  /**ãƒ­ã‚°ã‚¹ã‚±ãƒ¼ãƒ«ã®åº•ã¨ãªã‚‹æ•°*/
+  /**ƒƒOƒXƒP[ƒ‹‚Ì’ê‚Æ‚È‚é”*/
   int tick_logbase = 10;
 
   /**
-   * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+   * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
    */
   public Tick() {
   }
 
   /**
-   * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+   * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
    * @param number double
    * @param static_number double
    * @param axis int
@@ -493,14 +493,14 @@ class Tick {
   }
 
   /**
-   * æœ€åˆã«æ•°å€¤ãƒ»æœ¬æ¥ã®è»¸ä»¥å¤–ã®è»¸ã®æœ€å°å€¤ãƒ»è»¸ã®æŒ‡å®šãƒ»ç›®ç››ã‚Šã®é•·ã•ãƒ»ãƒ•ã‚©ãƒ³ãƒˆã‚’æŒ‡å®šã—ã¦
-   * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ§‹ç¯‰ã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
-   * @param number ç›®ç››ã‚Šã®æ•°å€¤
-   * @param static_number æœ¬æ¥ã®è»¸ã§ãªã„ã»ã†ã®è»¸ã®æœ€å°å€¤ï¼è¦ã™ã‚‹ã«ï¼Œ
-   * ã“ã®åº§æ¨™ã®æ•°å€¤ã‚’å¤‰åŒ–ã•ã›ãšã«ç›®ç››ã‚Šã‚’ç§»å‹•ã•ã›ã¦ã„ãï¼
-   * @param axis ã©ã¡ã‚‰ã®è»¸ã®ãŸã‚ã®ç›®ç››ã‚Šã§ã‚ã‚‹ã‹ã‚’æŒ‡å®š
-   * @param length ç›®ç››ã‚Šã®é•·ã•
-   * @param font ç›®ç››ã‚Šã®ãƒ•ã‚©ãƒ³ãƒˆ
+   * Å‰‚É”’lE–{—ˆ‚Ì²ˆÈŠO‚Ì²‚ÌÅ¬’lE²‚Ìw’èE–Ú·‚è‚Ì’·‚³EƒtƒHƒ“ƒg‚ğw’è‚µ‚Ä
+   * ƒIƒuƒWƒFƒNƒg‚ğ\’z‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^
+   * @param number –Ú·‚è‚Ì”’l
+   * @param static_number –{—ˆ‚Ì²‚Å‚È‚¢‚Ù‚¤‚Ì²‚ÌÅ¬’lD—v‚·‚é‚ÉC
+   * ‚±‚ÌÀ•W‚Ì”’l‚ğ•Ï‰»‚³‚¹‚¸‚É–Ú·‚è‚ğˆÚ“®‚³‚¹‚Ä‚¢‚­D
+   * @param axis ‚Ç‚¿‚ç‚Ì²‚Ì‚½‚ß‚Ì–Ú·‚è‚Å‚ ‚é‚©‚ğw’è
+   * @param length –Ú·‚è‚Ì’·‚³
+   * @param font –Ú·‚è‚ÌƒtƒHƒ“ƒg
    */
   public Tick(double number, double static_number, int axis, double length,
               Font font) {
@@ -508,14 +508,14 @@ class Tick {
   }
 
   /**
-   * ç›®ç››ã‚Šã®æ•°å€¤ãƒ»æœ¬æ¥ã®è»¸ä»¥å¤–ã®è»¸ã®æœ€å°å€¤ãƒ»è»¸ã®æŒ‡å®šãƒ»ç›®ç››ã‚Šã®é•·ã•ãƒ»ãƒ•ã‚©ãƒ³ãƒˆã‚’æŒ‡å®šã™ã‚‹
-   * @param number ç›®ç››ã‚Šã®æ•°å€¤
-   * @param static_number æœ¬æ¥ã®è»¸ã§ãªã„ã»ã†ã®è»¸ã®æœ€å°å€¤ï¼è¦ã™ã‚‹ã«ï¼Œ
-   * ã“ã®åº§æ¨™ã®æ•°å€¤ã‚’å¤‰åŒ–ã•ã›ãšã«ç›®ç››ã‚Šã‚’ç§»å‹•ã•ã›ã¦ã„ãï¼
-   * @param axis ã©ã¡ã‚‰ã®è»¸ã®ãŸã‚ã®ç›®ç››ã‚Šã§ã‚ã‚‹ã‹ã‚’æŒ‡å®š
-   * @param logbase ãƒ­ã‚°ã‚¹ã‚±ãƒ¼ãƒ«ã®å ´åˆã®åº•ã¨ãªã‚‹æ•°
-   * @param length ç›®ç››ã‚Šã®é•·ã•
-   * @param font ç›®ç››ã‚Šã®ãƒ•ã‚©ãƒ³ãƒˆ
+   * –Ú·‚è‚Ì”’lE–{—ˆ‚Ì²ˆÈŠO‚Ì²‚ÌÅ¬’lE²‚Ìw’èE–Ú·‚è‚Ì’·‚³EƒtƒHƒ“ƒg‚ğw’è‚·‚é
+   * @param number –Ú·‚è‚Ì”’l
+   * @param static_number –{—ˆ‚Ì²‚Å‚È‚¢‚Ù‚¤‚Ì²‚ÌÅ¬’lD—v‚·‚é‚ÉC
+   * ‚±‚ÌÀ•W‚Ì”’l‚ğ•Ï‰»‚³‚¹‚¸‚É–Ú·‚è‚ğˆÚ“®‚³‚¹‚Ä‚¢‚­D
+   * @param axis ‚Ç‚¿‚ç‚Ì²‚Ì‚½‚ß‚Ì–Ú·‚è‚Å‚ ‚é‚©‚ğw’è
+   * @param logbase ƒƒOƒXƒP[ƒ‹‚Ìê‡‚Ì’ê‚Æ‚È‚é”
+   * @param length –Ú·‚è‚Ì’·‚³
+   * @param font –Ú·‚è‚ÌƒtƒHƒ“ƒg
    */
   public void setTick(double number, double static_number, int axis,
                       int logbase, double length, Font font) {
@@ -533,8 +533,8 @@ class Tick {
   }
 
   /**
-   * ç›®ç››ã‚Šã®ä½ç½®ã‚’ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™å¤‰æ›ã§ç§»å‹•ã™ã‚‹
-   * @param aft ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™å¤‰æ›è¡Œåˆ—
+   * –Ú·‚è‚ÌˆÊ’u‚ğƒAƒtƒBƒ“À•W•ÏŠ·‚ÅˆÚ“®‚·‚é
+   * @param aft ƒAƒtƒBƒ“À•W•ÏŠ·s—ñ
    */
   public void transform(AffineTransform aft) {
     double[] location = new double[2];
@@ -546,15 +546,15 @@ class Tick {
   }
 
   /**
-   * ç›®ç››ã‚Šã®æç”»
-   * @param g ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+   * –Ú·‚è‚Ì•`‰æ
+   * @param g ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
    */
   public void draw(Graphics2D g) {
     /**
-     * tick_lineï¼šç›®ç››ã‚Šç·š
-     * nfï¼šç›®ç››ã‚Šã«è¡¨ç¤ºã™ã‚‹æ•°å€¤ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-     * tick_textï¼šç›®ç››ã‚Šã«è¡¨ç¤ºã™ã‚‹æ•°å­—
-     * text_x,text_yï¼šç›®ç››ã‚Šã«è¡¨ç¤ºã™ã‚‹æ•°å­—ã®è¡¨ç¤ºä½ç½®åº§æ¨™
+     * tick_lineF–Ú·‚èü
+     * nfF–Ú·‚è‚É•\¦‚·‚é”’lƒtƒH[ƒ}ƒbƒg
+     * tick_textF–Ú·‚è‚É•\¦‚·‚é”š
+     * text_x,text_yF–Ú·‚è‚É•\¦‚·‚é”š‚Ì•\¦ˆÊ’uÀ•W
      */
     float text_x, text_y;
     TextLayout tick_text;
@@ -583,7 +583,7 @@ class Tick {
     }
 
     /**
-     * Xè»¸ç”¨ã®ç›®ç››ã‚Šã ã£ãŸå ´åˆ
+     * X²—p‚Ì–Ú·‚è‚¾‚Á‚½ê‡
      */
     if (tick_axis == X_AXIS) {
       tick_line.setLine(tick_location.x, tick_location.y,
@@ -595,7 +595,7 @@ class Tick {
                         tick_text.getBounds().getHeight());
     }
     /**
-     * Yè»¸ç”¨ã®ç›®ç››ã‚Šã ã£ãŸå ´åˆ
+     * Y²—p‚Ì–Ú·‚è‚¾‚Á‚½ê‡
      */
     else {
       tick_line.setLine(tick_location.x - tick_length, tick_location.y,
@@ -607,7 +607,7 @@ class Tick {
     }
 
     /**
-     *ç›®ç››ã‚Šã¨æ•°å­—ã®æç”»
+     *–Ú·‚è‚Æ”š‚Ì•`‰æ
      */
     g.draw(tick_line);
     tick_text.draw(g, text_x, text_y);

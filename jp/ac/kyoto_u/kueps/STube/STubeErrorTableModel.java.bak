@@ -8,7 +8,7 @@ import javax.swing.table.*;
 
 /**
  * <p>Title: STubeErrorTableModel</p>
- * <p>Description: èª¤å·®è§£æã®çµæœã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«</p>
+ * <p>Description: Œë·‰ğÍ‚ÌŒ‹‰Ê‚ğ•\¦‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹</p>
  * <p>Copyright: Copyright (C) 2003 NARUSE, Hajime All rights reserved.<br><br>  This program is free software; you can redistribute it and/or modify<br> it under the terms of the GNU General Public License as published by<br> the Free Software Foundation; either version 2 of the License, or<br> (at your option) any later version.<br><br>  This program is distributed in the hope that it will be useful,<br> but WITHOUT ANY WARRANTY; without even the implied warranty of<br> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br> GNU General Public License for more details.<br><br>  You should have received a copy of the GNU General Public License<br> along with this program; if not, write to the Free Software<br> Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br></p>
  * <p>Company: Kyoto University</p>
  * @author NARUSE, Hajime
@@ -17,22 +17,22 @@ import javax.swing.table.*;
 
 public class STubeErrorTableModel
     extends AbstractTableModel {
-  /**è¡¨ç¤ºã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®ãƒãƒƒãƒ—*/
+  /**•\¦‚·‚éƒTƒ“ƒvƒ‹‚Ìƒ}ƒbƒv*/
   STubeSample[] samples = new STubeSample[0];
 
-  /**è¡¨ç¤ºã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ‡ãƒ¼ã‚¿*/
+  /**•\¦‚·‚éƒe[ƒuƒ‹‚Ìƒf[ƒ^*/
   ArrayList tabledata = new ArrayList();
 
-  /**è¡¨ç¤ºã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ˜ãƒƒãƒ€*/
+  /**•\¦‚·‚éƒe[ƒuƒ‹‚Ìƒwƒbƒ_*/
   ArrayList columnname = new ArrayList();
 
-  /**è¡¨ç¤ºã«ã‹ã‹ã‚ã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³*/
+  /**•\¦‚É‚©‚©‚í‚éƒIƒvƒVƒ‡ƒ“*/
   STubeOption option = new STubeOption();
 
-  /**æœ€å¤§ã®éšç´šæ•°*/
+  /**Å‘å‚ÌŠK‹‰”*/
   int maxclassnum = 0;
 
-  /**ãƒŠãƒ³ãƒãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ*/
+  /**ƒiƒ“ƒo[ƒtƒH[ƒ}ƒbƒg*/
   NumberFormat nf = NumberFormat.getInstance();
 
   public STubeErrorTableModel() {
@@ -55,14 +55,14 @@ public class STubeErrorTableModel
 
     updateColumnName();
 
-    //éšç´šæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ãŠã
+    //ŠK‹‰”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¨‚­
     if (samples.length > 0) {
       maxclassnum = samples[0].mdata.length;
     }
 
     for (int i = 0; i < samples.length; i++) {
 
-      //åŒã˜åå‰ã§éšç´šæ•°ã‚‚åŒã˜ã‚µãƒ³ãƒ—ãƒ«ã‚’å–ã‚Šå‡ºã™
+      //“¯‚¶–¼‘O‚ÅŠK‹‰”‚à“¯‚¶ƒTƒ“ƒvƒ‹‚ğæ‚èo‚·
       String samplename = samples[i].name;
       int classnum = samples[i].mdata.length;
       ArrayList target = new ArrayList();
@@ -182,7 +182,7 @@ public class STubeErrorTableModel
   }
 
   /**
-   * toString()ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
+   * toString()‚ÌƒI[ƒo[ƒ‰ƒCƒh
    * @return String
    */
   public String toString() {
@@ -214,11 +214,11 @@ public class STubeErrorTableModel
 
   void updateColumnName() {
     columnname.clear();
-    columnname.add("ã‚µãƒ³ãƒ—ãƒ«å");
-    columnname.add("æ¸¬å®šæ•°");
+    columnname.add("ƒTƒ“ƒvƒ‹–¼");
+    columnname.add("‘ª’è”");
 
-    columnname.add("ç·é‡é‡");
-    columnname.add("ç·é‡é‡(Err.)");
+    columnname.add("‘d—Ê");
+    columnname.add("‘d—Ê(Err.)");
     columnname.add("Mean");
     columnname.add("Mean(Err.)");
     columnname.add("Sorting");
@@ -242,7 +242,7 @@ public class STubeErrorTableModel
     columnname.add("GeoQtDev.");
     columnname.add("GeoQtDev.(Err.)");
 
-    if (option.output_class && samples.length > 0) { //éšç´šã®åå‰ã‚’è¡¨ç¤ºã™ã‚‹
+    if (option.output_class && samples.length > 0) { //ŠK‹‰‚Ì–¼‘O‚ğ•\¦‚·‚é
       STubeSample sample = (STubeSample) samples[0];
       if (sample.condition.intervalmode) {
         for (int i = 0; i < maxclassnum; i++) {
@@ -267,7 +267,7 @@ public class STubeErrorTableModel
   }
 
   /**
-   * dataã®å¹³å‡å€¤ã‚’è¨ˆç®—ã™ã‚‹
+   * data‚Ì•½‹Ï’l‚ğŒvZ‚·‚é
    * @param data double[]
    * @return double
    */
@@ -281,7 +281,7 @@ public class STubeErrorTableModel
   }
 
   /**
-   * èª¤å·®ã‚’è¨ˆç®—ã™ã‚‹
+   * Œë·‚ğŒvZ‚·‚é
    * @param data double[]
    * @return double
    */
@@ -290,9 +290,9 @@ public class STubeErrorTableModel
       return 0;
     }
     else {
-      //å¹³å‡å€¤ã‚’è¨ˆç®—
+      //•½‹Ï’l‚ğŒvZ
       double mean = getMean(data);
-      //æ¨™æœ¬æ¨™æº–åå·®ã‚’è¨ˆç®—
+      //•W–{•W€•Î·‚ğŒvZ
       double sstdev = 0.0;
       for (int i = 0; i < data.length; i++) {
         sstdev = Math.pow(data[i] - mean, 2.0);

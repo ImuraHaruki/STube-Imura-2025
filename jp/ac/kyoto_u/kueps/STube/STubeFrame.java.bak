@@ -22,28 +22,28 @@ import jp.ac.kyoto_u.kueps.naruse_utils.*;
 
 public class STubeFrame
     extends JFrame {
-  /**ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ‰€æœ‰ã™ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³*/
+  /**‚±‚ÌƒtƒŒ[ƒ€‚ğŠ—L‚·‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“*/
   STube papp;
 
-  /**ã‚°ãƒ©ãƒ•è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‘ãƒãƒ«*/
+  /**ƒOƒ‰ƒt•\¦‚·‚é‚½‚ß‚Ìƒpƒlƒ‹*/
   STubeGraph graph = new STubeGraph();
 
-  /**æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‘ãƒãƒ«*/
+  /**î•ñ‚ğ•\¦‚·‚é‚½‚ß‚Ìƒpƒlƒ‹*/
   STubeInfoPanel info_panel = new STubeInfoPanel();
 
-  /**ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¢ã‚¤ã‚³ãƒ³*/
+  /**‚±‚ÌƒtƒŒ[ƒ€‚ÌƒAƒCƒRƒ“*/
   ImageIcon stube_image;
 
-  /**çµæœã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°*/
+  /**Œ‹‰Ê‚ğ•\¦‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹ƒ_ƒCƒAƒƒO*/
   STubeResultTableDialog result_table = new STubeResultTableDialog(this);
 
-  /**å¹³å‡ã¨èª¤å·®ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°*/
+  /**•½‹Ï‚ÆŒë·‚ğ•\¦‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹ƒ_ƒCƒAƒƒO*/
   STubeErrorTableDialog error_table = new STubeErrorTableDialog(this);
 
-  /**ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·*/
+  /**Œ»İ•\¦‚µ‚Ä‚¢‚éƒTƒ“ƒvƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†*/
   int current_sample_index = 0;
 
-  /**ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ã®ä¸‹éƒ¨ã®ãƒ‘ãƒãƒ«*/
+  /**ƒXƒe[ƒ^ƒX•\¦—p‚Ì‰º•”‚Ìƒpƒlƒ‹*/
   STubeStatusPanel status_panel = new STubeStatusPanel();
 
   JPanel contentPane;
@@ -149,7 +149,7 @@ public class STubeFrame
     jbutton_start.setIcon(go);
     jbutton_stop.setIcon(stop);
     jbutton_condition.setIcon(tube);
-    jbutton_option.setToolTipText("ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®š");
+    jbutton_option.setToolTipText("ƒIƒvƒVƒ‡ƒ“İ’è");
     jbutton_option.setIcon(option);
     jbutton_option.setText("");
 
@@ -167,7 +167,7 @@ public class STubeFrame
     jmenu_help_about.setText("About");
     jmenu_help_about.addActionListener(new
                                        STubeFrame_jmenu_help_about_ActionAdapter(this));
-    jbutton_start.setToolTipText("æ¸¬å®šé–‹å§‹");
+    jbutton_start.setToolTipText("‘ª’èŠJn");
     jbutton_start.setText("");
     jbutton_start.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -254,7 +254,7 @@ public class STubeFrame
     });
 
     jbutton_stop.setEnabled(false);
-    jbutton_stop.setToolTipText("æ¸¬å®šä¸­æ­¢");
+    jbutton_stop.setToolTipText("‘ª’è’†~");
     jbutton_stop.setIcon(stop);
     jbutton_stop.setText("");
     jbutton_stop.addActionListener(new java.awt.event.ActionListener() {
@@ -268,9 +268,9 @@ public class STubeFrame
         jmenu_file_exportgraph_actionPerformed(e);
       }
     });
-    jbutton_condition.setToolTipText("æ²ˆé™ç®¡çŠ¶æ…‹è¨­å®š");
+    jbutton_condition.setToolTipText("’¾~ŠÇó‘Ôİ’è");
     jbutton_condition.setText("");
-    jbutton_open.setToolTipText("æ¸¬å®šçµæœã‚’é–‹ã");
+    jbutton_open.setToolTipText("‘ª’èŒ‹‰Ê‚ğŠJ‚­");
     jbutton_open.setIcon(openfile);
     jbutton_open.setText("");
     jbutton_open.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +278,7 @@ public class STubeFrame
         jbutton_open_actionPerformed(e);
       }
     });
-    jbutton_save.setToolTipText("æ¸¬å®šçµæœã‚’ä¿å­˜ã™ã‚‹");
+    jbutton_save.setToolTipText("‘ª’èŒ‹‰Ê‚ğ•Û‘¶‚·‚é");
     jbutton_save.setIcon(save);
     jbutton_save.setText("");
     jbutton_save.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +286,7 @@ public class STubeFrame
         jbutton_save_actionPerformed(e);
       }
     });
-    jbutton_help.setToolTipText("ãƒ˜ãƒ«ãƒ—");
+    jbutton_help.setToolTipText("ƒwƒ‹ƒv");
     jbutton_help.setIcon(help);
     jbutton_help.setText("");
     jbutton_help.addActionListener(new java.awt.event.ActionListener() {
@@ -372,7 +372,7 @@ public class STubeFrame
         jcmenu_graph_yaxis_g_actionPerformed(e);
       }
     });
-    jbutton_com.setToolTipText("é€šä¿¡æ¡ä»¶è¨­å®š");
+    jbutton_com.setToolTipText("’ÊMğŒİ’è");
     jbutton_com.setText("");
     jbutton_com.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -475,7 +475,7 @@ public class STubeFrame
   //File | Exit action performed
   public void jmenu_file_exit_actionPerformed(ActionEvent e) {
     if (papp.modified) {
-      if (JOptionPane.showConfirmDialog(this, "æ¸¬å®šçµæœãŒä¿å­˜ã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ", "ç¢ºèª",
+      if (JOptionPane.showConfirmDialog(this, "‘ª’èŒ‹‰Ê‚ª•Û‘¶‚³‚ê‚Ä‚¢‚Ü‚¹‚ñD•Û‘¶‚µ‚Ü‚·‚©H", "Šm”F",
                                         JOptionPane.YES_NO_OPTION,
                                         JOptionPane.QUESTION_MESSAGE) ==
           JOptionPane.YES_OPTION) {
@@ -509,7 +509,7 @@ public class STubeFrame
   }
 
   /**
-   * è¨ˆæ¸¬ã‚’è¡Œã†Startãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+   * Œv‘ª‚ğs‚¤Startƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
    * @param e ActionEvent
    */
   void jbutton_start_actionPerformed(ActionEvent e) {
@@ -517,30 +517,30 @@ public class STubeFrame
   }
 
   /**
-   * æ¸¬å®šã‚’å®Ÿè¡Œã™ã‚‹
+   * ‘ª’è‚ğÀs‚·‚é
    */
   void startMeasure() {
     try {
-      //æ–°ã—ã„ã‚µãƒ³ãƒ—ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+      //V‚µ‚¢ƒTƒ“ƒvƒ‹ƒIƒuƒWƒFƒNƒg‚ğ¶¬
       STubeSample sample = new STubeSample();
-      if (!papp.samples.isEmpty()) {//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯å‰ã®ã‚µãƒ³ãƒ—ãƒ«ã¨åŒã˜åå‰ã‚’ã¤ã‘ã‚‹
+      if (!papp.samples.isEmpty()) {//ƒfƒtƒHƒ‹ƒg‚Å‚Í‘O‚ÌƒTƒ“ƒvƒ‹‚Æ“¯‚¶–¼‘O‚ğ‚Â‚¯‚é
         sample.name = ( (STubeSample) papp.samples.get(papp.samples.size() - 1)).
             name;
       }
 
-      //ã‚µãƒ³ãƒ—ãƒ«ã®åå‰ã‚’è¨­å®šã•ã›ã‚‹
+      //ƒTƒ“ƒvƒ‹‚Ì–¼‘O‚ğİ’è‚³‚¹‚é
       STubeSamplePanel spanel = new STubeSamplePanel();
       spanel.setSample(sample);
-      if (JOptionPane.showOptionDialog(this, spanel, "ã‚µãƒ³ãƒ—ãƒ«è¨­å®š",
+      if (JOptionPane.showOptionDialog(this, spanel, "ƒTƒ“ƒvƒ‹İ’è",
                                        JOptionPane.OK_CANCEL_OPTION,
                                        JOptionPane.PLAIN_MESSAGE, null, null, null)
           == JOptionPane.YES_OPTION) {
         sample = spanel.getSample();
 
-        //æ¸¬å®šç”¨ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
+        //‘ª’è—p‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
         papp.measure = new STubeMeasure(this, papp.option.com_name,
                                         papp.getCondition(), sample);
-        //æ¸¬å®šé–‹å§‹
+        //‘ª’èŠJn
         papp.measure.startMeasure();
       }
     }
@@ -549,13 +549,13 @@ public class STubeFrame
     }
   }
 
-  /**æ¸¬å®šã‚’ä¸­æ­¢ã™ã‚‹*/
+  /**‘ª’è‚ğ’†~‚·‚é*/
   void stopMeasure() {
     papp.measure.cancel();
   }
 
   /**
-   * æ²ˆé™ç®¡ã®Conditionã‚’è¨­å®šã™ã‚‹
+   * ’¾~ŠÇ‚ÌCondition‚ğİ’è‚·‚é
    * @param e ActionEvent
    */
   void jbutton_condition_actionPerformed(ActionEvent e) {
@@ -563,42 +563,42 @@ public class STubeFrame
   }
 
   /**
-   * æ²ˆé™ç®¡çŠ¶æ…‹è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
+   * ’¾~ŠÇó‘Ôİ’èƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
    */
   void showConditionDialog() {
     STubeConditionPanel cpanel = new STubeConditionPanel();
     cpanel.setCondition(papp.condition);
-    if (JOptionPane.showOptionDialog(this, cpanel, "æ²ˆé™ç®¡çŠ¶æ…‹è¨­å®š",
+    if (JOptionPane.showOptionDialog(this, cpanel, "’¾~ŠÇó‘Ôİ’è",
                                      JOptionPane.OK_CANCEL_OPTION,
                                      JOptionPane.PLAIN_MESSAGE, null, null, null)
         == JOptionPane.OK_OPTION) {
-      //æ²ˆé™ç®¡ã®çŠ¶æ…‹ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆï¼Œã“ã‚Œã¾ã§ã®çŠ¶æ…‹ã‚’ä¿å­˜ã™ã‚‹ã‹å¦ã‹ã‚’å°‹ã­ã‚‹
+      //’¾~ŠÇ‚Ìó‘Ô‚ª•ÏX‚³‚ê‚½ê‡C‚±‚ê‚Ü‚Å‚Ìó‘Ô‚ğ•Û‘¶‚·‚é‚©”Û‚©‚ğq‚Ë‚é
       if (JOptionPane.showConfirmDialog(this,
-                                        "æ²ˆé™ç®¡ã®æ¸¬å®šæ¡ä»¶ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸï¼ã“ã‚Œã¾ã§ã®æ¸¬å®šæ¡ä»¶ã‚’ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ",
-                                        "æ¸¬å®šæ¡ä»¶å¤‰æ›´", JOptionPane.YES_NO_OPTION,
+                                        "’¾~ŠÇ‚Ì‘ª’èğŒ‚ª•ÏX‚³‚ê‚Ü‚µ‚½D‚±‚ê‚Ü‚Å‚Ì‘ª’èğŒ‚ğ•Û‘¶‚µ‚Ü‚·‚©H",
+                                        "‘ª’èğŒ•ÏX", JOptionPane.YES_NO_OPTION,
                                         JOptionPane.QUESTION_MESSAGE) ==
           JOptionPane.YES_OPTION) {
         saveTube();
       }
-      //æ²ˆé™ç®¡ã®çŠ¶æ…‹ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆï¼Œã“ã‚Œã¾ã§ã®æ¸¬å®šãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ã‹å¦ã‹ã‚’å°‹ã­ã‚‹
+      //’¾~ŠÇ‚Ìó‘Ô‚ª•ÏX‚³‚ê‚½ê‡C‚±‚ê‚Ü‚Å‚Ì‘ª’èƒf[ƒ^‚ğ•Û‘¶‚·‚é‚©”Û‚©‚ğq‚Ë‚é
       if (JOptionPane.showConfirmDialog(this,
-                                        "ã“ã‚Œã¾ã§ã®æ¸¬å®šçµæœã¯ã™ã¹ã¦æ¶ˆå»ã•ã‚Œã¾ã™ï¼ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ",
-                                        "æ¸¬å®šæ¡ä»¶å¤‰æ›´", JOptionPane.YES_NO_OPTION,
+                                        "‚±‚ê‚Ü‚Å‚Ì‘ª’èŒ‹‰Ê‚Í‚·‚×‚ÄÁ‹‚³‚ê‚Ü‚·D•Û‘¶‚µ‚Ü‚·‚©H",
+                                        "‘ª’èğŒ•ÏX", JOptionPane.YES_NO_OPTION,
                                         JOptionPane.QUESTION_MESSAGE) ==
           JOptionPane.YES_OPTION) {
-        saveSample();//ã‚µãƒ³ãƒ—ãƒ«ã‚’å‡ºåŠ›
+        saveSample();//ƒTƒ“ƒvƒ‹‚ğo—Í
       }
-      papp.samples.clear();//ã‚µãƒ³ãƒ—ãƒ«ã‚’ã™ã¹ã¦å‰Šé™¤
+      papp.samples.clear();//ƒTƒ“ƒvƒ‹‚ğ‚·‚×‚Äíœ
       updateFrame();
       papp.setModified(true);
       papp.setSamples(papp.samples);
-      //çŠ¶æ…‹ã‚’å¤‰æ›´
+      //ó‘Ô‚ğ•ÏX
       papp.setCondition(cpanel.getCondition());
     }
   }
 
   /**
-   * è¦ªã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * eƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
    * @param app STube
    */
   protected void setParentApp(STube app) {
@@ -606,7 +606,7 @@ public class STubeFrame
   }
 
   /**
-   * ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹
+   * ƒtƒŒ[ƒ€‚ğ‰Šú‰»‚·‚é
    */
   void updateFrame() {
     graph.setOption(papp.option);
@@ -633,30 +633,30 @@ public class STubeFrame
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+   * ƒTƒ“ƒvƒ‹‚ğ•\¦‚·‚é
    * @param sample STubeSample
    */
   public void showSample(STubeSample sample) {
 
-    //çŠ¶æ…‹ãƒ‘ãƒãƒ«ã‚’è¨­å®šã™ã‚‹
+    //ó‘Ôƒpƒlƒ‹‚ğİ’è‚·‚é
     status_panel.clearStatus();
     status_panel.setSampleName(sample.name);
     status_panel.setWeight(sample.mdata[sample.mdata.length - 1].weight);
     status_panel.setPortName(papp.option.com_name);
     info_panel.setSample(sample);
 
-    //ã‚°ãƒ©ãƒ•ã«ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+    //ƒOƒ‰ƒt‚ÉƒTƒ“ƒvƒ‹‚ğ•\¦‚·‚é
     showSampleGraph(sample);
     repaint();
   }
 
   public void showSampleGraph(STubeSample sample) {
-    //ã‚°ãƒ©ãƒ•ã«ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+    //ƒOƒ‰ƒt‚ÉƒTƒ“ƒvƒ‹‚ğ•\¦‚·‚é
     graph.showSample(sample, papp.option);
   }
 
   /**
-   * ç•ªå·ã§æŒ‡å®šã—ã¦ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+   * ”Ô†‚Åw’è‚µ‚ÄƒTƒ“ƒvƒ‹‚ğ•\¦‚·‚é
    * @param id int
    */
   public void showSample(int id) {
@@ -672,14 +672,14 @@ public class STubeFrame
   }
 
   /**
-   * ãƒªã‚¹ãƒˆã®æœ€å¾Œã«ã‚ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+   * ƒŠƒXƒg‚ÌÅŒã‚É‚ ‚éƒTƒ“ƒvƒ‹‚ğ•\¦‚·‚é
    */
   public void showSample() {
     showSample(papp.samples.size() - 1);
   }
 
   /**
-   * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŠã‚ˆã³ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‚’ä½¿ç”¨å¯ï½¥ä¸å¯ã«ã™ã‚‹
+   * ƒƒjƒ…[‚¨‚æ‚Ñƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ğg—p‰Â¥•s‰Â‚É‚·‚é
    * @param enable boolean
    */
   public void setButtonEnabled(boolean enable) {
@@ -697,7 +697,7 @@ public class STubeFrame
   }
 
   /**
-   * [File|Save Samples] ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
+   * [File|Save Samples] ƒTƒ“ƒvƒ‹ƒf[ƒ^‚Ì•Û‘¶
    * @param e ActionEvent
    */
   void jmenu_file_savesample_actionPerformed(ActionEvent e) {
@@ -705,7 +705,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
+   * ƒTƒ“ƒvƒ‹ƒf[ƒ^‚Ì•Û‘¶
    */
   void saveSample() {
     try {
@@ -720,14 +720,14 @@ public class STubeFrame
       }
     }
     catch (Exception ex) {
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       ex.printStackTrace();
     }
   }
 
   /**
-   * [File|Save Tube Condition] æ²ˆé™ç®¡ã®çŠ¶æ…‹ä¿å­˜
+   * [File|Save Tube Condition] ’¾~ŠÇ‚Ìó‘Ô•Û‘¶
    * @param e ActionEvent
    */
   void jmenu_file_savetube_actionPerformed(ActionEvent e) {
@@ -735,7 +735,7 @@ public class STubeFrame
   }
 
   /**
-   * æ²ˆé™ç®¡ã®çŠ¶æ…‹ä¿å­˜
+   * ’¾~ŠÇ‚Ìó‘Ô•Û‘¶
    */
   void saveTube() {
     try {
@@ -749,14 +749,14 @@ public class STubeFrame
       }
     }
     catch (Exception ex) {
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
       ex.printStackTrace();
     }
   }
 
   /**
-   * [File|Save Option] ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿å­˜
+   * [File|Save Option] ƒIƒvƒVƒ‡ƒ“‚Ì•Û‘¶
    * @param e ActionEvent
    */
   void jmenu_file_saveoption_actionPerformed(ActionEvent e) {
@@ -764,7 +764,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿å­˜
+   * ƒIƒvƒVƒ‡ƒ“‚Ì•Û‘¶
    */
   void saveOption() {
     try {
@@ -779,14 +779,14 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
 
   }
 
   /**
-   * [File|Load Samples] ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+   * [File|Load Samples] ƒTƒ“ƒvƒ‹ƒf[ƒ^‚ğ“Ç‚İ‚Ş
    * @param e ActionEvent
    */
   void jmenu_file_loadsample_actionPerformed(ActionEvent e) {
@@ -794,7 +794,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã‚’é–‹ã
+   * ƒTƒ“ƒvƒ‹‚ğŠJ‚­
    */
   void loadSample() {
     try {
@@ -810,13 +810,13 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
   }
 
   /**
-   * [File|Load Tube Condition] æ²ˆé™ç®¡ã®çŠ¶æ…‹ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
+   * [File|Load Tube Condition] ’¾~ŠÇ‚Ìó‘Ô‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
    * @param e ActionEvent
    */
   void jmenu_file_loadtube_actionPerformed(ActionEvent e) {
@@ -836,14 +836,14 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
 
     }
   }
 
   /**
-   * [File | Load Option] ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
+   * [File | Load Option] ƒIƒvƒVƒ‡ƒ“‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
    * @param e ActionEvent
    */
   void jmenu_file_loadoption_actionPerformed(ActionEvent e) {
@@ -851,7 +851,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
+   * ƒIƒvƒVƒ‡ƒ“‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
    */
   void loadOption() {
     try {
@@ -865,14 +865,14 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
 
     }
   }
 
   /**
-   * ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+   * ƒIƒvƒVƒ‡ƒ“İ’èƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
    * @param e ActionEvent
    */
   void jbutton_option_actionPerformed(ActionEvent e) {
@@ -880,29 +880,29 @@ public class STubeFrame
   }
 
   /**
-   * å„ç¨®ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šç”¨ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
+   * ŠeíƒIƒvƒVƒ‡ƒ“İ’è—p‚Ìƒ_ƒCƒAƒƒO‚ğŠJ‚­
    */
   void showOptionDialog() {
     JTabbedPane optiontab = new JTabbedPane();
 
-    //ãã‚Œãã‚Œã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šãƒ‘ãƒãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ï¼Œoptiontabã«è¿½åŠ ã™ã‚‹
+    //‚»‚ê‚¼‚ê‚ÌƒIƒvƒVƒ‡ƒ“İ’èƒpƒlƒ‹‚ğƒZƒbƒgƒAƒbƒv‚µCoptiontab‚É’Ç‰Á‚·‚é
     STubeOptionMeasurePanel measure = new STubeOptionMeasurePanel();
     measure.setOption(papp.option);
-    optiontab.add("æ¸¬å®š", measure);
+    optiontab.add("‘ª’è", measure);
 
     STubeOptionComPanel com = new STubeOptionComPanel();
     com.setOption(papp.option);
-    optiontab.add("é€šä¿¡è¨­å®š", com);
+    optiontab.add("’ÊMİ’è", com);
 
     STubeOptionGraphPanel graph = new STubeOptionGraphPanel();
     graph.setOption(papp.option);
-    optiontab.add("è¡¨ç¤º", graph);
+    optiontab.add("•\¦", graph);
 
     STubeOptionOutputPanel output = new STubeOptionOutputPanel();
     output.setOption(papp.option);
-    optiontab.add("å‡ºåŠ›", output);
+    optiontab.add("o—Í", output);
 
-    if (JOptionPane.showOptionDialog(this, optiontab, "ã‚ªãƒ—ã‚·ãƒ§ãƒ³",
+    if (JOptionPane.showOptionDialog(this, optiontab, "ƒIƒvƒVƒ‡ƒ“",
                                      JOptionPane.OK_CANCEL_OPTION,
                                      JOptionPane.PLAIN_MESSAGE, null, null, null)
         == JOptionPane.OK_OPTION) {
@@ -924,7 +924,7 @@ public class STubeFrame
   }
 
   /**
-   * çµæœã‚’è¡¨ã™ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¡¨ç¤º
+   * Œ‹‰Ê‚ğ•\‚·ƒe[ƒuƒ‹‚Ì•\¦
    */
   void showResult() {
     result_table.setModel(papp.result_tmodel);
@@ -937,7 +937,7 @@ public class STubeFrame
   }
 
   /**
-   * [File|Export Result] çµæœãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
+   * [File|Export Result] Œ‹‰Êƒf[ƒ^o—Í
    * @param e ActionEvent
    */
   void jmenu_file_exportresult_actionPerformed(ActionEvent e) {
@@ -945,7 +945,7 @@ public class STubeFrame
   }
 
   /**
-   * çµæœãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ã‚­ã‚¹ãƒˆã«å‡ºåŠ›
+   * Œ‹‰Êƒf[ƒ^‚ğƒeƒLƒXƒg‚Éo—Í
    */
   void exportResult() {
     try {
@@ -958,7 +958,7 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
 
@@ -981,7 +981,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚°ãƒ©ãƒ•ã®è»¸ã‚’å¤‰æ›´ã™ã‚‹
+   * ƒOƒ‰ƒt‚Ì²‚ğ•ÏX‚·‚é
    */
   void changeAxis() {
     int xaxis;
@@ -1024,7 +1024,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«ã®ãƒªã‚¹ãƒˆã‚’æ›´æ–°ã™ã‚‹
+   * ƒTƒ“ƒvƒ‹‚ÌƒŠƒXƒg‚ğXV‚·‚é
    */
   void updateSampleList() {
     jmenu_result_viewsample.removeAll();
@@ -1054,7 +1054,7 @@ public class STubeFrame
   }
 
   /**
-   * æ¸¬å®šã‚’ä¸­æ­¢ã™ã‚‹ãƒœã‚¿ãƒ³ã®å‡¦ç†
+   * ‘ª’è‚ğ’†~‚·‚éƒ{ƒ^ƒ“‚Ìˆ—
    * @param e ActionEvent
    */
   void jbutton_stop_actionPerformed(ActionEvent e) {
@@ -1070,7 +1070,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚°ãƒ©ãƒ•ã®å‡ºåŠ›
+   * ƒOƒ‰ƒt‚Ìo—Í
    */
   void exportGraph() {
     try {
@@ -1084,13 +1084,13 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
   }
 
   /**
-   * æ¸¬å®šçµæœã‚’é–‹ã
+   * ‘ª’èŒ‹‰Ê‚ğŠJ‚­
    * @param e ActionEvent
    */
   void jbutton_open_actionPerformed(ActionEvent e) {
@@ -1098,7 +1098,7 @@ public class STubeFrame
   }
 
   /**
-   * æ¸¬å®šçµæœã‚’ä¿å­˜ã™ã‚‹
+   * ‘ª’èŒ‹‰Ê‚ğ•Û‘¶‚·‚é
    * @param e ActionEvent
    */
   void jbutton_save_actionPerformed(ActionEvent e) {
@@ -1106,7 +1106,7 @@ public class STubeFrame
   }
 
   /**
-   * ãƒ˜ãƒ«ãƒ—
+   * ƒwƒ‹ƒv
    * @param e ActionEvent
    */
   void jbutton_help_actionPerformed(ActionEvent e) {
@@ -1122,7 +1122,7 @@ public class STubeFrame
   }
 
   /**
-   * ç¾åœ¨è¡¨ç¤ºä¸­ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+   * Œ»İ•\¦’†‚ÌƒTƒ“ƒvƒ‹‚ğíœ‚·‚é
    */
   void delete_thissample() {
     int[] index = new int[1];
@@ -1139,7 +1139,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«åã‚’å¤‰æ›´ã™ã‚‹
+   * ƒTƒ“ƒvƒ‹–¼‚ğ•ÏX‚·‚é
    * @param index int
    */
   void rename_sample(int index) {
@@ -1147,7 +1147,7 @@ public class STubeFrame
       STubeSample sample = papp.getSamples()[index];
       STubeSamplePanel spanel = new STubeSamplePanel();
       spanel.setSample(sample);
-      if (JOptionPane.showOptionDialog(this, spanel, "ã‚µãƒ³ãƒ—ãƒ«è¨­å®š",
+      if (JOptionPane.showOptionDialog(this, spanel, "ƒTƒ“ƒvƒ‹İ’è",
                                        JOptionPane.OK_CANCEL_OPTION,
                                        JOptionPane.PLAIN_MESSAGE, null, null, null) ==
           JOptionPane.OK_OPTION) {
@@ -1185,7 +1185,7 @@ public class STubeFrame
   }
 
   /**
-   * ã‚°ãƒ©ãƒ•ã‚’ãƒ—ãƒªãƒ³ãƒˆã‚¢ã‚¦ãƒˆã™ã‚‹
+   * ƒOƒ‰ƒt‚ğƒvƒŠƒ“ƒgƒAƒEƒg‚·‚é
    * @param graph Printable
    */
   void printGraph(Printable graph) {
@@ -1233,7 +1233,7 @@ public class STubeFrame
   }
 
   /**
-   * ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãƒ»é€šä¿¡è¨­å®š
+   * ƒc[ƒ‹ƒo[E’ÊMİ’è
    * @param e ActionEvent
    */
   void jbutton_com_actionPerformed(ActionEvent e) {
@@ -1241,12 +1241,12 @@ public class STubeFrame
   }
 
   /**
-   * é€šä¿¡è¨­å®šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
+   * ’ÊMİ’èƒ_ƒCƒAƒƒO‚ğ•\¦
    */
   void showComDialog() {
     STubeOptionComPanel companel = new STubeOptionComPanel();
     companel.setOption(papp.option);
-    if (JOptionPane.showOptionDialog(this, companel, "é€šä¿¡æ¡ä»¶è¨­å®š",
+    if (JOptionPane.showOptionDialog(this, companel, "’ÊMğŒİ’è",
                                      JOptionPane.OK_CANCEL_OPTION,
                                      JOptionPane.PLAIN_MESSAGE, null, null, null) ==
         JOptionPane.OK_OPTION) {
@@ -1263,7 +1263,7 @@ public class STubeFrame
   }
 
   /**
-   * å°åˆ·ç”¨ã®ãƒšãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+   * ˆóü—p‚Ìƒy[ƒW‚ğƒZƒbƒgƒAƒbƒv‚·‚é
    */
   void pageSetUp() {
     PrinterJob pj = PrinterJob.getPrinterJob();
@@ -1289,7 +1289,7 @@ public class STubeFrame
   }
 
   /**
-   * ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚’ãƒ—ãƒªãƒ³ãƒˆã‚¢ã‚¦ãƒˆã™ã‚‹
+   * ‚·‚×‚Ä‚ÌƒOƒ‰ƒt‚ğƒvƒŠƒ“ƒgƒAƒEƒg‚·‚é
    */
   void printAllGraphs() {
     STubeAllGraphs allgraphs = new STubeAllGraphs(papp.samples, papp.option);
@@ -1305,7 +1305,7 @@ public class STubeFrame
   }
 
   /**
-   * ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã®å‡ºåŠ›
+   * ‚·‚×‚Ä‚ÌƒOƒ‰ƒt‚Ìo—Í
    */
   void exportAllGraphs() {
     try {
@@ -1320,7 +1320,7 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
 
@@ -1335,7 +1335,7 @@ public class STubeFrame
   }
 
   /**
-   * Mean & Error ã‚’å‡ºåŠ›ã™ã‚‹
+   * Mean & Error ‚ğo—Í‚·‚é
    */
   void exportMeanError() {
     try {
@@ -1348,7 +1348,7 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
 
@@ -1363,7 +1363,7 @@ public class STubeFrame
   }
 
   /**
-   * æ¸¬å®šæ¡ä»¶ã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã§å‡ºåŠ›
+   * ‘ª’èğŒ‚ğƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Åo—Í
    */
   void exportCondition() {
     try {
@@ -1376,7 +1376,7 @@ public class STubeFrame
     }
     catch (Exception ex) {
       ex.printStackTrace();
-      JOptionPane.showMessageDialog(this, "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã§ãã¾ã›ã‚“", "ã‚¨ãƒ©ãƒ¼",
+      JOptionPane.showMessageDialog(this, "ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚Å‚«‚Ü‚¹‚ñ", "ƒGƒ‰[",
                                     JOptionPane.ERROR_MESSAGE);
     }
 
@@ -1385,7 +1385,7 @@ public class STubeFrame
 }
 
 /**
- * ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚’ãƒ—ãƒªãƒ³ãƒˆã‚¢ã‚¦ãƒˆã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
+ * ‚·‚×‚Ä‚ÌƒOƒ‰ƒt‚ğƒvƒŠƒ“ƒgƒAƒEƒg‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
  */
 class STubeAllGraphs
     implements Printable {
@@ -1406,18 +1406,18 @@ class STubeAllGraphs
    * @return int
    */
   public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) {
-    //ã‚µãƒ³ãƒ—ãƒ«ãŒç„¡ã„å ´åˆã¯ãƒ—ãƒªãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ãªã„
+    //ƒTƒ“ƒvƒ‹‚ª–³‚¢ê‡‚ÍƒvƒŠƒ“ƒgƒAƒEƒg‚µ‚È‚¢
     if (samples.isEmpty()) {
       return Printable.NO_SUCH_PAGE;
     }
 
-    //1ãƒšãƒ¼ã‚¸ã‚ãŸã‚Š4ã‚µãƒ³ãƒ—ãƒ«ã¨ã—ã¦ï¼Œä½•ãƒšãƒ¼ã‚¸å­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹ï¼
+    //1ƒy[ƒW‚ ‚½‚è4ƒTƒ“ƒvƒ‹‚Æ‚µ‚ÄC‰½ƒy[ƒW‘¶İ‚·‚é‚©’²‚×‚éD
     int pagenum = (int) Math.ceil( (double) samples.size() / 4.);
     if (pagenum - 1 < pageIndex) {
       return Printable.NO_SUCH_PAGE;
     }
 
-    //ã“ã®ãƒšãƒ¼ã‚¸ã«è¡¨ç¤ºã™ã‚‹ã‚°ãƒ©ãƒ•ã‚’ç”¨æ„ã™ã‚‹
+    //‚±‚Ìƒy[ƒW‚É•\¦‚·‚éƒOƒ‰ƒt‚ğ—pˆÓ‚·‚é
     STubeGraph[] allgraphs = new STubeGraph[4];
     for (int i = 0; i < 4; i++) {
       allgraphs[i] = new STubeGraph(option);
@@ -1430,7 +1430,7 @@ class STubeAllGraphs
       }
     }
 
-    //1ãƒšãƒ¼ã‚¸ã‚ãŸã‚Š4ã‚µãƒ³ãƒ—ãƒ«ã‚’æç”»ã™ã‚‹
+    //1ƒy[ƒW‚ ‚½‚è4ƒTƒ“ƒvƒ‹‚ğ•`‰æ‚·‚é
     for (int i = 0; i < 4; i++) {
       double blank_x = pageFormat.getImageableWidth() * 0.1;
       double blank_y = pageFormat.getImageableHeight() * 0.05;

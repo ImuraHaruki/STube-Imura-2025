@@ -10,10 +10,10 @@ public class NFontChooser {
 
     private Font selectedFont = new Font("SansSerif", Font.PLAIN, 12);
 
-    // è¿½åŠ ï¼šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¿ã‚¤ãƒˆãƒ«
+    // ’Ç‰ÁFƒ_ƒCƒAƒƒOƒ^ƒCƒgƒ‹
     private String title = "Choose Font";
 
-    // è¿½åŠ ï¼šã‚¿ã‚¤ãƒˆãƒ«è¨­å®š
+    // ’Ç‰ÁFƒ^ƒCƒgƒ‹İ’è
     public void setTitle(String t) {
         if (t != null && !t.isEmpty()) title = t;
     }

@@ -22,7 +22,7 @@ public class STubeErrorTableDialog
   JTable jtable_error = new JTable();
 
   public STubeErrorTableDialog(Frame frame) {
-    this(frame, "æ¸¬å®šçµæœï¼ˆå¹³å‡å€¤ãŠã‚ˆã³æ¨™æº–èª¤å·®ï¼‰", false);
+    this(frame, "‘ª’èŒ‹‰Êi•½‹Ï’l‚¨‚æ‚Ñ•W€Œë·j", false);
   }
 
   public STubeErrorTableDialog(Frame frame, String title, boolean modal) {

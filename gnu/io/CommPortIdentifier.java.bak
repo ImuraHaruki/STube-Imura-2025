@@ -24,7 +24,7 @@ public class CommPortIdentifier {
 
     public static Enumeration getPortIdentifiers() {
         com.fazecast.jSerialComm.SerialPort[] ports =
-                com.fazecast.jSerialComm.SerialPort.getCommPorts(); // å…¬å¼API :contentReference[oaicite:3]{index=3}
+                com.fazecast.jSerialComm.SerialPort.getCommPorts(); // Œö®API :contentReference[oaicite:3]{index=3}
 
         ArrayList list = new ArrayList();
         for (com.fazecast.jSerialComm.SerialPort p : ports) {
@@ -40,7 +40,7 @@ public class CommPortIdentifier {
                 com.fazecast.jSerialComm.SerialPort.getCommPorts();
 
         for (com.fazecast.jSerialComm.SerialPort p : ports) {
-            // Windowsã ã¨ "COM3" ã¿ãŸã„ãªã®ãŒ systemPortName ã«å…¥ã‚Šã¾ã™
+            // Windows‚¾‚Æ "COM3" ‚İ‚½‚¢‚È‚Ì‚ª systemPortName ‚É“ü‚è‚Ü‚·
             if (name.equalsIgnoreCase(p.getSystemPortName())) {
                 return new CommPortIdentifier(p);
             }
@@ -53,7 +53,7 @@ public class CommPortIdentifier {
             throw new PortInUseException("Port already open: " + port.getSystemPortName());
         }
 
-        // ã–ã£ãã‚Šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè¨­å®šï¼ˆå¿…è¦ãªã‚‰å¾Œã§èª¿æ•´ï¼‰
+        // ‚´‚Á‚­‚èƒ^ƒCƒ€ƒAƒEƒgİ’èi•K—v‚È‚çŒã‚Å’²®j
         port.setComPortTimeouts(
                 com.fazecast.jSerialComm.SerialPort.TIMEOUT_READ_SEMI_BLOCKING,
                 Math.max(timeoutMillis, 0),

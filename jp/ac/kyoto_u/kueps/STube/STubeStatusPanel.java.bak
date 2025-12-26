@@ -18,11 +18,11 @@ import javax.swing.border.*;
 
 public class STubeStatusPanel
     extends JPanel {
-  /**ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’è¡Œã†ãŸã‚ã®å¤‰æ•°*/
+  /**ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğs‚¤‚½‚ß‚Ì•Ï”*/
   int total_count = 0;
   int count = 0;
 
-  /**ã‚µãƒ³ãƒ—ãƒ«å*/
+  /**ƒTƒ“ƒvƒ‹–¼*/
   String samplename;
 
   JLabel label_status = new JLabel();
@@ -53,7 +53,7 @@ public class STubeStatusPanel
     label_status.setPreferredSize(new Dimension(120, 19));
     label_status.setRequestFocusEnabled(true);
     label_status.setHorizontalAlignment(SwingConstants.LEADING);
-    label_status.setText("ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“");
+    label_status.setText("ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ");
     this.setLayout(gridBagLayout1);
     label_com.setFont(new java.awt.Font("Dialog", 0, 12));
     label_com.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -77,7 +77,7 @@ public class STubeStatusPanel
     label_second.setMinimumSize(new Dimension(90, 19));
     label_second.setPreferredSize(new Dimension(90, 19));
     label_second.setHorizontalAlignment(SwingConstants.CENTER);
-    label_second.setText("è¨ˆæ¸¬çµ‚äº†");
+    label_second.setText("Œv‘ªI—¹");
     this.setFont(new java.awt.Font("SansSerif", 0, 11));
     jprogressbar.setMinimumSize(new Dimension(100, 18));
     jprogressbar.setPreferredSize(new Dimension(150, 18));
@@ -104,12 +104,12 @@ public class STubeStatusPanel
   }
 
   /**
-   * ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’é–‹å§‹ã™ã‚‹
+   * ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğŠJn‚·‚é
    *
    * @param second int
    */
   public void startCount() {
-    label_second.setText("è¨ˆæ¸¬ä¸­ã€€æ®‹ã‚Š" + Integer.toString(count) + "ç§’");
+    label_second.setText("Œv‘ª’†@c‚è" + Integer.toString(count) + "•b");
     this.repaint();
     java.util.Timer timer = new java.util.Timer();
 
@@ -121,15 +121,15 @@ public class STubeStatusPanel
         count--;
         if (count > 0) {
           label_second.setForeground(Color.red);
-          label_second.setText("æ®‹ã‚Š" + Integer.toString(count) + "ç§’");
+          label_second.setText("c‚è" + Integer.toString(count) + "•b");
           label_status.setForeground(Color.red);
-          label_status.setText("è¨ˆæ¸¬ä¸­ï¼š" + samplename);
+          label_status.setText("Œv‘ª’†F" + samplename);
           jprogressbar.setMaximum(total_count);
           jprogressbar.setValue(total_count - count);
         }
         else {
           label_second.setForeground(Color.blue);
-          label_second.setText("è¨ˆæ¸¬çµ‚äº†");
+          label_second.setText("Œv‘ªI—¹");
           label_status.setForeground(Color.black);
           label_status.setText(samplename);
           jprogressbar.setValue(0);
@@ -141,7 +141,7 @@ public class STubeStatusPanel
   }
 
   /**
-   * ã‚«ã‚¦ãƒ³ãƒˆæ•°ã‚’è¨­å®šã™ã‚‹
+   * ƒJƒEƒ“ƒg”‚ğİ’è‚·‚é
    * @param count int
    */
   public void setCount(int count) {
@@ -150,7 +150,7 @@ public class STubeStatusPanel
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒTƒ“ƒvƒ‹–¼‚ğƒZƒbƒg‚·‚é
    *
    * @param name String
    */
@@ -160,7 +160,7 @@ public class STubeStatusPanel
   }
 
   /**
-   * ãƒãƒ¼ãƒˆåã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒ|[ƒg–¼‚ğƒZƒbƒg‚·‚é
    * @param pname String
    */
   public void setPortName(String pname) {
@@ -168,7 +168,7 @@ public class STubeStatusPanel
   }
 
   /**
-   * ã‚µãƒ³ãƒ—ãƒ«é‡é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+   * ƒTƒ“ƒvƒ‹d—Ê‚ğƒZƒbƒg‚·‚é
    *
    * @param gram double
    */
@@ -179,14 +179,14 @@ public class STubeStatusPanel
   }
 
   /**
-   * æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+   * î•ñ‚ğƒNƒŠƒA‚·‚é
    */
   public void clearStatus() {
     count = 0;
     total_count = 0;
     label_com.setText("");
     label_gram.setText("");
-    label_status.setText("ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“");
+    label_status.setText("ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ");
     samplename = "";
   }
 }
