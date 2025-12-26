@@ -94,6 +94,7 @@ public class STubeMeasure {
       balance.setOption(option); // オプション（ボーレート等）を渡す
       balance.open(); //天秤との通信を開始する
       balance.tareAndFlush(200); //天秤の目盛りを0にして受信バッファを捨てる
+      balance.calibrateZero(); //初回読み取り値をゼロ点として設定
 
       //グラフの初期化
       initGraph();

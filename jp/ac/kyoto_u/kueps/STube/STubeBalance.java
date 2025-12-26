@@ -20,6 +20,9 @@ public class STubeBalance {
   String value = "";
 
   STubeOption option;
+  
+  /** 初回読み取り値をオフセットとして保存 */
+  double offset = 0.0;
 
   public void setOption(STubeOption opt) {
     this.option = opt;
@@ -68,6 +71,17 @@ public class STubeBalance {
     }
   }
 
+  /**
+   * 現在の秤の値を読み取り、それをゼロ点（オフセット）として設定します。
+   * これにより、以降の getValue() は初回読み取り値との差分を返します。
+   */
+  public void calibrateZero() throws IOException {
+    offset = 0.0; // 一時的にオフセットをリセット
+    double initialValue = getValue(); // 生の値を取得
+    offset = initialValue; // その値をオフセットとして保存
+    System.out.println("[BALANCE] calibrateZero: offset set to " + offset);
+  }
+
   synchronized public double getValue() throws IOException {
 
     System.out.println("[BALANCE] getValue()");
@@ -85,8 +99,9 @@ public class STubeBalance {
 
       String num = m.group();
       double v = Double.parseDouble(num);
-      System.out.println("[BALANCE] parsed=" + v + " (from '" + s + "')");
-      return v;
+      double result = v - offset;
+      System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
+      return result;
 
     } catch (Exception ex) {
       System.out.println("[BALANCE] parse failed: " + ex);
