@@ -103,6 +103,19 @@ public class STubeBalance {
   synchronized public double getValue() throws IOException {
 
     System.out.println("[BALANCE] getValue()");
+    
+    // 連続送信モードに対応：読み取る直前にバッファの古いデータをクリア
+    try {
+      InputStream in = sport.getInputStream();
+      while (in.available() > 0) {
+        in.read();
+      }
+      // 少し待って最新データが届くのを待つ
+      Thread.sleep(50);
+    } catch (Exception e) {
+      // ignore
+    }
+    
     readString();
     System.out.println("[BALANCE] line=[" + value + "]");
 
