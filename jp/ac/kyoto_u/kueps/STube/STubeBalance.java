@@ -41,6 +41,33 @@ public class STubeBalance {
     port_writer.flush();
   }
 
+  /**
+   * TARE コマンドを送り、短時間待って受信バッファを捨てる。
+   * open() 後に呼ぶことを想定しています。
+   * @param waitMs 待ち時間（ミリ秒）
+   */
+  public void tareAndFlush(int waitMs) {
+    try {
+      tare();
+      try {
+        Thread.sleep(waitMs);
+      } catch (InterruptedException ie) {
+        Thread.currentThread().interrupt();
+      }
+      try {
+        InputStream in = sport.getInputStream();
+        while (in.available() > 0) {
+          in.read();
+        }
+      } catch (Exception e) {
+        // ignore flush errors
+      }
+    }
+    catch (Exception ex) {
+      // ignore
+    }
+  }
+
   synchronized public double getValue() throws IOException {
 
     System.out.println("[BALANCE] getValue()");
