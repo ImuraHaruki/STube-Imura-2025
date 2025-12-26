@@ -73,35 +73,31 @@ public class STubeBalance {
 
   /**
    * 現在の秤の値を読み取り、それをゼロ点（オフセット）として設定します。
-   * 秤の値が安定するまで待機します（複数回読み取って差分が小さくなるまで）。
+   * 秤の値が安定するまで複数回読み取り、その平均値をオフセットにします。
    */
   public void calibrateZero() throws IOException {
     offset = 0.0; // 一時的にオフセットをリセット
-    double prevValue = -999999;
-    double tolerance = 0.001; // 0.001g 以下の差を安定と見なす
-    int maxRetries = 10;
-    int retry = 0;
+    int numReadings = 5;
+    double[] readings = new double[numReadings];
     
-    while (retry < maxRetries) {
+    System.out.println("[BALANCE] calibrateZero: waiting for stability...");
+    for (int i = 0; i < numReadings; i++) {
       try {
-        Thread.sleep(100); // 100ms 待機
+        Thread.sleep(150); // 150ms 待機
       } catch (InterruptedException ie) {
         Thread.currentThread().interrupt();
       }
-      double currentValue = getValue();
-      if (Math.abs(currentValue - prevValue) < tolerance) {
-        // 値が安定した
-        offset = currentValue;
-        System.out.println("[BALANCE] calibrateZero: offset set to " + offset + " (stable after " + retry + " retries)");
-        return;
-      }
-      prevValue = currentValue;
-      retry++;
+      readings[i] = getValue();
+      System.out.println("[BALANCE] calibrateZero: read " + (i+1) + " = " + readings[i]);
     }
     
-    // 安定しなかったけどセット
-    offset = prevValue;
-    System.out.println("[BALANCE] calibrateZero: offset set to " + offset + " (timeout after " + maxRetries + " retries)");
+    // 平均値を計算
+    double sum = 0;
+    for (double r : readings) {
+      sum += r;
+    }
+    offset = sum / numReadings;
+    System.out.println("[BALANCE] calibrateZero: offset set to average " + offset);
   }
 
   synchronized public double getValue() throws IOException {
