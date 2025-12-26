@@ -93,7 +93,7 @@ public class STubeMeasure {
       balance = new STubeBalance(com); //天秤をあらわすオブジェクトを生成
       balance.setOption(option); // オプション（ボーレート等）を渡す
       balance.open(); //天秤との通信を開始する
-      balance.tareAndFlush(500); //天秤の目盛りを0にして受信バッファを捨てる（待機時間増加）
+      balance.tareAndFlush(1000); //天秤の目盛りを0にして受信バッファを捨てる（待機時間を更に増加）
       balance.calibrateZero(); //初回読み取り値をゼロ点として設定（値が安定するまで待つ）
 
       //グラフの初期化
