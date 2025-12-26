@@ -73,13 +73,35 @@ public class STubeBalance {
 
   /**
    * 現在の秤の値を読み取り、それをゼロ点（オフセット）として設定します。
-   * これにより、以降の getValue() は初回読み取り値との差分を返します。
+   * 秤の値が安定するまで待機します（複数回読み取って差分が小さくなるまで）。
    */
   public void calibrateZero() throws IOException {
     offset = 0.0; // 一時的にオフセットをリセット
-    double initialValue = getValue(); // 生の値を取得
-    offset = initialValue; // その値をオフセットとして保存
-    System.out.println("[BALANCE] calibrateZero: offset set to " + offset);
+    double prevValue = -999999;
+    double tolerance = 0.001; // 0.001g 以下の差を安定と見なす
+    int maxRetries = 10;
+    int retry = 0;
+    
+    while (retry < maxRetries) {
+      try {
+        Thread.sleep(100); // 100ms 待機
+      } catch (InterruptedException ie) {
+        Thread.currentThread().interrupt();
+      }
+      double currentValue = getValue();
+      if (Math.abs(currentValue - prevValue) < tolerance) {
+        // 値が安定した
+        offset = currentValue;
+        System.out.println("[BALANCE] calibrateZero: offset set to " + offset + " (stable after " + retry + " retries)");
+        return;
+      }
+      prevValue = currentValue;
+      retry++;
+    }
+    
+    // 安定しなかったけどセット
+    offset = prevValue;
+    System.out.println("[BALANCE] calibrateZero: offset set to " + offset + " (timeout after " + maxRetries + " retries)");
   }
 
   synchronized public double getValue() throws IOException {
