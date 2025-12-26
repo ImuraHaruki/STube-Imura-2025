@@ -1,9 +1,12 @@
-# STubeSource
+# STube-Imura-2025
 
-This repository contains the STube Java project source.
+成瀬元先生作成の沈降管用粒度分析ソフトSTubeのソースコードをもとに，最新のjavaで動くように改良しました．
 
-作業内容:
-- Git リポジトリを初期化しました。
-- `.gitignore` を追加しました。
+## 改良点
+- シリアル通信規格をRXTXからjSerialCommに変更．
+- ファイル構成を変更
+- 文字コードをShift-JISからUTF-8に変更．
+- 秤からマイナスの値が来た時，0扱いとするように変更．
 
-次のステップ: リモートを追加して最初のプッシュを行ってください。
+## 使用したjavaのバージョン
+Java 25
