@@ -33,3 +33,6 @@ Thumbs.db
 
 # Local libraries (if you want to keep built jars uncomment)
 # /lib/*.jar
+
+# Backup files
+*.bak
