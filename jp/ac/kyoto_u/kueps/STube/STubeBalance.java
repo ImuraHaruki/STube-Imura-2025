@@ -130,6 +130,10 @@ public class STubeBalance {
 
       String num = m.group();
       double v = Double.parseDouble(num);
+      // 秤から負の値が来た場合は0として扱う
+      if (v < 0) {
+        v = 0.0;
+      }
       double result = v - offset;
       System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
       return result;
