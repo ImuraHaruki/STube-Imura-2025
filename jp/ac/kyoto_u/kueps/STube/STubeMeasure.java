@@ -239,6 +239,10 @@ class MeasureTask
         double time = (double) (System.currentTimeMillis() - measure.start) /
             1000.;
         double weight = measure.balance.getValue();
+        // 負の値は0として扱う
+        if (weight < 0) {
+          weight = 0.0;
+        }
         double phi = measure.condition.phimin + index * measure.condition.dphi;
         sample.addData(weight, time, phi);
         double dweight = sample.mdata[sample.mdata.length - 1].dweight;
