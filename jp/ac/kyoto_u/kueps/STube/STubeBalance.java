@@ -123,17 +123,19 @@ public class STubeBalance {
       String s = (value == null) ? "" : value.trim();
       if (s.isEmpty()) throw new NumberFormatException("empty line");
 
+      // 秤から負の値が来た場合（マイナス記号を含む場合）は0として扱う
+      if (s.contains("-")) {
+        System.out.println("[BALANCE] negative value from scale, treating as 0.0 (from '" + s + "')");
+        return 0.0 - offset;
+      }
+
       // 数字部分を正規表現で抽出（符号、小数、指数表記に対応）
-      Pattern p = Pattern.compile("[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
+      Pattern p = Pattern.compile("[+]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
       Matcher m = p.matcher(s);
       if (!m.find()) throw new NumberFormatException("no number in line: " + s);
 
       String num = m.group();
       double v = Double.parseDouble(num);
-      // 秤から負の値が来た場合は0として扱う
-      if (v < 0) {
-        v = 0.0;
-      }
       double result = v - offset;
       System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
       return result;
