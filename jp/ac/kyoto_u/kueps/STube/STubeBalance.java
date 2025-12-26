@@ -2,6 +2,7 @@ package jp.ac.kyoto_u.kueps.STube;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 import gnu.io.*;
 
@@ -50,11 +51,14 @@ public class STubeBalance {
       String s = (value == null) ? "" : value.trim();
       if (s.isEmpty()) throw new NumberFormatException("empty line");
 
-      String num = s.replaceAll("[^0-9+\\-.]", "");
-      if (num.isEmpty()) throw new NumberFormatException("no number in line: " + s);
+      // 数字部分を正規表現で抽出（符号、小数、指数表記に対応）
+      Pattern p = Pattern.compile("[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
+      Matcher m = p.matcher(s);
+      if (!m.find()) throw new NumberFormatException("no number in line: " + s);
 
+      String num = m.group();
       double v = Double.parseDouble(num);
-      System.out.println("[BALANCE] parsed=" + v);
+      System.out.println("[BALANCE] parsed=" + v + " (from '" + s + "')");
       return v;
 
     } catch (Exception ex) {
