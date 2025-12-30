@@ -239,6 +239,14 @@ class MeasureTask
         double time = (double) (System.currentTimeMillis() - measure.start) /
             1000.;
         double weight = measure.balance.getValue();
+        if (Double.isNaN(weight)) {
+          System.out.println("[BALANCE] invalid reading detected, retrying once...");
+          weight = measure.balance.getValue();
+          if (Double.isNaN(weight)) {
+            System.out.println("[BALANCE] invalid reading persists; skipping this data point");
+            return;
+          }
+        }
         // 負の値は0として扱う
         if (weight < 0) {
           weight = 0.0;

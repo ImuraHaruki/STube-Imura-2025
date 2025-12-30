@@ -187,6 +187,7 @@ public class STube {
           condfile));
       oos.writeObject(option);
       cos.writeObject(condition);
+      System.out.println("[SAVE] Saved option and condition - wdepth=" + condition.wdepth + ", wtemp=" + condition.wtemp + ", rhos=" + condition.rhos);
       oos.close();
       cos.close();
     }
@@ -224,10 +225,12 @@ public class STube {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
             condfile));
         setCondition( (STubeCondition) ois.readObject());
+        System.out.println("[COND] Loaded condition - wdepth=" + condition.wdepth + ", wtemp=" + condition.wtemp + ", rhos=" + condition.rhos);
         ois.close();
       }
       else {
         setCondition(new STubeCondition());
+        System.out.println("[COND] Created new default condition");
       }
     }
     catch (ClassNotFoundException ex) {

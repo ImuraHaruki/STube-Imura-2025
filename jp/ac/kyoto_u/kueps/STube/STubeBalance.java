@@ -115,35 +115,55 @@ public class STubeBalance {
     } catch (Exception e) {
       // ignore
     }
-    
-    readString();
-    System.out.println("[BALANCE] line=[" + value + "]");
 
-    try {
-      String s = (value == null) ? "" : value.trim();
-      if (s.isEmpty()) throw new NumberFormatException("empty line");
+    int attempts = 0;
+    while (attempts < 3) {
+      readString();
+      System.out.println("[BALANCE] line=[" + value + "]");
 
-      // 秤から負の値が来た場合（マイナス記号を含む場合）は0として扱う
-      if (s.contains("-")) {
-        System.out.println("[BALANCE] negative value from scale, treating as 0.0 (from '" + s + "')");
-        return 0.0 - offset;
+      try {
+        String s = (value == null) ? "" : value.trim();
+        if (s.isEmpty()) throw new NumberFormatException("empty line");
+
+        // 秤から負の値が来た場合（マイナス記号を含む場合）は0として扱う
+        if (s.contains("-")) {
+          System.out.println("[BALANCE] negative value from scale, treating as 0.0 (from '" + s + "')");
+          return 0.0 - offset;
+        }
+
+        // 数字部分を正規表現で抽出（符号、小数、指数表記に対応）
+        Pattern p = Pattern.compile("[+]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
+        Matcher m = p.matcher(s);
+        if (!m.find()) throw new NumberFormatException("no number in line: " + s);
+
+        String num = m.group();
+
+        // 小数点が欠落した異常値（例: 043g）を排除する
+        if (!hasDecimalOrExponent(num)) {
+          attempts++;
+          System.out.println("[BALANCE] suspicious value (missing decimal/exponent), retry " + attempts + ": '" + s + "'");
+          Thread.sleep(50);
+          continue;
+        }
+
+        double v = Double.parseDouble(num);
+        double result = v - offset;
+        System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
+        return result;
+
+      } catch (Exception ex) {
+        attempts++;
+        System.out.println("[BALANCE] parse failed (attempt " + attempts + "): " + ex);
+        try {
+          Thread.sleep(50);
+        } catch (InterruptedException ie) {
+          Thread.currentThread().interrupt();
+        }
       }
-
-      // 数字部分を正規表現で抽出（符号、小数、指数表記に対応）
-      Pattern p = Pattern.compile("[+]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
-      Matcher m = p.matcher(s);
-      if (!m.find()) throw new NumberFormatException("no number in line: " + s);
-
-      String num = m.group();
-      double v = Double.parseDouble(num);
-      double result = v - offset;
-      System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
-      return result;
-
-    } catch (Exception ex) {
-      System.out.println("[BALANCE] parse failed: " + ex);
-      return Double.NaN; 
     }
+
+    System.out.println("[BALANCE] giving up after invalid reads; returning NaN");
+    return Double.NaN; 
   }
 
   public void open() throws NumberFormatException, PortInUseException,
@@ -246,5 +266,9 @@ public class STubeBalance {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  private boolean hasDecimalOrExponent(String num) {
+    return num.indexOf('.') >= 0 || num.indexOf('e') > 0 || num.indexOf('E') > 0;
   }
 }
