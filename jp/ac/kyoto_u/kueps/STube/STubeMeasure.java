@@ -19,6 +19,8 @@ import gnu.io.*;
 public class STubeMeasure {
 
   double max_dweight = 0.0;
+  // 前回の秤の生データ（増減判定用）
+  double lastRawWeight = Double.NaN;
   double phi;
   double dphi;
 
@@ -238,19 +240,31 @@ class MeasureTask
         //サンプルにデータを追加
         double time = (double) (System.currentTimeMillis() - measure.start) /
             1000.;
-        double weight = measure.balance.getValue();
-        if (Double.isNaN(weight)) {
+        double rawWeight = measure.balance.getValue();
+        if (Double.isNaN(rawWeight)) {
           System.out.println("[BALANCE] invalid reading detected, retrying once...");
-          weight = measure.balance.getValue();
-          if (Double.isNaN(weight)) {
+          rawWeight = measure.balance.getValue();
+          if (Double.isNaN(rawWeight)) {
             System.out.println("[BALANCE] invalid reading persists; skipping this data point");
             return;
           }
         }
-        // 負の値は0として扱う
-        if (weight < 0) {
-          weight = 0.0;
+        double prevRecordedWeight = sample.mdata.length == 0 ? 0.0 :
+            sample.mdata[sample.mdata.length - 1].weight;
+        double weight;
+        if (Double.isNaN(measure.lastRawWeight)) {
+          // 初回は負なら0、正ならそのまま記録
+          weight = rawWeight < 0 ? 0.0 : rawWeight;
         }
+        else if (rawWeight > measure.lastRawWeight) {
+          // 増加分のみ加算して記録
+          weight = prevRecordedWeight + (rawWeight - measure.lastRawWeight);
+        }
+        else {
+          // 減少した場合は増分0として直前の値を保持
+          weight = prevRecordedWeight;
+        }
+        measure.lastRawWeight = rawWeight;
         double phi = measure.condition.phimin + index * measure.condition.dphi;
         sample.addData(weight, time, phi);
         double dweight = sample.mdata[sample.mdata.length - 1].dweight;

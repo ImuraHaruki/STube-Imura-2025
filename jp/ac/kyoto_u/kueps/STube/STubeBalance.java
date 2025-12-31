@@ -125,18 +125,12 @@ public class STubeBalance {
         String s = (value == null) ? "" : value.trim();
         if (s.isEmpty()) throw new NumberFormatException("empty line");
 
-        // 秤から負の値が来た場合（マイナス記号を含む場合）は0として扱う
-        if (s.contains("-")) {
-          System.out.println("[BALANCE] negative value from scale, treating as 0.0 (from '" + s + "')");
-          return 0.0 - offset;
-        }
-
-        // 数字部分を正規表現で抽出（符号、小数、指数表記に対応）
-        Pattern p = Pattern.compile("[+]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?");
+        // 数字部分を正規表現で抽出（符号と数字の間に空白があるケースも拾う）
+        Pattern p = Pattern.compile("([-+]?\\s*\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)");
         Matcher m = p.matcher(s);
         if (!m.find()) throw new NumberFormatException("no number in line: " + s);
 
-        String num = m.group();
+        String num = m.group(1).replaceAll("\\s+", "");
 
         // 小数点が欠落した異常値（例: 043g）を排除する
         if (!hasDecimalOrExponent(num)) {
@@ -148,7 +142,11 @@ public class STubeBalance {
 
         double v = Double.parseDouble(num);
         double result = v - offset;
-        System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
+        if (v < 0) {
+          System.out.println("[BALANCE] negative raw value retained: parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
+        } else {
+          System.out.println("[BALANCE] parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
+        }
         return result;
 
       } catch (Exception ex) {
