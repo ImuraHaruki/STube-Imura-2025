@@ -12,5 +12,5 @@
 Java 25
 
 ## 起動方法
-STube.batを実行
+STube.batを実行  
 初回使用時はコンパイル用バッチファイル（compile.bat）を実行する
