@@ -132,10 +132,10 @@ public class STubeBalance {
 
         String num = m.group(1).replaceAll("\\s+", "");
 
-        // 小数点が欠落した異常値（例: 043g）を排除する
-        if (!hasDecimalOrExponent(num)) {
+        // フォーマットが不正な場合は再取得（スペース数チェック）
+        if (!isValidBalanceFormat(value)) {
           attempts++;
-          System.out.println("[BALANCE] suspicious value (missing decimal/exponent), retry " + attempts + ": '" + s + "'");
+          System.out.println("[BALANCE] invalid format (expected 11 chars with proper spacing), retry " + attempts + ": '" + value + "' (len=" + (value == null ? 0 : value.length()) + ")");
           Thread.sleep(50);
           continue;
         }
@@ -266,7 +266,56 @@ public class STubeBalance {
     }
   }
 
-  private boolean hasDecimalOrExponent(String num) {
-    return num.indexOf('.') >= 0 || num.indexOf('e') > 0 || num.indexOf('E') > 0;
+  /**
+   * 秤からのデータが正しいフォーマットかチェック
+   * 正の値: "    x.xxxg " (11文字: スペース4 + 数値 + 'g' + スペース1)
+   * 負の値: " -  x.xxxg " (11文字: スペース1 + '-' + スペース2 + 数値 + 'g' + スペース1)
+   * @param line 秤からの生データ（trim前）
+   * @return フォーマットが正しい場合true
+   */
+  private boolean isValidBalanceFormat(String line) {
+    if (line == null || line.length() != 11) {
+      return false;
+    }
+    
+    // 末尾スペースと'g'をチェック
+    if (line.charAt(10) != ' ' || line.charAt(9) != 'g') {
+      return false;
+    }
+    
+    // 正の値: "    x.xxxg "
+    if (line.charAt(0) == ' ' && line.charAt(1) == ' ' && 
+        line.charAt(2) == ' ' && line.charAt(3) == ' ') {
+      // 小数点の位置を探す（4-7文字目のどこかにあるはず）
+      for (int i = 4; i <= 7; i++) {
+        if (line.charAt(i) == '.') {
+          // 小数点の後ろ3桁が数字で、その後が'g'であることを確認
+          if (i + 3 < 9) {
+            return Character.isDigit(line.charAt(i+1)) &&
+                   Character.isDigit(line.charAt(i+2)) &&
+                   Character.isDigit(line.charAt(i+3));
+          }
+        }
+      }
+      return false;
+    }
+    // 負の値: " -  x.xxxg "
+    else if (line.charAt(0) == ' ' && line.charAt(1) == '-' &&
+             line.charAt(2) == ' ' && line.charAt(3) == ' ') {
+      // 小数点の位置を探す（4-7文字目のどこかにあるはず）
+      for (int i = 4; i <= 7; i++) {
+        if (line.charAt(i) == '.') {
+          // 小数点の後ろ3桁が数字で、その後が'g'であることを確認
+          if (i + 3 < 9) {
+            return Character.isDigit(line.charAt(i+1)) &&
+                   Character.isDigit(line.charAt(i+2)) &&
+                   Character.isDigit(line.charAt(i+3));
+          }
+        }
+      }
+      return false;
+    }
+    
+    return false;
   }
 }
