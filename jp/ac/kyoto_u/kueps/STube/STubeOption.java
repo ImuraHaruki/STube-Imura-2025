@@ -79,13 +79,13 @@ public class STubeOption
   transient protected PageFormat pageformat;
 
   /**カウントダウンするサウンドのパス*/
-  String sound_count_path = "";
+  String sound_count_path = "jp/ac/kyoto_u/kueps/STube/count.wav";
 
   /**ラスト3秒をカウントダウンするサウンドのパス*/
-  String sound_lastcount_path = "";
+  String sound_lastcount_path = "jp/ac/kyoto_u/kueps/STube/count_final.wav";
 
   /**計測開始を告げるサウンドのパス*/
-  String sound_start_path = "";
+  String sound_start_path = "jp/ac/kyoto_u/kueps/STube/start.wav";
 
   public STubeOption() {
     pageformat = new PageFormat();
