@@ -95,8 +95,15 @@ public class STubeMeasure {
       balance = new STubeBalance(com); //天秤をあらわすオブジェクトを生成
       balance.setOption(option); // オプション（ボーレート等）を渡す
       balance.open(); //天秤との通信を開始する
-      balance.tareAndFlush(5000); //天秤の目盛りを0にして受信バッファを捨てる（待機時間を5秒に延長）
-      balance.calibrateZero(); //初回読み取り値をゼロ点として設定（値が安定するまで待つ）
+      
+      //天秤の初期化（失敗しても測定を続行）
+      try {
+        balance.tareAndFlush(5000); //天秤の目盛りを0にして受信バッファを捨てる（待機時間を5秒に延長）
+        balance.calibrateZero(); //初回読み取り値をゼロ点として設定（値が安定するまで待つ）
+      } catch (Exception ex) {
+        System.out.println("[WARNING] 天秤の初期化に失敗しましたが、測定を続行します: " + ex.getMessage());
+        ex.printStackTrace();
+      }
 
       //グラフの初期化
       initGraph();
