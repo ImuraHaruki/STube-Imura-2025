@@ -45,8 +45,9 @@ public class STubeConditionPanel
   JSpinner jspinner_dm = new JSpinner(new SpinnerNumberModel(1.0, 0.5, 100.0,
       1.0));
   JCheckBox jcheckbox_intervalmode = new JCheckBox();
-  JCheckBox jcheckbox_gibbs = new JCheckBox();
   JCheckBox jcheckbox_phiscale = new JCheckBox();
+  JLabel label_method = new JLabel();
+  JComboBox jcombobox_method = new JComboBox();
 
   /**
    * コンストラクタ
@@ -80,7 +81,6 @@ public class STubeConditionPanel
         jcheckbox_intervalmode_itemStateChanged(e);
       }
     });
-    jcheckbox_gibbs.setText("Use Gibbs\' Formula");
     jspinner_phimin.addChangeListener(new javax.swing.event.ChangeListener() {
       public void stateChanged(ChangeEvent e) {
         jspinner_phimin_stateChanged(e);
@@ -93,73 +93,63 @@ public class STubeConditionPanel
     });
     jcheckbox_phiscale.setToolTipText("統計値の算出などにphiスケールを用いる");
     jcheckbox_phiscale.setText("Use phi-scale");
-    add(label_rhos, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
-                                           , GridBagConstraints.EAST,
-                                           GridBagConstraints.NONE,
-                                           new Insets(10, 10, 5, 0), 0, 0));
-    add(label_wtemp, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
-                                            , GridBagConstraints.EAST,
-                                            GridBagConstraints.NONE,
-                                            new Insets(5, 10, 5, 0), 0, 0));
-    add(label_wdepth, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
-                                             , GridBagConstraints.EAST,
-                                             GridBagConstraints.NONE,
-                                             new Insets(5, 10, 5, 0), 0, 0));
-    add(jspinner_rhos, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0
-                                              , GridBagConstraints.WEST,
-                                              GridBagConstraints.NONE,
-                                              new Insets(10, 0, 5, 10), 0, 0));
-    add(jspinner_wtemp, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
-                                               , GridBagConstraints.WEST,
-                                               GridBagConstraints.NONE,
-                                               new Insets(5, 0, 5, 10), 0, 0));
-    add(jspinner_wdepth, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
-                                                , GridBagConstraints.WEST,
+    label_method.setText("沈降速度計算方法 ：");
+    this.add(label_rhos, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
+                                                , GridBagConstraints.EAST,
                                                 GridBagConstraints.NONE,
-                                                new Insets(5, 0, 5, 10), 0, 0));
-    add(label_phi, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0
-                                          , GridBagConstraints.EAST,
-                                          GridBagConstraints.NONE,
-                                          new Insets(10, 10, 5, 0), 0, 0));
-    add(label_dphi, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0
-                                           , GridBagConstraints.EAST,
-                                           GridBagConstraints.NONE,
-                                           new Insets(5, 10, 5, 0), 0, 0));
-    add(label_minterval, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0
+                                                new Insets(10, 10, 5, 0), 0, 0));
+    this.add(label_wtemp, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
+                                                 , GridBagConstraints.EAST,
+                                                 GridBagConstraints.NONE,
+                                                 new Insets(5, 10, 5, 0), 0, 0));
+    this.add(label_wdepth, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
+                                                  , GridBagConstraints.EAST,
+                                                  GridBagConstraints.NONE,
+                                                  new Insets(5, 10, 5, 0), 0, 0));
+    this.add(jspinner_rhos, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0
+        , GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(10, 0, 5, 10), 0, 0));
+    this.add(jspinner_wtemp, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
+        , GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(5, 0, 5, 10), 0, 0));
+    this.add(jspinner_wdepth, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
+        , GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(5, 0, 5, 10), 0, 0));
+    this.add(label_phi, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0
+                                               , GridBagConstraints.EAST,
+                                               GridBagConstraints.NONE,
+                                               new Insets(10, 10, 5, 0), 0, 0));
+    this.add(label_dphi, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0
                                                 , GridBagConstraints.EAST,
                                                 GridBagConstraints.NONE,
                                                 new Insets(5, 10, 5, 0), 0, 0));
-    add(jspinner_phimin, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0
-                                                , GridBagConstraints.EAST,
-                                                GridBagConstraints.NONE,
-                                                new Insets(10, 0, 5, 0), 0, 0));
-    add(jspinner_dphi, new GridBagConstraints(3, 1, 3, 1, 0.0, 0.0
-                                              , GridBagConstraints.WEST,
-                                              GridBagConstraints.NONE,
-                                              new Insets(5, 0, 5, 10), 0, 0));
-    add(jspinner_minterval, new GridBagConstraints(3, 2, 3, 1, 0.0, 0.0
+    this.add(label_minterval, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0
+        , GridBagConstraints.EAST, GridBagConstraints.NONE,
+        new Insets(5, 10, 5, 0), 0, 0));
+    this.add(jspinner_phimin, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0
+        , GridBagConstraints.EAST, GridBagConstraints.NONE,
+        new Insets(10, 0, 5, 0), 0, 0));
+    this.add(jspinner_dphi, new GridBagConstraints(3, 1, 3, 1, 0.0, 0.0
         , GridBagConstraints.WEST, GridBagConstraints.NONE,
         new Insets(5, 0, 5, 10), 0, 0));
-    add(label_wline, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0
-                                            , GridBagConstraints.CENTER,
-                                            GridBagConstraints.NONE,
-                                            new Insets(10, 0, 5, 0), 0, 0));
-    add(jspinner_phimax, new GridBagConstraints(5, 0, 1, 1, 0.0, 0.0
-                                                , GridBagConstraints.WEST,
-                                                GridBagConstraints.NONE,
-                                                new Insets(10, 0, 5, 10), 0, 0));
-    add(label_dm, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0
-                                         , GridBagConstraints.EAST,
-                                         GridBagConstraints.NONE,
-                                         new Insets(5, 10, 5, 0), 0, 0));
-    add(jspinner_dm, new GridBagConstraints(3, 3, 3, 1, 0.0, 0.0
-                                            , GridBagConstraints.WEST,
-                                            GridBagConstraints.NONE,
-                                            new Insets(5, 0, 5, 10), 0, 0));
-    add(jcheckbox_gibbs, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0
-                                                , GridBagConstraints.WEST,
-                                                GridBagConstraints.NONE,
-                                                new Insets(0, 20, 10, 5), 0, 0));
+    this.add(jspinner_minterval, new GridBagConstraints(3, 2, 3, 1, 0.0, 0.0
+        , GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(5, 0, 5, 10), 0, 0));
+    this.add(label_wline, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0
+                                                 , GridBagConstraints.CENTER,
+                                                 GridBagConstraints.NONE,
+                                                 new Insets(10, 0, 5, 0), 0, 0));
+    this.add(jspinner_phimax, new GridBagConstraints(5, 0, 1, 1, 0.0, 0.0
+        , GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(10, 0, 5, 10), 0, 0));
+    this.add(label_dm, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0
+                                              , GridBagConstraints.EAST,
+                                              GridBagConstraints.NONE,
+                                              new Insets(5, 10, 5, 0), 0, 0));
+    this.add(jspinner_dm, new GridBagConstraints(3, 3, 3, 1, 0.0, 0.0
+                                                 , GridBagConstraints.WEST,
+                                                 GridBagConstraints.NONE,
+                                                 new Insets(5, 0, 5, 10), 0, 0));
     this.add(jcheckbox_intervalmode,
              new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0
                                     , GridBagConstraints.CENTER,
@@ -168,6 +158,19 @@ public class STubeConditionPanel
     this.add(jcheckbox_phiscale, new GridBagConstraints(3, 4, 3, 1, 0.0, 0.0
         , GridBagConstraints.WEST, GridBagConstraints.NONE,
         new Insets(5, 5, 10, 10), 0, 0));
+    this.add(label_method, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0
+                                             , GridBagConstraints.CENTER,
+                                             GridBagConstraints.NONE,
+                                             new Insets(0, 0, 0, 0), 0, 0));
+    this.add(jcombobox_method, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0
+                                                , GridBagConstraints.CENTER,
+                                                GridBagConstraints.NONE,
+                                                new Insets(0, 0, 0, 0), 0, 0));
+    jcombobox_method.addItem("Natural sands");
+    jcombobox_method.addItem("Smooth spheres");
+    jcombobox_method.addItem("Very angular grains");
+    jcombobox_method.addItem("Schiller and Naumann");
+    jcombobox_method.addItem("Gibbs et al.");
   }
 
   /**
@@ -186,7 +189,6 @@ public class STubeConditionPanel
     jspinner_phimax.setValue(new Double(cond.phimax));
     jspinner_dm.setValue(new Double(cond.dm));
     jcheckbox_intervalmode.setSelected(cond.intervalmode);
-    jcheckbox_gibbs.setSelected(cond.gibbs);
     jcheckbox_phiscale.setSelected(cond.phiscale);
 
     boolean intervalmode = jcheckbox_intervalmode.isSelected();
@@ -199,7 +201,7 @@ public class STubeConditionPanel
     jspinner_minterval.setEnabled(intervalmode);
     label_dm.setEnabled(intervalmode);
     jspinner_dm.setEnabled(intervalmode);
-
+    jcombobox_method.setSelectedItem(cond.calcmethod);
   }
 
   /**
@@ -217,8 +219,8 @@ public class STubeConditionPanel
     condition.phimax = ( (Double) jspinner_phimax.getValue()).doubleValue();
     condition.dm = ( (Double) jspinner_dm.getValue()).doubleValue();
     condition.intervalmode = jcheckbox_intervalmode.isSelected();
-    condition.gibbs = jcheckbox_gibbs.isSelected();
     condition.phiscale = jcheckbox_phiscale.isSelected();
+    condition.calcmethod = (String)jcombobox_method.getSelectedItem();
 
     condition.calcCondition();
 

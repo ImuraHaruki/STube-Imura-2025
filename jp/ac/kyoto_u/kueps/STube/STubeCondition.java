@@ -54,8 +54,8 @@ public class STubeCondition
   /**一定時間間隔で計測を行うか否か*/
   protected boolean intervalmode = false;
 
-  /**沈降速度の計算にGibbs et al. (1971)の式を用いるか*/
-  protected boolean gibbs = false;
+  /**沈降速度の計算に何を用いるか*/
+  protected String calcmethod = "Natural sands";
 
   /**統計値の算出にphiスケールを用いるか否か*/
   protected boolean phiscale = true;
@@ -63,6 +63,12 @@ public class STubeCondition
   /**デフォルトコンストラクタ*/
   public STubeCondition() {
     calcCondition();
+    try {
+      jbInit();
+    }
+    catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
 
   /**
@@ -137,7 +143,7 @@ public class STubeCondition
     double d = Math.pow(2.0, -phi) / 10;
 
     /**Gibbsの終端速度で求める*/
-    if (gibbs) {
+    if (calcmethod.equals("Gibbs et al.")) {
       double tvel;
       tvel = getGibbsTVelocity(d);
       return wdepth / tvel;
@@ -146,17 +152,15 @@ public class STubeCondition
     //台形差分法で沈降時間を計算
     double dt = 0.000001;
     double time = 0.0;
-    double v = 0.000001;
+    double v = 0.00001;
     double v_old = v * 0.1;
     double y = 0.0;
-    double re = 0.0;
     double cd = 0.0;
     double dv = 0.0;
-    //加速過程を計算．速度が0.0001%しか変わっていなければ終端速度に達したと判定
-    while (y < wdepth && (v - v_old) / v_old > 0.000001) {
+    //加速過程を計算．速度が0.0000001倍しか変わっていなければ終端速度に達したと判定
+    while (y < wdepth && (v - v_old) / v_old > 0.0000001) {
       v_old = v;
-      re = (rhof * v * d) / mu;
-      cd = getCd(re);
+     cd = getCd(d, v);
       dv = ( (rhos - rhof) * G / rhos -
                    (3 * rhof * cd * Math.pow(v, 2.)) / (4 * rhos * d));
       y = y + (v + 1. / 2. * dv * dt) * dt;
@@ -172,23 +176,50 @@ public class STubeCondition
   }
 
   /**
-   * 抵抗係数Cdをレイノルズ数reから算出する
+   * 抵抗係数Cdを粒子直径dと沈降速度vから算出する
    * @param re double
    * @return double
    */
-  private final double getCd(double re) {
+  /*private final double getCd(double re) {*/
+  private final double getCd(double d, double v){
+
     double cd = 0;
 
-    //ストークス則
-    if (re < 0.9) {
-      cd = 24. / re;
+    //シラーとナウマンの式を使う場合
+    if(calcmethod.equals("Schiller and Naumann")){
+      double re = (rhof * v * d) / mu;
+      //ストークス則
+      if (re < 0.9) {
+        cd = 24. / re;
+      }
+      //シラーとナウマンの式
+      else if (re < 800.) {
+        cd = 24 / re * (1. + 0.15 * Math.pow(re, 0.687));
+      }
+      else {
+        cd = 0.4;
+      }
     }
-    //シラーとナウマンの式
-    else if (re < 800.) {
-      cd = 24 / re * (1. + 0.15 * Math.pow(re, 0.687));
-    }
-    else {
-      cd = 0.4;
+
+    //Ferguson and Churchを使う場合
+    else{
+      //完全球体の場合の設定
+      double c1 = 18;
+      double c2 = 0.4;
+      //自然の砂の場合
+      if(calcmethod.equals("Natural sands")){
+        c2 = 1.0;
+      }
+      //角ばった砂の場合
+      if(calcmethod.equals("Very angular grains")){
+        c1 = 24;
+        c2 = 1.2;
+      }
+
+      double nu = mu / rhof;
+      double R = rhos - rhof;
+      cd = 2 * c1 * nu / Math.sqrt(3 * R * G * Math.pow(d, 3.)) + Math.sqrt(c2);
+      cd = Math.pow(cd, 2.);
     }
 
     return cd;
@@ -230,7 +261,7 @@ public class STubeCondition
     pr.println("重力加速度(cm/s^2): " + "\t" + Double.toString(G));
 
     /**計測時刻*/
-    pr.print("計測時刻: ");
+    pr.print("計測時刻: " + "\t");
     for (int i = 0; i < mtime.length; i++) {
       pr.print(Double.toString(mtime[i]) + "\t");
     }
@@ -240,10 +271,13 @@ public class STubeCondition
     pr.println("一定時間間隔で計測を行うか否か: " + "\t" + Boolean.toString(intervalmode));
 
     /**沈降速度の計算にGibbs et al. (1971)の式を用いるか*/
-    pr.println("沈降速度の計算にGibbs(1971)の式を用いるか: " + "\t" + Boolean.toString(gibbs));
+    pr.println("沈降速度の計算方法: " + "\t" + calcmethod);
 
     pr.println("統計値の計算にPhiScaleを用いるか: " + "\t" + Boolean.toString(phiscale));
     return condition.toString();
+  }
+
+  private void jbInit() throws Exception {
   }
 
 }
