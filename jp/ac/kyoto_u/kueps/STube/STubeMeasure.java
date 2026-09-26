@@ -18,6 +18,9 @@ import gnu.io.*;
 
 public class STubeMeasure {
 
+  /** Tolerate only small balance noise when checking cumulative weight. */
+  private static final double WEIGHT_DECREASE_TOLERANCE = 0.002;
+
   double max_dweight = 0.0;
   // 前回の秤の生データ（増減判定用）
   double lastRawWeight = Double.NaN;
@@ -96,13 +99,20 @@ public class STubeMeasure {
       balance.setOption(option); // オプション（ボーレート等）を渡す
       balance.open(); //天秤との通信を開始する
       
-      //天秤の初期化（失敗しても測定を続行）
+      // 天秤の初期化。ゼロ点が不明なまま測定を続行すると誤った重量を
+      // 記録するため、初期化に失敗した測定は開始しない。
       try {
-        balance.tareAndFlush(5000); //天秤の目盛りを0にして受信バッファを捨てる（待機時間を5秒に延長）
-        balance.calibrateZero(); //初回読み取り値をゼロ点として設定（値が安定するまで待つ）
+        balance.tareAndFlush(5000);
+        balance.calibrateZero();
       } catch (Exception ex) {
-        System.out.println("[WARNING] 天秤の初期化に失敗しましたが、測定を続行します: " + ex.getMessage());
+        System.out.println("[BALANCE] 天秤の初期化に失敗したため測定を開始しません: " + ex.getMessage());
         ex.printStackTrace();
+        balance.close();
+        pframe.setButtonEnabled(true);
+        finished = true;
+        JOptionPane.showMessageDialog(pframe, "電子天秤の初期化に失敗しました。測定を開始しません。",
+                                      "エラー", JOptionPane.ERROR_MESSAGE);
+        return;
       }
 
       //グラフの初期化
@@ -221,6 +231,40 @@ public class STubeMeasure {
     return finished;
   }
 
+  /**
+   * Returns only a reading that is compatible with the previous accepted
+   * cumulative value.  A lower value is retried and never becomes the next
+   * baseline; this prevents a corrupted frame from creating a large jump in
+   * the following phi class.
+   */
+  double readMonotonicWeight() throws IOException {
+    for (int attempt = 1; attempt <= 3; attempt++) {
+      double candidate = balance.getValue();
+      if (Double.isNaN(candidate)) {
+        continue;
+      }
+      if (Double.isNaN(lastRawWeight) ||
+          candidate + WEIGHT_DECREASE_TOLERANCE >= lastRawWeight) {
+        return candidate;
+      }
+      System.out.println("[BALANCE] rejected decreasing reading " + candidate +
+                         " (last accepted " + lastRawWeight + "), retry " + attempt);
+    }
+    return Double.NaN;
+  }
+
+  /** Stops the run rather than saving a sample with an untrustworthy gap. */
+  void abortInvalidMeasurement(String message) {
+    if (canceled) return;
+    canceled = true;
+    timer.cancel();
+    if (balance != null) balance.close();
+    pframe.setButtonEnabled(true);
+    finished = true;
+    JOptionPane.showMessageDialog(pframe, message, "測定を中止しました",
+                                  JOptionPane.ERROR_MESSAGE);
+  }
+
 }
 
 /**
@@ -247,14 +291,12 @@ class MeasureTask
         //サンプルにデータを追加
         double time = (double) (System.currentTimeMillis() - measure.start) /
             1000.;
-        double rawWeight = measure.balance.getValue();
+        double rawWeight = measure.readMonotonicWeight();
         if (Double.isNaN(rawWeight)) {
-          System.out.println("[BALANCE] invalid reading detected, retrying once...");
-          rawWeight = measure.balance.getValue();
-          if (Double.isNaN(rawWeight)) {
-            System.out.println("[BALANCE] invalid reading persists; skipping this data point");
-            return;
-          }
+          measure.abortInvalidMeasurement(
+              "電子天秤から有効な連続重量を取得できませんでした。\n" +
+              "この測定は保存せず、通信状態を確認して再測定してください。");
+          return;
         }
         double prevRecordedWeight = sample.mdata.length == 0 ? 0.0 :
             sample.mdata[sample.mdata.length - 1].weight;
@@ -271,7 +313,11 @@ class MeasureTask
           // 減少した場合は増分0として直前の値を保持
           weight = prevRecordedWeight;
         }
-        measure.lastRawWeight = rawWeight;
+        // 小さな負方向のノイズでは累積基準を後退させない。
+        if (Double.isNaN(measure.lastRawWeight) ||
+            rawWeight > measure.lastRawWeight) {
+          measure.lastRawWeight = rawWeight;
+        }
         double phi = measure.condition.phimin + index * measure.condition.dphi;
         sample.addData(weight, time, phi);
         double dweight = sample.mdata[sample.mdata.length - 1].dweight;
@@ -287,8 +333,8 @@ class MeasureTask
 
       catch (IOException ex) {
         ex.printStackTrace();
-        JOptionPane.showMessageDialog(measure.pframe, "電子天秤と通信できません", "エラー",
-                                      JOptionPane.ERROR_MESSAGE);
+        measure.abortInvalidMeasurement("電子天秤と通信できません。\n" +
+                                       "この測定は保存せず、通信状態を確認して再測定してください。");
       }
     }
 

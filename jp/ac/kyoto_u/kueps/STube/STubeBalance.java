@@ -19,6 +19,17 @@ public class STubeBalance {
 
   String value = "";
 
+  /**
+   * A frame read immediately after opening/flushing can begin mid-message in
+   * continuous-output mode.  Discard that one frame, then only parse complete
+   * newline-delimited messages from the BufferedReader.
+   */
+  boolean discardNextLine = true;
+
+  /** A balance reading must include at least one digit before its decimal. */
+  private static final Pattern WEIGHT_PATTERN = Pattern.compile(
+      "(?<![0-9.])([-+]?\\s*\\d+\\.\\d+)(?:\\s*)[gG]\\b");
+
   STubeOption option;
   
   /** 初回読み取り値をオフセットとして保存 */
@@ -45,7 +56,7 @@ public class STubeBalance {
   }
 
   /**
-   * TARE コマンドを送り、短時間待って受信バッファを捨てる。
+   * TARE コマンドを送り、短時間待って次の行から受信を同期する。
    * open() 後に呼ぶことを想定しています。
    * @param waitMs 待ち時間（ミリ秒）
    */
@@ -57,14 +68,10 @@ public class STubeBalance {
       } catch (InterruptedException ie) {
         Thread.currentThread().interrupt();
       }
-      try {
-        InputStream in = sport.getInputStream();
-        while (in.available() > 0) {
-          in.read();
-        }
-      } catch (Exception e) {
-        // ignore flush errors
-      }
+      // InputStream と BufferedReader を混在させると、行の途中から
+      // readLine() して先頭桁を失うことがある。次の getValue() で一行だけ
+      // 捨て、必ず改行境界の次のフレームを読む。
+      discardNextLine = true;
     }
     catch (Exception ex) {
       // ignore
@@ -88,6 +95,9 @@ public class STubeBalance {
         Thread.currentThread().interrupt();
       }
       readings[i] = getValue();
+      if (Double.isNaN(readings[i])) {
+        throw new IOException("Invalid balance reading while calibrating zero");
+      }
       System.out.println("[BALANCE] calibrateZero: read " + (i+1) + " = " + readings[i]);
     }
     
@@ -104,43 +114,17 @@ public class STubeBalance {
 
     System.out.println("[BALANCE] getValue()");
     
-    // 連続送信モードに対応：読み取る直前にバッファの古いデータをクリア
-    try {
-      InputStream in = sport.getInputStream();
-      while (in.available() > 0) {
-        in.read();
-      }
-      // 少し待って最新データが届くのを待つ
-      Thread.sleep(50);
-    } catch (Exception e) {
-      // ignore
-    }
-
     int attempts = 0;
     while (attempts < 3) {
-      readString();
+      String line = readCompleteLine();
+      value = line;
       System.out.println("[BALANCE] line=[" + value + "]");
 
       try {
         String s = (value == null) ? "" : value.trim();
         if (s.isEmpty()) throw new NumberFormatException("empty line");
 
-        // 数字部分を正規表現で抽出（符号と数字の間に空白があるケースも拾う）
-        Pattern p = Pattern.compile("([-+]?\\s*\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)");
-        Matcher m = p.matcher(s);
-        if (!m.find()) throw new NumberFormatException("no number in line: " + s);
-
-        String num = m.group(1).replaceAll("\\s+", "");
-
-        // 小数点が欠落した異常値（例: 043g）を排除する
-        if (!hasDecimalOrExponent(num)) {
-          attempts++;
-          System.out.println("[BALANCE] suspicious value (missing decimal/exponent), retry " + attempts + ": '" + s + "'");
-          Thread.sleep(50);
-          continue;
-        }
-
-        double v = Double.parseDouble(num);
+        double v = parseWeightFrame(s);
         double result = v - offset;
         if (v < 0) {
           System.out.println("[BALANCE] negative raw value retained: parsed=" + v + " offset=" + offset + " result=" + result + " (from '" + s + "')");
@@ -164,6 +148,32 @@ public class STubeBalance {
     return Double.NaN; 
   }
 
+  /**
+   * Discards exactly one potentially partial frame after open/tare, then reads
+   * the next complete newline-delimited frame.  Do not read the underlying
+   * InputStream directly after the BufferedReader has been created.
+   */
+  private String readCompleteLine() throws IOException {
+    if (discardNextLine) {
+      String discarded = readString();
+      discardNextLine = false;
+      System.out.println("[BALANCE] discarded synchronization frame=[" + discarded + "]");
+    }
+    return readString();
+  }
+
+  /**
+   * Parses a complete balance frame.  In particular, values such as ".289 g"
+   * are rejected rather than silently accepted as 0.289 g.
+   */
+  static double parseWeightFrame(String frame) {
+    Matcher matcher = WEIGHT_PATTERN.matcher(frame);
+    if (!matcher.find()) {
+      throw new NumberFormatException("invalid balance frame: " + frame);
+    }
+    return Double.parseDouble(matcher.group(1).replaceAll("\\s+", ""));
+  }
+
   public void open() throws NumberFormatException, PortInUseException,
       UnsupportedCommOperationException, IOException, TooManyListenersException {
 
@@ -175,6 +185,7 @@ public class STubeBalance {
 
     port_reader = new BufferedReader(new InputStreamReader(sport.getInputStream()));
     port_writer = new PrintStream(sport.getOutputStream(), true);
+    discardNextLine = true;
 
     System.out.println("[BALANCE] open()");
     System.out.println("[BALANCE] port=" + com.getName());
@@ -183,7 +194,6 @@ public class STubeBalance {
       + " stopbits=" + option.com_stopbits
       + " parity=" + option.com_parity);
 
-    debugDumpBytes(2000);
   }
 
   public void close() {
@@ -266,7 +276,4 @@ public class STubeBalance {
     }
   }
 
-  private boolean hasDecimalOrExponent(String num) {
-    return num.indexOf('.') >= 0 || num.indexOf('e') > 0 || num.indexOf('E') > 0;
-  }
 }
